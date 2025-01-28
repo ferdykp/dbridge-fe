@@ -1,17 +1,3 @@
-<!--
-=========================================================
-* Argon Dashboard 3 - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,8 +34,8 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="{{ route('adminDashboard') }}">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <a class="nav-link active" href="{{ route('adminDashboard') }}">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Dashboard</span>
@@ -99,22 +85,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="{{ route('users.create') }}">
+          <a class="nav-link " href="{{ route('wr.create') }}">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Create Users</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {{ activeRoute(route('users.index', 1)) }}" href="{{ route('users.index', 1) }}">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Show Users</span>
-          </a>
-      </li>
-      
         <li class="nav-item">
           <a class="nav-link " href="../pages/sign-in.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -183,114 +160,61 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-12">
-          <div class="card mb-4 ">
-            <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-              <div>
-                  <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add</a>
-              </div>
-              <div>
-                  <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i class="fa fa-download"></i> Export User Data</a>
-              </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{ route('users.store') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name" class="form-control-label">Nama:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
+                                required>
+                            @error('name')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
+                        </div>
+    
+                        <div>
+                            <label for="email" class="form-control-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
+                                required>
+                            @error('email')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
+                        </div>
+    
+                        <div>
+                            <label for="password" class="form-control-label">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            @error('password')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
+                        </div>
+    
+                        <div>
+                            <label for="password_confirmation" class="form-control-label">Konfirmasi Password:</label>
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
+                                required>
+                        </div>
+    
+                        <div>
+                            <label for="role" class="form-control-label">Role:</label>
+                            <select id="role" class="form-control mb-3" name="role" required>
+                                <option value="" disabled hidden selected>--- Select Role ---</option>
+                                <option value="sm">Admin</option>
+                                <option value="user">User</option>
+                                <option value="supplier">Supplier</option>
+                            </select>
+                            @error('role')
+                                <span style="color: red;">{{ $message }}</span>
+                            @enderror
+                        </div>
+    
+                        <button type="submit" class="btn btn-primary">Tambah User</button>
+                    </form>
+                </div>
             </div>
-            <div class="card-header pb-0">
-              <h6>Authors table</h6>
             </div>
-            <div class="card-body px-0 pt-0 pb-4">
-              <div class="table-responsive p-0">
-                <table id="datatable" class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>DSTRC_ORI</th>
-                      <th>CREATION_DATE</th>
-                      <th>AUTHSD_DATE</th>
-                      <th>WO_DESC</th>
-                      <th>ACUAN PLAN SERVICE</th>
-                      <th>Componen_Desc</th>
-                      <th>EGI</th>
-                      <th>EGI ENG</th>
-                      <th>EQUIP_NO</th>
-                      <th>Plant Process</th>
-                      <th>Plant Activity</th>
-                      <th>WR_NO</th>
-                      <th>WR_ITEM</th>
-                      <th>QTY_REQ</th>
-                      <th>Stock_Code</th>
-                      <th>Price_Code</th>
-                      <th>ITEM_NAME</th>
-                      <th>CLASS</th>
-                      <th>Current Class</th>
-                      <th>Mnemonic Current</th>
-                      <th>PN Current</th>
-                      <th>PN Global</th>
-                      <th>WH</th>
-                      <th>UOI</th>
-                      <th>Notes</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @forelse ($wr as $index => $wr)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $wr->dstrc_ori }}</td>
-                            <td>{{ $wr->creation_date }}</td>
-                            <td>{{ $wr->authsd_date }}</td>
-                            <td>{{ $wr->wo_desc }}</td>
-                            <td>{{ $wr->acuan_plan_service }}</td>
-                            <td>{{ $wr->componen_desc }}</td>
-                            <td>{{ $wr->egi }}</td>
-                            <td>{{ $wr->egi_eng }}</td>
-                            <td>{{ $wr->equip_no }}</td>
-                            <td>{{ $wr->plant_process }}</td>
-                            <td>{{ $wr->plant_activity }}</td>
-                            <td>{{ $wr->wr_no }}</td>
-                            <td>{{ $wr->wr_item }}</td>
-                            <td>{{ $wr->qty_req }}</td>
-                            <td>{{ $wr->stock_code }}</td>
-                            <td>{{ $wr->price_code }}</td>
-                            <td>{{ $wr->item_name }}</td>
-                            <td>{{ $wr->class }}</td>
-                            <td>{{ $wr->current_class }}</td>
-                            <td>{{ $wr->mnemonic_current }}</td>
-                            <td>{{ $wr->pn_current }}</td>
-                            <td>{{ $wr->pn_global }}</td>
-                            <td>{{ $wr->wh }}</td>
-                            <td>{{ $wr->uoi }}</td>
-                            <td>{{ $wr->notes }}</td>
-                            <td>{{ $wr->status }}</td>
-                            <td class="d-flex justify-content-center">
-                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                    action="{{ route('wr.destroy', $wr->id) }}" method="POST"
-                                    class="d-flex gap-2">
-                                    <a href="{{ route('wr.show', $wr->id) }}" class="btn btn-sm btn-dark">Show</a>
-                                    <a href="{{ route('wr.edit', $wr->id) }}"
-                                        class="btn btn-sm btn-primary">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="50">
-                                <div class="alert alert-danger text-center">
-                                    Data Barang belum tersedia.
-                                </div>
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
