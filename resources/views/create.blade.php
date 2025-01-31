@@ -6,9 +6,7 @@
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <form action="{{ route('wr.store') }}" method="POST" enctype="multipart/form-data">
-
                             @csrf
-
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold mb-3">DSTRC_ORI</label>
                                 <input type="text" class="form-control @error('dstrc_ori') is-invalid @enderror"
@@ -363,6 +361,19 @@
                                     value="{{ old('home_wh') }}" placeholder="Insert Home WH">
                                 <!-- error message untuk title -->
                                 @error('home_wh')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="font-weight-bold mb-3">UOI</label>
+                                <input type="text" style="text-transform:uppercase"
+                                    class="form-control @error('uoi') is-invalid @enderror" name="uoi"
+                                    value="{{ old('uoi') }}" placeholder="Insert UOI">
+                                <!-- error message untuk title -->
+                                @error('uoi')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>

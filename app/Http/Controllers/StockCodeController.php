@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\StockCode;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class StockCodeController extends Controller
 {
@@ -20,67 +21,31 @@ class StockCodeController extends Controller
     }
     public function store(Request $request)
     {
-        // Validasi input
         $validatedData = $request->validate([
-            'stock_code' => 'required|string',
-            'mnemonic' => 'required|string',
-            'part_number' => 'required|string',
-            'pn_global' => 'required|string',
-            'item_name' => 'required|string',
-            'stock_type_district' => 'required|string',
-            'class' => 'required|string',
-            'home_wh' => 'required|string',
-            'uoi' => 'required|string',
+            'stock_code' => 'required|unique:stockcode,stock_code', // Menambahkan validasi unik
+            'mnemonic' => 'required',
+            'part_number' => 'required',
+            'pn_global' => 'required',
+            'item_name' => 'required',
+            'stock_type_district' => 'required',
+            'class' => 'required',
+            'home_wh' => 'required',
+            'uoi' => 'required',
             'issuing_price' => 'required|numeric',
-            'price_code' => 'required|string'
-            // 'status' => 'required'
+            'price_code' => 'required'
         ]);
 
-        // Menyimpan data ke tabel `stockcode`
-        $stockCode = StockCode::create([
-            'stock_code' => $validatedData['stock_code'],
-            'mnemonic' => $validatedData['mnemonic'],
-            'part_number' => $validatedData['part_number'],
-            'pn_global' => $validatedData['pn_global'],
-            'item_name' => $validatedData['item_name'],
-            'stock_type_district' => $validatedData['stock_type_district'],
-            'class' => $validatedData['class'],
-            'home_wh' => $validatedData['home_wh'],
-            'uoi' => $validatedData['uoi'],
-            'issuing_price' => $validatedData['issuing_price'],
-            'price_code' => $validatedData['price_code']
-        ]);
+        StockCode::create($validatedData);
 
-        // Menyimpan data ke tabel `wr`, referensikan `stock_code_id`
-        // DB::table('wr')->insert([
-        //     'stock_code_id' => $stockCode->id,  // Foreign key ke `stockcode`
-        //     'dstrc_ori' => $validatedData['dstrc_ori'],
-        //     'creation_date' => $validatedData['creation_date'],
-        //     'authsd_date' => $validatedData['authsd_date'],
-        //     'wo_desc' => $validatedData['wo_desc'],
-        //     'acuan_plan_service' => $validatedData['acuan_plan_service'],
-        //     'componen_desc' => $validatedData['componen_desc'],
-        //     'egi' => $validatedData['egi'],
-        //     'egi_eng' => $validatedData['egi_eng'],
-        //     'equip_no' => $validatedData['equip_no'],
-        //     'plant_process' => $validatedData['plant_process'],
-        //     'plant_activity' => $validatedData['plant_activity'],
-        //     'wr_no' => $validatedData['wr_no'],
-        //     'wr_item' => $validatedData['wr_item'],
-        //     'qty_req' => $validatedData['qty_req'],
-        //     'status' => $validatedData['status'],
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
-
-        return redirect()->back()->with('success', 'Stock code berhasil ditambahkan!');
+        return redirect()->route('dashboard')->with('success', 'Stock code berhasil ditambahkan!');
     }
+
     public function index()
     {
         $stockCode = StockCode::all();
 
-        dd($stockCode);
-        return view('create', compact('stockCodes'));
+        // dd($stockCode);
+        return view('stockcode', compact('stockCode'));
     }
 
     public function edit($id)
@@ -111,7 +76,7 @@ class StockCodeController extends Controller
         $stockCode->update($validatedData);
 
         // Redirect kembali ke daftar stock codes dengan pesan sukses
-        return redirect()->route('create')->with('success', 'Stock Code berhasil diperbarui!');
+        return redirect()->route('dashboard')->with('success', 'Stock Code berhasil diperbarui!');
     }
     public function destroy($id)
     {
@@ -119,15 +84,15 @@ class StockCodeController extends Controller
         $stockCode->delete(); // Menghapus data stock code
 
         // Redirect kembali dengan pesan sukses
-        return redirect()->route('create')->with('success', 'Stock Code berhasil dihapus!');
+        return redirect()->route('dashboard')->with('success', 'Stock Code berhasil dihapus!');
     }
     public function create()
     {
         // Mengambil data dari tabel stockcode menggunakan Eloquent
         $stockCode = StockCode::all();
 
-        dd($stockCode);
+        // dd($stockCode);
         // Mengirimkan data ke view create
-        return view('create', compact('stockCode'));
+        return view('stockcode', compact('stockCode'));
     }
 }
