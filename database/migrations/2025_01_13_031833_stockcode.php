@@ -12,17 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stockcode', function (Blueprint $table) {
-            $table->id(); // ID untuk primary key
-            $table->string('stock_code')->unique();
-            $table->string('price_code')->nullable();
-            $table->string('item_name');
-            $table->string('class')->nullable();
-            $table->string('current_class')->nullable();
-            $table->string('mnemonic_current')->nullable();
-            $table->string('pn_current')->nullable();
+            $table->id();
+            $table->string('stock_code');
+            $table->string('mnemonic')->nullable();
+            $table->string('part_number')->nullable();
             $table->string('pn_global')->nullable();
-            $table->string('wh')->nullable();
-            $table->string('uoi')->nullable();
+            $table->string('item_name');
+            $table->string('stock_type_district');
+            $table->string('class');
+            $table->string('home_wh');
+            $table->string('uoi');
+            $table->decimal('issuing_price', 15, 2);
+            $table->string('price_code')->nullable();
             $table->timestamps();
         });
     }

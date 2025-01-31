@@ -29,16 +29,18 @@ return new class extends Migration
             $table->string('wr_item');
             $table->integer('qty_req');
             $table->string('stock_code');
-            $table->string('price_code');
-            $table->string('item_name');
-            $table->string('class');
-            $table->string('current_class');
-            $table->string('mnemonic_current');
-            $table->string('pn_current');
+            $table->string('mnemonic');
+            $table->string('part_number');
             $table->string('pn_global');
-            $table->string('wh');
+            $table->string('item_name');
+            $table->string('stock_type_district');
+            $table->string('class');
+            $table->string('home_wh');
             $table->string('uoi');
+            $table->string('issuing_price');
+            $table->string('price_code');
             $table->string('notes');
+            $table->date('eta');
             $table->string('status');
             $table->timestamps();
         });
@@ -49,6 +51,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('wr');
     }
 };

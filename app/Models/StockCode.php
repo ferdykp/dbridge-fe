@@ -11,14 +11,15 @@ class StockCode extends Model
     protected $table = 'stockcode';
     protected $fillable = [
         'stock_code',
-        'price_code',
-        'item_name',
-        'class',
-        'current_class',
-        'mnemonic_current',
-        'pn_current',
+        'mnemonic',
+        'part_number',
         'pn_global',
-        'wh',
-        'uoi'
+        'item_name',
+        'stock_type_district',
+        'class',
+        'home_wh',
+        'uoi',
+        'issuing_price',
+        'price_code',
     ];
 }
