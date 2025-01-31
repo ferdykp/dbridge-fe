@@ -71,15 +71,16 @@
                                             <td>{{ $wr->wr_item }}</td>
                                             <td>{{ $wr->qty_req }}</td>
                                             <td>{{ $wr->stock_code }}</td>
-                                            <td>{{ $wr->price_code }}</td>
-                                            <td>{{ $wr->item_name }}</td>
-                                            <td>{{ $wr->class }}</td>
-                                            <td>{{ $wr->current_class }}</td>
-                                            <td>{{ $wr->mnemonic_current }}</td>
-                                            <td>{{ $wr->pn_current }}</td>
+                                            <td>{{ $wr->mnemonic }}</td>
+                                            <td>{{ $wr->part_number }}</td>
                                             <td>{{ $wr->pn_global }}</td>
-                                            <td>{{ $wr->wh }}</td>
+                                            <td>{{ $wr->item_name }}</td>
+                                            <td>{{ $wr->stock_type_district }}</td>
+                                            <td>{{ $wr->class }}</td>
+                                            <td>{{ $wr->home_wh }}</td>
                                             <td>{{ $wr->uoi }}</td>
+                                            <td>{{ $wr->issuing_price }}</td>
+                                            <td>{{ $wr->price_code }}</td>
                                             <td>{{ $wr->notes }}</td>
                                             <td>{{ $wr->status }}</td>
                                             <td class="d-flex justify-content-center">

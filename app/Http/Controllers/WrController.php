@@ -44,7 +44,6 @@ class WrController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'dstrc_ori' => 'required',
             'creation_date' => 'required',
             'authsd_date' => 'required',
             'wo_desc' => 'required',
@@ -59,16 +58,19 @@ class WrController extends Controller
             'wr_item' => 'required',
             'qty_req' => 'required',
             'stock_code' => 'required',
-            'price_code' => 'required',
-            'item_name' => 'required',
-            'class' => 'required',
-            'current_class' => 'required',
-            'mnemonic_current' => 'required',
-            'pn_current' => 'required',
+            'mnemonic' => 'required',
+            'part_number' => 'required',
             'pn_global' => 'required',
-            'wh' => 'required',
+            'item_name' => 'required',
+            'stock_type_district' => 'required',
+            'class' => 'required',
+            'home_wh' => 'required',
             'uoi' => 'required',
-            'status' => 'required'
+            'issuing_price' => 'required',
+            'price_code' => 'required',
+            'notes' => 'nullable',
+            'eta' => 'nullable',
+            'status' => 'required',
         ]);
 
         Wr::create($request->all());
@@ -92,7 +94,6 @@ class WrController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'dstrc_ori' => 'required',
             'creation_date' => 'required',
             'authsd_date' => 'required',
             'wo_desc' => 'required',
@@ -107,17 +108,19 @@ class WrController extends Controller
             'wr_item' => 'required',
             'qty_req' => 'required',
             'stock_code' => 'required',
-            'price_code' => 'required',
-            'item_name' => 'required',
-            'class' => 'required',
-            'current_class' => 'required',
-            'mnemonic_current' => 'required',
-            'pn_current' => 'required',
+            'mnemonic' => 'required',
+            'part_number' => 'required',
             'pn_global' => 'required',
-            'wh' => 'required',
+            'item_name' => 'required',
+            'stock_type_district' => 'required',
+            'class' => 'required',
+            'home_wh' => 'required',
             'uoi' => 'required',
+            'issuing_price' => 'required',
+            'price_code' => 'required',
+            'notes' => 'nullable',
+            'eta' => 'nullable',
             'status' => 'required'
-            // 'notes' => 'required',
         ]);
 
         $wr = Wr::findOrFail($id);

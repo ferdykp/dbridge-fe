@@ -19,6 +19,6 @@ class AdminMiddleware
         if (Auth::check() && Auth::user()->role == 'sm') {
             return $next($request);
         }
-        abort(403, 'You are not Admin');
+        abort(403, 'You are not Admin/SM');
     }
 }
