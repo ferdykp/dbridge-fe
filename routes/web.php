@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     // WR Management
     Route::resource('wr', WrController::class);
     Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
+    Route::resource('stockCode', StockCodeController::class);
 
     // Dashboard
     Route::get('/dashboard', function () {
@@ -70,4 +71,3 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/test', function () {
     return view('test');
 });
-
