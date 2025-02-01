@@ -21,23 +21,48 @@ class StockCodeController extends Controller
     }
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'stock_code' => 'required|unique:stockcode,stock_code', // Menambahkan validasi unik
-            'mnemonic' => 'required',
-            'part_number' => 'required',
-            'pn_global' => 'required',
-            'item_name' => 'required',
-            'stock_type_district' => 'required',
-            'class' => 'required',
-            'home_wh' => 'required',
-            'uoi' => 'required',
-            'issuing_price' => 'required|numeric',
-            'price_code' => 'required'
+        // Lawas
+        // $validatedData = $request->validate([
+        //     'stock_code' => 'required|unique:stockcode,stock_code', // Menambahkan validasi unik
+        //     'mnemonic' => 'required',
+        //     'part_number' => 'required',
+        //     'pn_global' => 'required',
+        //     'item_name' => 'required',
+        //     'stock_type_district' => 'required',
+        //     'class' => 'required',
+        //     'home_wh' => 'required',
+        //     'uoi' => 'required',
+        //     'issuing_price' => 'required|numeric',
+        //     'price_code' => 'required'
+        // ]);
+
+        // StockCode::create($validatedData);
+
+        // return redirect()->route('dashboard')->with('success', 'Stock code berhasil ditambahkan!');
+
+        // Baru (Bulk Insert)
+        $request->validate([
+            'stock_codes.*.stock_code' => 'required|unique:stockcode,stock_code',
+            'stock_codes.*.mnemonic' => 'required',
+            'stock_codes.*.part_number' => 'required',
+            'stock_codes.*.pn_global' => 'required',
+            'stock_codes.*.item_name' => 'required',
+            'stock_codes.*.stock_type_district' => 'required',
+            'stock_codes.*.class' => 'required',
+            'stock_codes.*.home_wh' => 'required',
+            'stock_codes.*.uoi' => 'required',
+            'stock_codes.*.issuing_price' => 'required|numeric',
+            'stock_codes.*.price_code' => 'required',
         ]);
 
-        StockCode::create($validatedData);
+        // Ambil semua data dari form
+        $stockCodes = $request->input('stock_codes');
 
-        return redirect()->route('dashboard')->with('success', 'Stock code berhasil ditambahkan!');
+        // Insert data secara massal
+        StockCode::insert($stockCodes);
+
+        // Redirect kembali ke dashboard dengan pesan sukses
+        return redirect()->route('dashboard')->with('success', 'Stock codes berhasil ditambahkan!');
     }
 
     public function index()
