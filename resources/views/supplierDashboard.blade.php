@@ -14,17 +14,6 @@
                                 Export User Data</a>
                         </div>
                     </div>
-                    <div class="container">
-                        <h2>Import Stock Codes</h2>
-                        <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label for="file">Pilih file Excel</label>
-                                <input type="file" name="file" class="form-control" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-3">Import</button>
-                        </form>
-                    </div>
                     <div class="card-header pb-0">
                         <h6>Authors table</h6>
                     </div>
