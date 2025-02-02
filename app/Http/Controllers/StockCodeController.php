@@ -118,7 +118,7 @@ class StockCodeController extends Controller
 
         // dd($stockCode);
         // Mengirimkan data ke view create
-        return view('stockcode', compact('stockCode'));
+        return view('addstockcode', compact('stockCode'));
     }
 
     // Fungsi untuk menampilkan form import

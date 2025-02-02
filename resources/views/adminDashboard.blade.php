@@ -14,17 +14,6 @@
                                 Export User Data</a>
                         </div>
                     </div>
-                    <div class="container">
-                        <h2>Import Stock Codes</h2>
-                        <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label for="file">Pilih file Excel</label>
-                                <input type="file" name="file" class="form-control" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-3">Import</button>
-                        </form>
-                    </div>
                     <div class="card-header pb-0">
                         <h6>Authors table</h6>
                     </div>
@@ -33,67 +22,67 @@
                             <table id="datatable" class="table align-items-center mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>No</th>
-                                        <th>DSTRC_ORI</th>
-                                        <th>CREATION_DATE</th>
-                                        <th>AUTHSD_DATE</th>
-                                        <th>WO_DESC</th>
-                                        <th>ACUAN PLAN SERVICE</th>
-                                        <th>Componen_Desc</th>
-                                        <th>EGI</th>
-                                        <th>EGI ENG</th>
-                                        <th>EQUIP_NO</th>
-                                        <th>Plant Process</th>
-                                        <th>Plant Activity</th>
-                                        <th>WR_NO</th>
-                                        <th>WR_ITEM</th>
-                                        <th>QTY_REQ</th>
-                                        <th>Stock_Code</th>
-                                        <th>Price_Code</th>
-                                        <th>ITEM_NAME</th>
-                                        <th>CLASS</th>
-                                        <th>Current Class</th>
-                                        <th>Mnemonic Current</th>
-                                        <th>PN Current</th>
-                                        <th>PN Global</th>
-                                        <th>WH</th>
-                                        <th>UOI</th>
-                                        <th>Notes</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">DSTRC_ORI</th>
+                                        <th class="text-center">CREATION_DATE</th>
+                                        <th class="text-center">AUTHSD_DATE</th>
+                                        <th class="text-center">WO_DESC</th>
+                                        <th class="text-center">ACUAN PLAN SERVICE</th>
+                                        <th class="text-center">Componen_Desc</th>
+                                        <th class="text-center">EGI</th>
+                                        <th class="text-center">EGI ENG</th>
+                                        <th class="text-center">EQUIP_NO</th>
+                                        <th class="text-center">Plant Process</th>
+                                        <th class="text-center">Plant Activity</th>
+                                        <th class="text-center">WR_NO</th>
+                                        <th class="text-center">WR_ITEM</th>
+                                        <th class="text-center">QTY_REQ</th>
+                                        <th class="text-center">Stock_Code</th>
+                                        <th class="text-center">Price_Code</th>
+                                        <th class="text-center">ITEM_NAME</th>
+                                        <th class="text-center">CLASS</th>
+                                        <th class="text-center">Current Class</th>
+                                        <th class="text-center">Mnemonic Current</th>
+                                        <th class="text-center">PN Current</th>
+                                        <th class="text-center">PN Global</th>
+                                        <th class="text-center">WH</th>
+                                        <th class="text-center">UOI</th>
+                                        <th class="text-center">Notes</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($wr as $index => $wr)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $wr->dstrc_ori }}</td>
-                                            <td>{{ $wr->creation_date }}</td>
-                                            <td>{{ $wr->authsd_date }}</td>
-                                            <td>{{ $wr->wo_desc }}</td>
-                                            <td>{{ $wr->acuan_plan_service }}</td>
-                                            <td>{{ $wr->componen_desc }}</td>
-                                            <td>{{ $wr->egi }}</td>
-                                            <td>{{ $wr->egi_eng }}</td>
-                                            <td>{{ $wr->equip_no }}</td>
-                                            <td>{{ $wr->plant_process }}</td>
-                                            <td>{{ $wr->plant_activity }}</td>
-                                            <td>{{ $wr->wr_no }}</td>
-                                            <td>{{ $wr->wr_item }}</td>
-                                            <td>{{ $wr->qty_req }}</td>
-                                            <td>{{ $wr->stock_code }}</td>
-                                            <td>{{ $wr->mnemonic }}</td>
-                                            <td>{{ $wr->part_number }}</td>
-                                            <td>{{ $wr->pn_global }}</td>
-                                            <td>{{ $wr->item_name }}</td>
-                                            <td>{{ $wr->stock_type_district }}</td>
-                                            <td>{{ $wr->class }}</td>
-                                            <td>{{ $wr->home_wh }}</td>
-                                            <td>{{ $wr->uoi }}</td>
-                                            <td>{{ $wr->issuing_price }}</td>
-                                            <td>{{ $wr->price_code }}</td>
-                                            <td>{{ $wr->notes }}</td>
-                                            <td>{{ $wr->status }}</td>
+                                            <td class="text-center">{{ $index + 1 }}</td>
+                                            <td class="text-center">{{ $wr->dstrc_ori }}</td>
+                                            <td class="text-center">{{ $wr->creation_date }}</td>
+                                            <td class="text-center">{{ $wr->authsd_date }}</td>
+                                            <td class="text-center">{{ $wr->wo_desc }}</td>
+                                            <td class="text-center">{{ $wr->acuan_plan_service }}</td>
+                                            <td class="text-center">{{ $wr->componen_desc }}</td>
+                                            <td class="text-center">{{ $wr->egi }}</td>
+                                            <td class="text-center">{{ $wr->egi_eng }}</td>
+                                            <td class="text-center">{{ $wr->equip_no }}</td>
+                                            <td class="text-center">{{ $wr->plant_process }}</td>
+                                            <td class="text-center">{{ $wr->plant_activity }}</td>
+                                            <td class="text-center">{{ $wr->wr_no }}</td>
+                                            <td class="text-center">{{ $wr->wr_item }}</td>
+                                            <td class="text-center">{{ $wr->qty_req }}</td>
+                                            <td class="text-center">{{ $wr->stock_code }}</td>
+                                            <td class="text-center">{{ $wr->mnemonic }}</td>
+                                            <td class="text-center">{{ $wr->part_number }}</td>
+                                            <td class="text-center">{{ $wr->pn_global }}</td>
+                                            <td class="text-center">{{ $wr->item_name }}</td>
+                                            <td class="text-center">{{ $wr->stock_type_district }}</td>
+                                            <td class="text-center">{{ $wr->class }}</td>
+                                            <td class="text-center">{{ $wr->home_wh }}</td>
+                                            <td class="text-center">{{ $wr->uoi }}</td>
+                                            <td class="text-center">{{ $wr->issuing_price }}</td>
+                                            <td class="text-center">{{ $wr->price_code }}</td>
+                                            <td class="text-center">{{ $wr->notes }}</td>
+                                            <td class="text-center">{{ $wr->status }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                     action="{{ route('wr.destroy', $wr->id) }}" method="POST"
