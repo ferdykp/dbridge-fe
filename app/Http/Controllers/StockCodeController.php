@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\StockCode;
-use Illuminate\Support\Facades\DB;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\StockCodeImport;
 
 class StockCodeController extends Controller
 {
@@ -119,5 +119,23 @@ class StockCodeController extends Controller
         // dd($stockCode);
         // Mengirimkan data ke view create
         return view('stockcode', compact('stockCode'));
+    }
+
+    // Fungsi untuk menampilkan form import
+    public function showImportForm()
+    {
+        return view('adminDashboard');
+    }
+
+    // Fungsi untuk menangani proses import
+    public function importExcel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        Excel::import(new StockCodeImport, $request->file('file'));
+
+        return redirect()->route('dashboard')->with('success', 'Stock Codes berhasil diimport!');
     }
 }

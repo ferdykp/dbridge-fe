@@ -29,6 +29,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
     Route::resource('stockCode', StockCodeController::class);
 
+Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');
+Route::post('/import-stockcode', [StockCodeController::class, 'importExcel'])->name('import.excel');
+
+
     // Dashboard
     Route::get('/dashboard', function () {
         // $role = Auth::check() && Auth::user()->role == 'sm';
