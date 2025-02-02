@@ -22,36 +22,34 @@
                             <table id="datatable" class="table align-items-center mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th style="white-space: nowrap;">No</th>
-                                        <th style="white-space: nowrap;">DSTRC_ORI</th>
-                                        <th style="white-space: nowrap;">CREATION_DATE</th>
-                                        <th style="white-space: nowrap;">AUTHSD_DATE</th>
-                                        <th style="white-space: nowrap;">WO_DESC</th>
-                                        <th style="white-space: nowrap;">ACUAN PLAN SERVICE</th>
-                                        <th style="white-space: nowrap;">Componen_Desc</th>
-                                        <th style="white-space: nowrap;">EGI</th>
-                                        <th style="white-space: nowrap;">EGI ENG</th>
-                                        <th style="white-space: nowrap;">EQUIP_NO</th>
-                                        <th style="white-space: nowrap;">Plant Process</th>
-                                        <th style="white-space: nowrap;">Plant Activity</th>
-                                        <th style="white-space: nowrap;">WR_NO</th>
-                                        <th style="white-space: nowrap;">WR_ITEM</th>
-                                        <th style="white-space: nowrap;">QTY_REQ</th>
-                                        <th style="white-space: nowrap;">Stock_Code</th>
-                                        <th style="white-space: nowrap;">Mnemonic</th>
-                                        <th style="white-space: nowrap;">PART_NUMBER</th>
-                                        <th style="white-space: nowrap;">PN_GLOBAL</th>
-                                        <th style="white-space: nowrap;">ITEM_NAME</th>
-                                        <th style="white-space: nowrap;">STOCK_TYPE_DISTRICT</th>
-                                        <th style="white-space: nowrap;">CLASS</th>
-                                        <th style="white-space: nowrap;">HOME_WH</th>
-                                        <th style="white-space: nowrap;">UOI</th>
-                                        <th style="white-space: nowrap;">ISSUING PRICE</th>
-                                        <th style="white-space: nowrap;">PRICE_CODE</th>
-                                        <th style="white-space: nowrap;">Notes</th>
-                                        <th style="white-space: nowrap;">Status</th>
-                                        <th style="white-space: nowrap;">Action</th>
-
+                                        <th>No</th>
+                                        <th>DSTRC_ORI</th>
+                                        <th>CREATION_DATE</th>
+                                        <th>AUTHSD_DATE</th>
+                                        <th>WO_DESC</th>
+                                        <th>ACUAN PLAN SERVICE</th>
+                                        <th>Componen_Desc</th>
+                                        <th>EGI</th>
+                                        <th>EGI ENG</th>
+                                        <th>EQUIP_NO</th>
+                                        <th>Plant Process</th>
+                                        <th>Plant Activity</th>
+                                        <th>WR_NO</th>
+                                        <th>WR_ITEM</th>
+                                        <th>QTY_REQ</th>
+                                        <th>Stock_Code</th>
+                                        <th>Price_Code</th>
+                                        <th>ITEM_NAME</th>
+                                        <th>CLASS</th>
+                                        <th>Current Class</th>
+                                        <th>Mnemonic Current</th>
+                                        <th>PN Current</th>
+                                        <th>PN Global</th>
+                                        <th>WH</th>
+                                        <th>UOI</th>
+                                        <th>Notes</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,19 +83,7 @@
                                             <td>{{ $wr->price_code }}</td>
                                             <td>{{ $wr->notes }}</td>
                                             <td>{{ $wr->status }}</td>
-                                            <td class="d-flex justify-content-center">
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('wr.destroy', $wr->id) }}" method="POST"
-                                                    class="d-flex gap-2">
-                                                    <a href="{{ route('wr.show', $wr->id) }}"
-                                                        class="btn btn-sm btn-dark">Show</a>
-                                                    <a href="{{ route('wr.edit', $wr->id) }}"
-                                                        class="btn btn-sm btn-primary">Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
-                                            </td>
+                                            </form>
                                         </tr>
                                     @empty
                                         <tr>
