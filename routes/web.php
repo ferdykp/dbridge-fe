@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     // WR Management
     Route::resource('wr', WrController::class);
     Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
+    Route::post('wr/import', [WrController::class, 'import'])->name('wr.import');
+
     Route::resource('stockCode', StockCodeController::class);
 
 Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');

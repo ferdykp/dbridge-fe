@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('dashboard') ? 'bg-primary text-white' : '' }}"
+                <a class="nav-link {{ request()->is('dashboard*') ? 'bg-primary text-white' : '' }}"
                     href="{{ route('dashboard') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -23,8 +23,9 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
+                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
                     href="{{ route('stockCode.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -33,7 +34,8 @@
                     <span class="nav-link-text ms-1">Stock Code</span>
                 </a>
             </li>
-            <li class="nav-item">
+
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->is('pages/rtl') ? 'bg-primary text-white' : '' }}"
                     href="../pages/rtl.html">
                     <div
@@ -42,7 +44,7 @@
                     </div>
                     <span class="nav-link-text ms-1">RTL</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
@@ -57,7 +59,7 @@
                 </a>
             </li>
             @if (Auth::user()->role == 'sm')
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('users.create') ? 'bg-primary text-white' : '' }}"
                         href="{{ route('users.create') }}">
                         <div
@@ -66,7 +68,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Create Users</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('users.index', 1) ? 'bg-primary text-white' : '' }}"
                         href="{{ route('users.index', 1) }}">

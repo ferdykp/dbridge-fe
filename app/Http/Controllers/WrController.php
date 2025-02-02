@@ -10,6 +10,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\WrImport; // Import WrImport yang akan dibuat nanti
 
 class WrController extends Controller
 {
@@ -187,4 +188,18 @@ class WrController extends Controller
     {
         return Excel::download(new WrExport, 'Data WR.xlsx');
     }
+
+    public function import(Request $request)
+{
+    // Validasi file Excel yang diupload
+    $request->validate([
+        'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
+    ]);
+
+    // Import file Excel
+    Excel::import(new WrImport, $request->file('file'));
+
+    // Redirect kembali ke dashboard dengan pesan sukses
+    return redirect()->route('dashboard')->with(['success' => 'Data WR berhasil diimport!']);
+}
 }

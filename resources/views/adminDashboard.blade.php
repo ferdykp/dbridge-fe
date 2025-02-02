@@ -7,6 +7,14 @@
                 <div class="card mb-4 ">
                     <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                         <div>
+                            <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <label for="file">Upload Excel File:</label>
+                                <input type="file" name="file" required>
+                                <button type="submit">Import</button>
+                            </form>
+                        </div>
+                        <div>
                             <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add</a>
                         </div>
                         <div>

@@ -470,7 +470,7 @@
                                 </div>
                             </div>
 
-                            <button type="button" class="btn btn-secondary" onclick="addWr()">Tambah WR</button>
+                            {{-- <button type="button" class="btn btn-secondary" onclick="addWr()">Tambah WR</button> --}}
                             <button type="submit" class="btn btn-md btn-primary me-3">Add</button>
                             <button type="reset" class="btn btn-md btn-warning">Reset</button>
 
