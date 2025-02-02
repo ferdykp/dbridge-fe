@@ -31,9 +31,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('stockCode', StockCodeController::class);
 
-Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');
-Route::post('/import-stockcode', [StockCodeController::class, 'importExcel'])->name('import.excel');
+    Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');
+    Route::post('/import-stockcode', [StockCodeController::class, 'importExcel'])->name('import.excel');
 
+    Route::get('/stock-code/search', [StockCodeController::class, 'search'])->name('stockCode.search');
 
     // Dashboard
     Route::get('/dashboard', function () {

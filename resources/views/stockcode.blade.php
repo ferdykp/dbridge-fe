@@ -22,6 +22,11 @@
                             </form>
                         </div>
 
+                        <form action="{{ route('stockCode.search') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search Stock Code">
+                            <button type="submit">Search</button>
+                        </form>
+
                         <div>
                             <a href="{{ route('stockCode.create') }}" class="btn btn-md btn-success">Add Stock Code</a>
                         </div>
