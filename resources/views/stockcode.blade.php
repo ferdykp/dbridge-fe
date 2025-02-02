@@ -15,6 +15,7 @@
                     </h4>
                 </div>
                 <hr>
+                <h3> Data Stock Code 1 </h3>
                 <div class="card-body">
                     <form action="{{ route('stockCode.store') }}" method="POST">
                         @csrf
@@ -80,6 +81,7 @@
 
         function addStockCode() {
             let newRow = `
+            <h3> Data Stock Code ${index + 1} </h3>
             <hr class="my-3">
             <div class="stock-code-group mb-4">
                 <label class="form-label">Stock Code</label>
