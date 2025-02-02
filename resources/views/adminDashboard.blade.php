@@ -14,6 +14,17 @@
                                 Export User Data</a>
                         </div>
                     </div>
+                    <div class="container">
+                        <h2>Import Stock Codes</h2>
+                        <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="file">Pilih file Excel</label>
+                                <input type="file" name="file" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Import</button>
+                        </form>
+                    </div>
                     <div class="card-header pb-0">
                         <h6>Authors table</h6>
                     </div>
@@ -23,15 +34,15 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
-                                        <th>DSTRC_ORI</th>
-                                        <th>CREATION_DATE</th>
-                                        <th>AUTHSD_DATE</th>
-                                        <th>WO_DESC</th>
-                                        <th>ACUAN PLAN SERVICE</th>
-                                        <th>Componen_Desc</th>
+                                        <th>Jobsite</th>
+                                        <th>Creation Date</th>
+                                        <th>Authorised Date</th>
+                                        <th>Work Order Desc</th>
+                                        <th>Acuan Plan Sevice</th>
+                                        <th>Componen Desc</th>
                                         <th>EGI</th>
                                         <th>EGI ENG</th>
-                                        <th>EQUIP_NO</th>
+                                        <th>Eqiup No</th>
                                         <th>Plant Process</th>
                                         <th>Plant Activity</th>
                                         <th>WR_NO</th>
