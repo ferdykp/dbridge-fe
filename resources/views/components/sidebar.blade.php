@@ -14,13 +14,8 @@
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-<<<<<<< HEAD
-                <a class="nav-link {{ request()->routeIs('adminDashboard') ? 'bg-primary text-white' : '' }}"
-                    href="{{ route('adminDashboard') }}">
-=======
                 <a class="nav-link {{ request()->routeIs('dashboard') ? 'bg-primary text-white' : '' }}"
                     href="{{ route('dashboard') }}">
->>>>>>> a63be01e4273c25b6e4374d985539731f3ea02f0
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
@@ -61,23 +56,19 @@
                     <span class="nav-link-text ms-1">Profile</span>
                 </a>
             </li>
-<<<<<<< HEAD
             {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('users.create') ? 'bg-primary text-white' : '' }}" href="{{ route('users.create') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-=======
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('users.create') ? 'bg-primary text-white' : '' }}"
                     href="{{ route('users.create') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
->>>>>>> a63be01e4273c25b6e4374d985539731f3ea02f0
                         <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Create Users</span>
                 </a>
-            </li> --}}
-            <li class="nav-item">
+            </li> --}} <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('users.index', 1) ? 'bg-primary text-white' : '' }}"
                     href="{{ route('users.index', 1) }}">
                     <div
