@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\StockCode;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\StockCodeImport;
+use Illuminate\Support\Illuminate\Database;
 
 class StockCodeController extends Controller
 {
@@ -67,7 +68,7 @@ class StockCodeController extends Controller
 
     public function index()
     {
-        $stockCode = StockCode::all();
+        $stockCode = StockCode::paginate(10);
 
         // dd($stockCode);
         return view('stockcode', compact('stockCode'));
@@ -137,5 +138,13 @@ class StockCodeController extends Controller
         Excel::import(new StockCodeImport, $request->file('file'));
 
         return redirect()->route('dashboard')->with('success', 'Stock Codes berhasil diimport!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $stockCode = stockCode::where('stock_code', 'like', "%$search%")->get();
+
+        return view('stockcode', ['stockCode' => $stockCode]);
     }
 }
