@@ -20,7 +20,7 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Dashboard</span>
+                    <span class="nav-link-text ms-1">Outstanding WR</span>
                 </a>
             </li>
 
@@ -32,6 +32,46 @@
                         <i class="ni ni-app text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Stock Code</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('stockCode.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">BCS</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('stockCode.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Midlife</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('stockCode.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Overhaul</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('stockCode.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Periodic Service</span>
                 </a>
             </li>
 

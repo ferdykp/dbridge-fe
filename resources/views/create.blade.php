@@ -241,7 +241,7 @@
                                     </div>
                                 </div>
                                 <div class="wr-group">
-                                    <div class="form-group mb-3">
+                                    {{-- <div class="form-group mb-3">
                                         <label class="font-weight-bold mb-3">Stock Code</label>
                                         <select class="form-select @error('stock_code') is-invalid @enderror"
                                             name="stock_code" id="stock_code">
@@ -259,7 +259,28 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                    </div> --}}
+
+                                    <div class="form-group mb-3">
+                                        <label class="font-weight-bold mb-3">Stock Code</label>
+                                        <select class="form-select select2 @error('stock_code') is-invalid @enderror"
+                                            name="stock_code" id="stock_code">
+                                            <option value="" disabled selected hidden>--- Select Stock Code ---
+                                            </option>
+                                            @foreach ($stockCode as $stock)
+                                                <option value="{{ $stock->stock_code }}"
+                                                    {{ old('stock_code') == $stock->stock_code ? 'selected' : '' }}>
+                                                    {{ $stock->stock_code }} - {{ $stock->item_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('stock_code')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
+
 
                                     <div class="row">
                                         <div class="col-md-6">

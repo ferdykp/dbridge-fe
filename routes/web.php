@@ -29,7 +29,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
     Route::post('wr/import', [WrController::class, 'import'])->name('wr.import');
 
+    Route::get('/stockCode/autocomplete', [StockCodeController::class, 'autocomplete'])->name('stockCode.autocomplete');
+    Route::get('/autocomplete', [StockCodeController::class, 'autocomplete'])->name('autocomplete');
+
+    Route::get('/stockcode', [StockCodeController::class, 'search']);
     Route::resource('stockCode', StockCodeController::class);
+
 
     Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');
     Route::post('/import-stockcode', [StockCodeController::class, 'importExcel'])->name('import.excel');

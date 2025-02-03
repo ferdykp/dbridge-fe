@@ -9,13 +9,15 @@
                         <div>
                             <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <label for="file">Upload Excel File:</label>
-                                <input type="file" name="file" required>
-                                <button type="submit">Import</button>
+                                <div class="form-group">
+                                    <label for="file">Upload Excel File</label>
+                                    <input type="file" name="file" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Import WR</button>
                             </form>
                         </div>
                         <div>
-                            <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add</a>
+                            <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add Data WR</a>
                         </div>
                         <div>
                             <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i class="fa fa-download"></i>

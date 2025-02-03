@@ -140,11 +140,17 @@ class StockCodeController extends Controller
         return redirect()->route('dashboard')->with('success', 'Stock Codes berhasil diimport!');
     }
 
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
-        $stockCode = stockCode::where('stock_code', 'like', "%$search%")->get();
+public function search(Request $request)
+{
+    $search = $request->input('search');
+    
+    $stockCode = StockCode::where('stock_code', 'like', "%{$search}%")
+                    ->orWhere('item_name', 'like', "%{$search}%")
+                    ->orWhere('mnemonic', 'like', "%{$search}%")
+                    ->get();
 
-        return view('stockcode', ['stockCode' => $stockCode]);
-    }
+    return view('partials.stock_table', compact('stockCode'));
+}
+
+
 }
