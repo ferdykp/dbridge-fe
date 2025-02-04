@@ -35,8 +35,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
-                    href="{{ route('stockCode.index') }}">
+                <a class="nav-link {{ request()->routeIs('bcs') || request()->routeIs('bcs') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('bcs') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-dark text-sm opacity-10"></i>
@@ -45,8 +45,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
-                    href="{{ route('stockCode.index') }}">
+                <a class="nav-link {{ request()->routeIs('midlife') || request()->routeIs('midlife') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('midlife') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-dark text-sm opacity-10"></i>
@@ -55,8 +55,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
-                    href="{{ route('stockCode.index') }}">
+                <a class="nav-link {{ request()->routeIs('overhaul') || request()->routeIs('overhaul') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('overhaul') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-dark text-sm opacity-10"></i>
@@ -65,8 +65,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
-                    href="{{ route('stockCode.index') }}">
+                <a class="nav-link {{ request()->routeIs('periodic') || request()->routeIs('periodic') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('periodic') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-dark text-sm opacity-10"></i>
