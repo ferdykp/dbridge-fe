@@ -5,27 +5,29 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4 ">
-                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <div class="card-header pb-0">
                         <div>
-                            <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data" class="d-flex">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="file">Upload Excel File</label>
+                                <div class="form-group me-2">
+                                    <label for="file">Upload WR File in Excel</label>
                                     <input type="file" name="file" class="form-control" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-3">Import WR</button>
+                                <button type="submit" class="btn btn-primary mt-4">Import WR</button>
                             </form>
                         </div>
+                    </div>
+                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                         <div>
                             <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add Data WR</a>
                         </div>
                         <div>
                             <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i class="fa fa-download"></i>
-                                Export User Data</a>
+                                Export Data WR</a>
                         </div>
                     </div>
                     <div class="card-header pb-0">
-                        <h6>Authors table</h6>
+                        <h6>Data WR</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-4">
                         <div class="table-responsive p-0">

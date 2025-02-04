@@ -10,22 +10,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4 ">
-                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <div class="card-header">
                         <div>
-                            <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data"
+                                class="d-flex">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="file">Import file Excel</label>
+                                <div class="form-group me-2">
+                                    <label for="file">Upload StockCode File in Excel</label>
                                     <input type="file" name="file" class="form-control" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-3">Import Stock Code</button>
+                                <button type="submit" class="btn btn-primary mt-4">Import Stock Code</button>
                             </form>
                         </div>
                     </div>
-
-
-
-
                     <div class="card-header pb-0 d-flex justify-content-between">
                         <div>
                             <input type="text" id="search" name="search" placeholder="Search Stock Code"
