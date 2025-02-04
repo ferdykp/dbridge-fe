@@ -11,6 +11,11 @@ use App\Http\Controllers\SesiController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WrController;
+use App\Http\Controllers\BcsController;
+use App\Http\Controllers\MidlifeController;
+use App\Http\Controllers\OverhaulController;
+use App\Http\Controllers\PeriodicController;
+
 // use App\Http\Controllers\RolePermissionController;
 // use App\Http\Middleware\UserAkses;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +58,11 @@ Route::middleware(['auth'])->group(function () {
             return redirect()->route('userDashboard');
         }
     })->name('dashboard');
+
+    Route::get('/bcs', [BcsController::class, 'index'])->name('bcs');
+    Route::get('/midlife', [MidlifeController::class, 'index'])->name('midlife');
+    Route::get('/overhaul', [OverhaulController::class, 'index'])->name('overhaul');
+    Route::get('/periodic', [PeriodicController::class, 'index'])->name('periodic');
 
     Route::prefix('dashboard')->group(function () {
         Route::get('admin', [WrController::class, 'index'])->name('adminDashboard');
