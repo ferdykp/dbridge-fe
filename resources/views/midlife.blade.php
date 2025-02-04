@@ -61,43 +61,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($wr as $index => $wr)
+                                    @forelse ($midlife as $index => $midlifes)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-center">{{ $wr->dstrc_ori }}</td>
-                                            <td class="text-center">{{ $wr->creation_date }}</td>
-                                            <td class="text-center">{{ $wr->authsd_date }}</td>
-                                            <td class="text-center">{{ $wr->wo_desc }}</td>
-                                            <td class="text-center">{{ $wr->acuan_plan_service }}</td>
-                                            <td class="text-center">{{ $wr->componen_desc }}</td>
-                                            <td class="text-center">{{ $wr->egi }}</td>
-                                            <td class="text-center">{{ $wr->egi_eng }}</td>
-                                            <td class="text-center">{{ $wr->equip_no }}</td>
-                                            <td class="text-center">{{ $wr->plant_process }}</td>
-                                            <td class="text-center">{{ $wr->plant_activity }}</td>
-                                            <td class="text-center">{{ $wr->wr_no }}</td>
-                                            <td class="text-center">{{ $wr->wr_item }}</td>
-                                            <td class="text-center">{{ $wr->qty_req }}</td>
-                                            <td class="text-center">{{ $wr->stock_code }}</td>
-                                            <td class="text-center">{{ $wr->mnemonic }}</td>
-                                            <td class="text-center">{{ $wr->part_number }}</td>
-                                            <td class="text-center">{{ $wr->pn_global }}</td>
-                                            <td class="text-center">{{ $wr->item_name }}</td>
-                                            <td class="text-center">{{ $wr->stock_type_district }}</td>
-                                            <td class="text-center">{{ $wr->class }}</td>
-                                            <td class="text-center">{{ $wr->home_wh }}</td>
-                                            <td class="text-center">{{ $wr->uoi }}</td>
-                                            <td class="text-center">{{ $wr->issuing_price }}</td>
-                                            <td class="text-center">{{ $wr->price_code }}</td>
-                                            <td class="text-center">{{ $wr->notes }}</td>
-                                            <td class="text-center">{{ $wr->status }}</td>
+                                            <td class="text-center">{{ $midlifes->dstrc_ori }}</td>
+                                            <td class="text-center">{{ $midlifes->creation_date }}</td>
+                                            <td class="text-center">{{ $midlifes->authsd_date }}</td>
+                                            <td class="text-center">{{ $midlifes->wo_desc }}</td>
+                                            <td class="text-center">{{ $midlifes->acuan_plan_service }}</td>
+                                            <td class="text-center">{{ $midlifes->componen_desc }}</td>
+                                            <td class="text-center">{{ $midlifes->egi }}</td>
+                                            <td class="text-center">{{ $midlifes->egi_eng }}</td>
+                                            <td class="text-center">{{ $midlifes->equip_no }}</td>
+                                            <td class="text-center">{{ $midlifes->plant_process }}</td>
+                                            <td class="text-center">{{ $midlifes->plant_activity }}</td>
+                                            <td class="text-center">{{ $midlifes->wr_no }}</td>
+                                            <td class="text-center">{{ $midlifes->wr_item }}</td>
+                                            <td class="text-center">{{ $midlifes->qty_req }}</td>
+                                            <td class="text-center">{{ $midlifes->stock_code }}</td>
+                                            <td class="text-center">{{ $midlifes->mnemonic }}</td>
+                                            <td class="text-center">{{ $midlifes->part_number }}</td>
+                                            <td class="text-center">{{ $midlifes->pn_global }}</td>
+                                            <td class="text-center">{{ $midlifes->item_name }}</td>
+                                            <td class="text-center">{{ $midlifes->stock_type_district }}</td>
+                                            <td class="text-center">{{ $midlifes->class }}</td>
+                                            <td class="text-center">{{ $midlifes->home_wh }}</td>
+                                            <td class="text-center">{{ $midlifes->uoi }}</td>
+                                            <td class="text-center">{{ $midlifes->issuing_price }}</td>
+                                            <td class="text-center">{{ $midlifes->price_code }}</td>
+                                            <td class="text-center">{{ $midlifes->notes }}</td>
+                                            <td class="text-center">{{ $midlifes->status }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('wr.destroy', $wr->id) }}" method="POST"
+                                                    action="{{ route('midlifes.destroy', $midlifes->id) }}" method="POST"
                                                     class="d-flex gap-2">
-                                                    <a href="{{ route('wr.show', $wr->id) }}"
+                                                    <a href="{{ route('midlifes.show', $midlifes->id) }}"
                                                         class="btn btn-sm btn-dark">Show</a>
-                                                    <a href="{{ route('wr.edit', $wr->id) }}"
+                                                    <a href="{{ route('midlifes.edit', $midlifes->id) }}"
                                                         class="btn btn-sm btn-primary">Edit</a>
                                                     @csrf
                                                     @method('DELETE')

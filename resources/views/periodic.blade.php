@@ -61,43 +61,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($wr as $index => $wr)
+                                    @forelse ($periodic as $index => $periodics)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-center">{{ $wr->dstrc_ori }}</td>
-                                            <td class="text-center">{{ $wr->creation_date }}</td>
-                                            <td class="text-center">{{ $wr->authsd_date }}</td>
-                                            <td class="text-center">{{ $wr->wo_desc }}</td>
-                                            <td class="text-center">{{ $wr->acuan_plan_service }}</td>
-                                            <td class="text-center">{{ $wr->componen_desc }}</td>
-                                            <td class="text-center">{{ $wr->egi }}</td>
-                                            <td class="text-center">{{ $wr->egi_eng }}</td>
-                                            <td class="text-center">{{ $wr->equip_no }}</td>
-                                            <td class="text-center">{{ $wr->plant_process }}</td>
-                                            <td class="text-center">{{ $wr->plant_activity }}</td>
-                                            <td class="text-center">{{ $wr->wr_no }}</td>
-                                            <td class="text-center">{{ $wr->wr_item }}</td>
-                                            <td class="text-center">{{ $wr->qty_req }}</td>
-                                            <td class="text-center">{{ $wr->stock_code }}</td>
-                                            <td class="text-center">{{ $wr->mnemonic }}</td>
-                                            <td class="text-center">{{ $wr->part_number }}</td>
-                                            <td class="text-center">{{ $wr->pn_global }}</td>
-                                            <td class="text-center">{{ $wr->item_name }}</td>
-                                            <td class="text-center">{{ $wr->stock_type_district }}</td>
-                                            <td class="text-center">{{ $wr->class }}</td>
-                                            <td class="text-center">{{ $wr->home_wh }}</td>
-                                            <td class="text-center">{{ $wr->uoi }}</td>
-                                            <td class="text-center">{{ $wr->issuing_price }}</td>
-                                            <td class="text-center">{{ $wr->price_code }}</td>
-                                            <td class="text-center">{{ $wr->notes }}</td>
-                                            <td class="text-center">{{ $wr->status }}</td>
+                                            <td class="text-center">{{ $periodics->dstrc_ori }}</td>
+                                            <td class="text-center">{{ $periodics->creation_date }}</td>
+                                            <td class="text-center">{{ $periodics->authsd_date }}</td>
+                                            <td class="text-center">{{ $periodics->wo_desc }}</td>
+                                            <td class="text-center">{{ $periodics->acuan_plan_service }}</td>
+                                            <td class="text-center">{{ $periodics->componen_desc }}</td>
+                                            <td class="text-center">{{ $periodics->egi }}</td>
+                                            <td class="text-center">{{ $periodics->egi_eng }}</td>
+                                            <td class="text-center">{{ $periodics->equip_no }}</td>
+                                            <td class="text-center">{{ $periodics->plant_process }}</td>
+                                            <td class="text-center">{{ $periodics->plant_activity }}</td>
+                                            <td class="text-center">{{ $periodics->wr_no }}</td>
+                                            <td class="text-center">{{ $periodics->wr_item }}</td>
+                                            <td class="text-center">{{ $periodics->qty_req }}</td>
+                                            <td class="text-center">{{ $periodics->stock_code }}</td>
+                                            <td class="text-center">{{ $periodics->mnemonic }}</td>
+                                            <td class="text-center">{{ $periodics->part_number }}</td>
+                                            <td class="text-center">{{ $periodics->pn_global }}</td>
+                                            <td class="text-center">{{ $periodics->item_name }}</td>
+                                            <td class="text-center">{{ $periodics->stock_type_district }}</td>
+                                            <td class="text-center">{{ $periodics->class }}</td>
+                                            <td class="text-center">{{ $periodics->home_wh }}</td>
+                                            <td class="text-center">{{ $periodics->uoi }}</td>
+                                            <td class="text-center">{{ $periodics->issuing_price }}</td>
+                                            <td class="text-center">{{ $periodics->price_code }}</td>
+                                            <td class="text-center">{{ $periodics->notes }}</td>
+                                            <td class="text-center">{{ $periodics->status }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('wr.destroy', $wr->id) }}" method="POST"
-                                                    class="d-flex gap-2">
-                                                    <a href="{{ route('wr.show', $wr->id) }}"
+                                                    action="{{ route('periodics.destroy', $periodics->id) }}"
+                                                    method="POST" class="d-flex gap-2">
+                                                    <a href="{{ route('periodics.show', $periodics->id) }}"
                                                         class="btn btn-sm btn-dark">Show</a>
-                                                    <a href="{{ route('wr.edit', $wr->id) }}"
+                                                    <a href="{{ route('periodics.edit', $periodics->id) }}"
                                                         class="btn btn-sm btn-primary">Edit</a>
                                                     @csrf
                                                     @method('DELETE')

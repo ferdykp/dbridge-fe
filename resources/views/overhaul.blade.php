@@ -61,43 +61,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($wr as $index => $wr)
+                                    @forelse ($overhaul as $index => $overhauls)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-center">{{ $wr->dstrc_ori }}</td>
-                                            <td class="text-center">{{ $wr->creation_date }}</td>
-                                            <td class="text-center">{{ $wr->authsd_date }}</td>
-                                            <td class="text-center">{{ $wr->wo_desc }}</td>
-                                            <td class="text-center">{{ $wr->acuan_plan_service }}</td>
-                                            <td class="text-center">{{ $wr->componen_desc }}</td>
-                                            <td class="text-center">{{ $wr->egi }}</td>
-                                            <td class="text-center">{{ $wr->egi_eng }}</td>
-                                            <td class="text-center">{{ $wr->equip_no }}</td>
-                                            <td class="text-center">{{ $wr->plant_process }}</td>
-                                            <td class="text-center">{{ $wr->plant_activity }}</td>
-                                            <td class="text-center">{{ $wr->wr_no }}</td>
-                                            <td class="text-center">{{ $wr->wr_item }}</td>
-                                            <td class="text-center">{{ $wr->qty_req }}</td>
-                                            <td class="text-center">{{ $wr->stock_code }}</td>
-                                            <td class="text-center">{{ $wr->mnemonic }}</td>
-                                            <td class="text-center">{{ $wr->part_number }}</td>
-                                            <td class="text-center">{{ $wr->pn_global }}</td>
-                                            <td class="text-center">{{ $wr->item_name }}</td>
-                                            <td class="text-center">{{ $wr->stock_type_district }}</td>
-                                            <td class="text-center">{{ $wr->class }}</td>
-                                            <td class="text-center">{{ $wr->home_wh }}</td>
-                                            <td class="text-center">{{ $wr->uoi }}</td>
-                                            <td class="text-center">{{ $wr->issuing_price }}</td>
-                                            <td class="text-center">{{ $wr->price_code }}</td>
-                                            <td class="text-center">{{ $wr->notes }}</td>
-                                            <td class="text-center">{{ $wr->status }}</td>
+                                            <td class="text-center">{{ $overhauls->dstrc_ori }}</td>
+                                            <td class="text-center">{{ $overhauls->creation_date }}</td>
+                                            <td class="text-center">{{ $overhauls->authsd_date }}</td>
+                                            <td class="text-center">{{ $overhauls->wo_desc }}</td>
+                                            <td class="text-center">{{ $overhauls->acuan_plan_service }}</td>
+                                            <td class="text-center">{{ $overhauls->componen_desc }}</td>
+                                            <td class="text-center">{{ $overhauls->egi }}</td>
+                                            <td class="text-center">{{ $overhauls->egi_eng }}</td>
+                                            <td class="text-center">{{ $overhauls->equip_no }}</td>
+                                            <td class="text-center">{{ $overhauls->plant_process }}</td>
+                                            <td class="text-center">{{ $overhauls->plant_activity }}</td>
+                                            <td class="text-center">{{ $overhauls->wr_no }}</td>
+                                            <td class="text-center">{{ $overhauls->wr_item }}</td>
+                                            <td class="text-center">{{ $overhauls->qty_req }}</td>
+                                            <td class="text-center">{{ $overhauls->stock_code }}</td>
+                                            <td class="text-center">{{ $overhauls->mnemonic }}</td>
+                                            <td class="text-center">{{ $overhauls->part_number }}</td>
+                                            <td class="text-center">{{ $overhauls->pn_global }}</td>
+                                            <td class="text-center">{{ $overhauls->item_name }}</td>
+                                            <td class="text-center">{{ $overhauls->stock_type_district }}</td>
+                                            <td class="text-center">{{ $overhauls->class }}</td>
+                                            <td class="text-center">{{ $overhauls->home_wh }}</td>
+                                            <td class="text-center">{{ $overhauls->uoi }}</td>
+                                            <td class="text-center">{{ $overhauls->issuing_price }}</td>
+                                            <td class="text-center">{{ $overhauls->price_code }}</td>
+                                            <td class="text-center">{{ $overhauls->notes }}</td>
+                                            <td class="text-center">{{ $overhauls->status }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('wr.destroy', $wr->id) }}" method="POST"
-                                                    class="d-flex gap-2">
-                                                    <a href="{{ route('wr.show', $wr->id) }}"
+                                                    action="{{ route('overhauls.destroy', $overhauls->id) }}"
+                                                    method="POST" class="d-flex gap-2">
+                                                    <a href="{{ route('overhauls.show', $overhauls->id) }}"
                                                         class="btn btn-sm btn-dark">Show</a>
-                                                    <a href="{{ route('wr.edit', $wr->id) }}"
+                                                    <a href="{{ route('overhauls.edit', $overhauls->id) }}"
                                                         class="btn btn-sm btn-primary">Edit</a>
                                                     @csrf
                                                     @method('DELETE')
