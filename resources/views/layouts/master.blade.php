@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/logo-mining-bg.jpg">
+    <link rel="icon" type="image/png" href="../assets/img/logo-mining-bg.jpg">
     <title>
         D-Bridge
     </title>
@@ -18,10 +18,23 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+
+    <style>
+        .custom-dropdown-box {
+            background-color: #8e121f;
+            /* opacity: 0.9; */
+            border-radius: 20px;
+            padding: 10px;
+            z-index: 1;
+            /* Optional: To add some space inside the box */
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 position-absolute w-100" style="background-color: #8e121f;"></div>
+    <div class="min-height-300 position-absolute w-100"
+        style="background-image: url('/assets/img/mining3.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.8;">
+    </div>
     @include('components.sidebar')
 
     <main class="main-content position-relative border-radius-lg ">

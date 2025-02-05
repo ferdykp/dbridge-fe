@@ -3,16 +3,20 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html"
-            target="_blank">
-            <img src="../assets/img/logo-ct-dark.png" width="26px" height="26px" class="navbar-brand-img h-100"
+        <a class="navbar-brand m-0" {{ request()->is('dashboard*') ? 'bg-primary text-white' : '' }}"
+            href="{{ route('dashboard') }}">
+            <img src="../assets/img/logo-mining.png" width="40px" height="40px" class="navbar-brand-img h-100"
                 alt="main_logo">
-            <span class="ms-1 font-weight-bold">Creative Tim</span>
+            <span class="ms-1 font-weight-bold">D-Bridge Tim</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-9">Choose Menu</h6>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('dashboard*') ? 'bg-primary text-white' : '' }}"
                     href="{{ route('dashboard') }}">
@@ -39,7 +43,7 @@
                     href="{{ route('bcs') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                        <i class="ni ni-books text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">BCS</span>
                 </a>
@@ -49,7 +53,7 @@
                     href="{{ route('midlife') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                        <i class="ni ni-bag-17 text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Midlife</span>
                 </a>
@@ -59,7 +63,7 @@
                     href="{{ route('overhaul') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                        <i class="ni ni-box-2 text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Overhaul</span>
                 </a>
@@ -69,7 +73,7 @@
                     href="{{ route('periodic') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-dark text-sm opacity-10"></i>
+                        <i class="ni ni-ruler-pencil text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Periodic Service</span>
                 </a>
@@ -85,10 +89,10 @@
                     <span class="nav-link-text ms-1">RTL</span>
                 </a>
             </li> --}}
-            <li class="nav-item mt-3">
+            {{-- <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
-            </li>
-            <li class="nav-item">
+            </li> --}}
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('users.show', 1) ? 'bg-primary text-white' : '' }}"
                     href="{{ route('users.show', 1) }}">
                     <div
@@ -97,9 +101,9 @@
                     </div>
                     <span class="nav-link-text ms-1">Profile</span>
                 </a>
-            </li>
-            @if (Auth::user()->role == 'sm')
-                {{-- <li class="nav-item">
+            </li> --}}
+            {{-- @if (Auth::user()->role == 'sm')
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('users.create') ? 'bg-primary text-white' : '' }}"
                         href="{{ route('users.create') }}">
                         <div
@@ -108,7 +112,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Create Users</span>
                     </a>
-                </li> --}}
+                </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('users.index', 1) ? 'bg-primary text-white' : '' }}"
                         href="{{ route('users.index', 1) }}">
@@ -119,7 +123,7 @@
                         <span class="nav-link-text ms-1">Show Users</span>
                     </a>
                 </li>
-            @endif
+            @endif --}}
         </ul>
     </div>
 </aside>
