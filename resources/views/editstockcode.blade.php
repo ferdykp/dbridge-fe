@@ -32,11 +32,11 @@
                                 @enderror
                                 <label class="form-label">Mnemonic</label>
                                 <input class="form-control mb-3" type="text" name="stock_codes[0][mnemonic]"
-                                    placeholder="Mnemonic">
+                                    value="{{ old('mnemonic', $stockCode->mnemonic) }}" required>
 
                                 <label class="form-label">Part Number</label>
                                 <input class="form-control mb-3" type="text" name="stock_codes[0][part_number]"
-                                    placeholder="Part Number">
+                                    value="{{ old('part_number', $stockCode->part_number) }}" required>
 
                                 <label class="form-label">PN Global</label>
                                 <input class="form-control mb-3" type="text" name="stock_codes[0][pn_global]"
