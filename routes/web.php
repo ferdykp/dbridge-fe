@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
     Route::post('wr/import', [WrController::class, 'import'])->name('wr.import');
 
+    Route::get('stockcode-export', [StockCodeController::class, 'export'])->name('stockCode.export');
+    Route::post('stockcode/import', [StockCodeController::class, 'import'])->name('stockCode.import');
     Route::get('/stockCode/autocomplete', [StockCodeController::class, 'autocomplete'])->name('stockCode.autocomplete');
     Route::get('/autocomplete', [StockCodeController::class, 'autocomplete'])->name('autocomplete');
 

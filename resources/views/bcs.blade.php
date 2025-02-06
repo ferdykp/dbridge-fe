@@ -117,6 +117,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="pagination my-3 mx-3">
+                            {{ $bcs->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

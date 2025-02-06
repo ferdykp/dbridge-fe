@@ -24,7 +24,7 @@ class WrController extends Controller
             $wrQuery->where('home_wh', 'UTVH'); // Hanya data dengan WH = UTVH
         }
 
-        $wr = $wrQuery->latest()->paginate(10);
+        $wr = $wrQuery->latest()->simplePaginate(10);
 
         if ($role === 'sm') {
             return view('adminDashboard', compact('wr'));
@@ -190,16 +190,16 @@ class WrController extends Controller
     }
 
     public function import(Request $request)
-{
-    // Validasi file Excel yang diupload
-    $request->validate([
-        'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
-    ]);
+    {
+        // Validasi file Excel yang diupload
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
+        ]);
 
-    // Import file Excel
-    Excel::import(new WrImport, $request->file('file'));
+        // Import file Excel
+        Excel::import(new WrImport, $request->file('file'));
 
-    // Redirect kembali ke dashboard dengan pesan sukses
-    return redirect()->route('dashboard')->with(['success' => 'Data WR berhasil diimport!']);
-}
+        // Redirect kembali ke dashboard dengan pesan sukses
+        return redirect()->route('dashboard')->with(['success' => 'Data WR berhasil diimport!']);
+    }
 }

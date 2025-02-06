@@ -7,6 +7,7 @@ use App\Models\StockCode;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\StockCodeImport;
 use Illuminate\Support\Illuminate\Database;
+use App\Exports\StockCodeExport;
 
 class StockCodeController extends Controller
 {
@@ -68,7 +69,7 @@ class StockCodeController extends Controller
 
     public function index()
     {
-        $stockCode = StockCode::paginate(10);
+        $stockCode = StockCode::simplePaginate(10);
 
         // dd($stockCode);
         return view('stockcode', compact('stockCode'));
@@ -77,6 +78,7 @@ class StockCodeController extends Controller
     public function edit($id)
     {
         $stockCode = StockCode::findOrFail($id);
+        // $item = StockCode::all();
         return view('editstockcode', compact('stockCode'));
     }
 public function update(Request $request, StockCode $stockCode)
@@ -140,17 +142,20 @@ public function update(Request $request, StockCode $stockCode)
         return redirect()->route('dashboard')->with('success', 'Stock Codes berhasil diimport!');
     }
 
-public function search(Request $request)
-{
-    $search = $request->input('search');
-    
-    $stockCode = StockCode::where('stock_code', 'like', "%{$search}%")
-                    ->orWhere('item_name', 'like', "%{$search}%")
-                    ->orWhere('mnemonic', 'like', "%{$search}%")
-                    ->get();
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
 
-    return view('partials.stock_table', compact('stockCode'));
-}
+        $stockCode = StockCode::where('stock_code', 'like', "%{$search}%")
+            ->orWhere('item_name', 'like', "%{$search}%")
+            ->orWhere('mnemonic', 'like', "%{$search}%")
+            ->get();
 
+        return view('partials.stock_table', compact('stockCode'));
+    }
 
+    public function export()
+    {
+        return Excel::download(new StockCodeExport, 'Data StockCode.xlsx');
+    }
 }

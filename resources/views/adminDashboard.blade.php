@@ -65,43 +65,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($wr as $index => $wr)
+                                    @forelse ($wr as $index => $item)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-center">{{ $wr->dstrc_ori }}</td>
-                                            <td class="text-center">{{ $wr->creation_date }}</td>
-                                            <td class="text-center">{{ $wr->authsd_date }}</td>
-                                            <td class="text-center">{{ $wr->wo_desc }}</td>
-                                            <td class="text-center">{{ $wr->acuan_plan_service }}</td>
-                                            <td class="text-center">{{ $wr->componen_desc }}</td>
-                                            <td class="text-center">{{ $wr->egi }}</td>
-                                            <td class="text-center">{{ $wr->egi_eng }}</td>
-                                            <td class="text-center">{{ $wr->equip_no }}</td>
-                                            <td class="text-center">{{ $wr->plant_process }}</td>
-                                            <td class="text-center">{{ $wr->plant_activity }}</td>
-                                            <td class="text-center">{{ $wr->wr_no }}</td>
-                                            <td class="text-center">{{ $wr->wr_item }}</td>
-                                            <td class="text-center">{{ $wr->qty_req }}</td>
-                                            <td class="text-center">{{ $wr->stock_code }}</td>
-                                            <td class="text-center">{{ $wr->mnemonic }}</td>
-                                            <td class="text-center">{{ $wr->part_number }}</td>
-                                            <td class="text-center">{{ $wr->pn_global }}</td>
-                                            <td class="text-center">{{ $wr->item_name }}</td>
-                                            <td class="text-center">{{ $wr->stock_type_district }}</td>
-                                            <td class="text-center">{{ $wr->class }}</td>
-                                            <td class="text-center">{{ $wr->home_wh }}</td>
-                                            <td class="text-center">{{ $wr->uoi }}</td>
-                                            <td class="text-center">{{ $wr->issuing_price }}</td>
-                                            <td class="text-center">{{ $wr->price_code }}</td>
-                                            <td class="text-center">{{ $wr->notes }}</td>
-                                            <td class="text-center">{{ $wr->status }}</td>
+                                            <td class="text-center">{{ $item->dstrc_ori }}</td>
+                                            <td class="text-center">{{ $item->creation_date }}</td>
+                                            <td class="text-center">{{ $item->authsd_date }}</td>
+                                            <td class="text-center">{{ $item->wo_desc }}</td>
+                                            <td class="text-center">{{ $item->acuan_plan_service }}</td>
+                                            <td class="text-center">{{ $item->componen_desc }}</td>
+                                            <td class="text-center">{{ $item->egi }}</td>
+                                            <td class="text-center">{{ $item->egi_eng }}</td>
+                                            <td class="text-center">{{ $item->equip_no }}</td>
+                                            <td class="text-center">{{ $item->plant_process }}</td>
+                                            <td class="text-center">{{ $item->plant_activity }}</td>
+                                            <td class="text-center">{{ $item->wr_no }}</td>
+                                            <td class="text-center">{{ $item->wr_item }}</td>
+                                            <td class="text-center">{{ $item->qty_req }}</td>
+                                            <td class="text-center">{{ $item->stock_code }}</td>
+                                            <td class="text-center">{{ $item->mnemonic }}</td>
+                                            <td class="text-center">{{ $item->part_number }}</td>
+                                            <td class="text-center">{{ $item->pn_global }}</td>
+                                            <td class="text-center">{{ $item->item_name }}</td>
+                                            <td class="text-center">{{ $item->stock_type_district }}</td>
+                                            <td class="text-center">{{ $item->class }}</td>
+                                            <td class="text-center">{{ $item->home_wh }}</td>
+                                            <td class="text-center">{{ $item->uoi }}</td>
+                                            <td class="text-center">{{ $item->issuing_price }}</td>
+                                            <td class="text-center">{{ $item->price_code }}</td>
+                                            <td class="text-center">{{ $item->notes }}</td>
+                                            <td class="text-center">{{ $item->status }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('wr.destroy', $wr->id) }}" method="POST"
+                                                    action="{{ route('wr.destroy', $item->id) }}" method="POST"
                                                     class="d-flex gap-2">
-                                                    <a href="{{ route('wr.show', $wr->id) }}"
+                                                    <a href="{{ route('wr.show', $item->id) }}"
                                                         class="btn btn-sm btn-dark">Show</a>
-                                                    <a href="{{ route('wr.edit', $wr->id) }}"
+                                                    <a href="{{ route('wr.edit', $item->id) }}"
                                                         class="btn btn-sm btn-primary">Edit</a>
                                                     @csrf
                                                     @method('DELETE')
@@ -120,6 +120,9 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="my-3 mx-3">
+                            {{ $wr->links() }}
                         </div>
                     </div>
                 </div>

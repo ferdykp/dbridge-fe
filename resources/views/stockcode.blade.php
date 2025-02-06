@@ -12,6 +12,11 @@
                 <div class="card mb-4 ">
                     <div class="card-header">
                         <div>
+                            <a href="{{ route('stockCode.export') }}" class="btn btn-md btn-warning"><i
+                                    class="fa fa-download"></i>
+                                Export</a>
+                        </div>
+                        <div>
                             <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data"
                                 class="d-flex">
                                 @csrf
@@ -91,6 +96,9 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="pagination my-3 mx-3">
+                            {{ $stockCode->links() }}
                         </div>
                     </div>
                 </div>

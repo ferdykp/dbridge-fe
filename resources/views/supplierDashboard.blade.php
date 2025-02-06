@@ -109,6 +109,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="pagination my-3 mx-3">
+                            {{ $wr->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
