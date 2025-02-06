@@ -5,25 +5,32 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4 ">
-                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <div class="card-header">
                         <div>
-                            <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('midlife.import') }}" method="POST" enctype="multipart/form-data"
+                                class="d-flex">
                                 @csrf
-                                <label for="file">Upload Excel File:</label>
-                                <input type="file" name="file" required>
-                                <button type="submit">Import</button>
+                                <div class="form-group me-2">
+                                    <label for="file">Upload Midlife File in Excel</label>
+                                    <input type="file" name="file" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-4">Import Midlife</button>
                             </form>
                         </div>
-                        <div>
-                            <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add</a>
+                    </div>
+                    <div class="card-header pb-0 d-flex justify-content-between">
+                        <div class="d-flex">
+                            <a href="{{ route('midlife.create') }}" class="btn btn-md btn-success me-2">Add Midlife</a>
+                            <a href="{{ route('midlife.export') }}" class="btn btn-md btn-warning"><i
+                                    class="fa fa-download"></i>Export Data Midlife in Excel</a>
                         </div>
-                        <div>
-                            <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i class="fa fa-download"></i>
-                                Export User Data</a>
+                        <div class="w-25"> <!-- Adjust the width as needed -->
+                            <input type="text" id="search" name="search" placeholder="Search Midlife"
+                                autocomplete="off" class="form-control">
                         </div>
                     </div>
                     <div class="card-header pb-0">
-                        <h6>Authors table</h6>
+                        <h6>Data Midlife</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-4">
                         <div class="table-responsive p-0">
@@ -61,48 +68,51 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($midlife as $index => $midlifes)
+                                    @forelse ($midlife as $index => $item)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-center">{{ $midlifes->dstrc_ori }}</td>
-                                            <td class="text-center">{{ $midlifes->creation_date }}</td>
-                                            <td class="text-center">{{ $midlifes->authsd_date }}</td>
-                                            <td class="text-center">{{ $midlifes->wo_desc }}</td>
-                                            <td class="text-center">{{ $midlifes->acuan_plan_service }}</td>
-                                            <td class="text-center">{{ $midlifes->componen_desc }}</td>
-                                            <td class="text-center">{{ $midlifes->egi }}</td>
-                                            <td class="text-center">{{ $midlifes->egi_eng }}</td>
-                                            <td class="text-center">{{ $midlifes->equip_no }}</td>
-                                            <td class="text-center">{{ $midlifes->plant_process }}</td>
-                                            <td class="text-center">{{ $midlifes->plant_activity }}</td>
-                                            <td class="text-center">{{ $midlifes->wr_no }}</td>
-                                            <td class="text-center">{{ $midlifes->wr_item }}</td>
-                                            <td class="text-center">{{ $midlifes->qty_req }}</td>
-                                            <td class="text-center">{{ $midlifes->stock_code }}</td>
-                                            <td class="text-center">{{ $midlifes->mnemonic }}</td>
-                                            <td class="text-center">{{ $midlifes->part_number }}</td>
-                                            <td class="text-center">{{ $midlifes->pn_global }}</td>
-                                            <td class="text-center">{{ $midlifes->item_name }}</td>
-                                            <td class="text-center">{{ $midlifes->stock_type_district }}</td>
-                                            <td class="text-center">{{ $midlifes->class }}</td>
-                                            <td class="text-center">{{ $midlifes->home_wh }}</td>
-                                            <td class="text-center">{{ $midlifes->uoi }}</td>
-                                            <td class="text-center">{{ $midlifes->issuing_price }}</td>
-                                            <td class="text-center">{{ $midlifes->price_code }}</td>
-                                            <td class="text-center">{{ $midlifes->notes }}</td>
-                                            <td class="text-center">{{ $midlifes->status }}</td>
+                                            <td class="text-center">{{ $item->dstrc_ori }}</td>
+                                            <td class="text-center">{{ $item->creation_date }}</td>
+                                            <td class="text-center">{{ $item->authsd_date }}</td>
+                                            <td class="text-center">{{ $item->wo_desc }}</td>
+                                            <td class="text-center">{{ $item->acuan_plan_service }}</td>
+                                            <td class="text-center">{{ $item->componen_desc }}</td>
+                                            <td class="text-center">{{ $item->egi }}</td>
+                                            <td class="text-center">{{ $item->egi_eng }}</td>
+                                            <td class="text-center">{{ $item->equip_no }}</td>
+                                            <td class="text-center">{{ $item->plant_process }}</td>
+                                            <td class="text-center">{{ $item->plant_activity }}</td>
+                                            <td class="text-center">{{ $item->wr_no }}</td>
+                                            <td class="text-center">{{ $item->wr_item }}</td>
+                                            <td class="text-center">{{ $item->qty_req }}</td>
+                                            <td class="text-center">{{ $item->stock_code }}</td>
+                                            <td class="text-center">{{ $item->mnemonic }}</td>
+                                            <td class="text-center">{{ $item->part_number }}</td>
+                                            <td class="text-center">{{ $item->pn_global }}</td>
+                                            <td class="text-center">{{ $item->item_name }}</td>
+                                            <td class="text-center">{{ $item->stock_type_district }}</td>
+                                            <td class="text-center">{{ $item->class }}</td>
+                                            <td class="text-center">{{ $item->home_wh }}</td>
+                                            <td class="text-center">{{ $item->uoi }}</td>
+                                            <td class="text-center">{{ $item->issuing_price }}</td>
+                                            <td class="text-center">{{ $item->price_code }}</td>
+                                            <td class="text-center">{{ $item->notes }}</td>
+                                            <td class="text-center">{{ $item->status }}</td>
                                             <td class="d-flex justify-content-center">
+                                                {{-- @foreach ($midlife as $item) --}}
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('midlifes.destroy', $midlifes->id) }}" method="POST"
+                                                    action="{{ route('midlife.destroy', $item->id) }}" method="POST"
                                                     class="d-flex gap-2">
-                                                    <a href="{{ route('midlifes.show', $midlifes->id) }}"
+                                                    <a href="{{ route('midlife.show', $item->id) }}"
                                                         class="btn btn-sm btn-dark">Show</a>
-                                                    <a href="{{ route('midlifes.edit', $midlifes->id) }}"
+                                                    <a href="{{ route('midlife.edit', $item->id) }}"
                                                         class="btn btn-sm btn-primary">Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                                 </form>
+                                                {{-- @endforeach --}}
+
                                             </td>
                                         </tr>
                                     @empty

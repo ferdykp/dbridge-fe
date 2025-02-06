@@ -69,8 +69,7 @@ class StockCodeController extends Controller
 
     public function index()
     {
-        $stockCode = StockCode::simplePaginate(10);
-
+        $stockCode = StockCode::paginate(10); // Sesuaikan jumlah item per halaman
         // dd($stockCode);
         return view('stockcode', compact('stockCode'));
     }

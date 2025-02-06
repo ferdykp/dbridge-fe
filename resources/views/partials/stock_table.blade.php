@@ -1,6 +1,6 @@
 @forelse ($stockCode as $index => $stockCodes)
     <tr>
-        <td class="text-center">{{ $index + 1 }}</td>
+        <td class="text-center">{{ $index + 1 + ($stockCode->currentPage() - 1) * $stockCode->perPage() }}</td>
         <td class="text-center">{{ $stockCodes->stock_code }}</td>
         <td class="text-center">{{ $stockCodes->price_code }}</td>
         <td class="text-center">{{ $stockCodes->item_name }}</td>

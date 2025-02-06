@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4 ">
-                    <div class="card-header pb-0">
+                    <div class="card-header">
                         <div>
                             <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data" class="d-flex">
                                 @csrf
@@ -17,13 +17,15 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                        <div>
-                            <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add Data WR</a>
+                    <div class="card-header pb-0 d-flex justify-content-between">
+                        <div class="d-flex">
+                            <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2">Add WR</a>
+                            <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i
+                                    class="fa fa-download"></i>Export Data in Excel</a>
                         </div>
-                        <div>
-                            <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i class="fa fa-download"></i>
-                                Export Data WR</a>
+                        <div class="w-25"> <!-- Adjust the width as needed -->
+                            <input type="text" id="search" name="search" placeholder="Search WR" autocomplete="off"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="card-header pb-0">
@@ -121,9 +123,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="my-3 mx-3">
+                        {{-- <div class="my-3 mx-3">
                             {{ $wr->links() }}
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

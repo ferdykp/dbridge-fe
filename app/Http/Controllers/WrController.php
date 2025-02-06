@@ -40,7 +40,9 @@ class WrController extends Controller
     {
         // $wr = Wr::all();
         $stockCode = StockCode::all();
-        return view('create', compact('stockCode'));
+        // return view('create', compact('stockCode'));
+        return view('create', ['type' => 'wr'], compact('stockCode'));
+
         // return view('create', compact('wr'));
     }
 
@@ -80,48 +82,6 @@ class WrController extends Controller
         Wr::create($request->all());
 
         return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Ditambahkan!']);
-
-        // $validated = $request->validate([
-        //     'wrs.*.dstrc_ori' => 'required',
-        //     'wrs.*.creation_date' => 'required',
-        //     'wrs.*.authsd_date' => 'required',
-        //     'wrs.*.wo_desc' => 'required',
-        //     'wrs.*.acuan_plan_service' => 'required',
-        //     'wrs.*.componen_desc' => 'required',
-        //     'wrs.*.egi' => 'required',
-        //     'wrs.*.egi_eng' => 'required',
-        //     'wrs.*.equip_no' => 'required',
-        //     'wrs.*.plant_process' => 'required',
-        //     'wrs.*.plant_activity' => 'required',
-        //     'wrs.*.wr_no' => 'required',
-        //     'wrs.*.wr_item' => 'required',
-        //     'wrs.*.qty_req' => 'required',
-        //     'wrs.*.stock_code' => 'required',
-        //     'wrs.*.mnemonic' => 'required',
-        //     'wrs.*.part_number' => 'required',
-        //     'wrs.*.pn_global' => 'required',
-        //     'wrs.*.item_name' => 'required',
-        //     'wrs.*.stock_type_district' => 'required',
-        //     'wrs.*.class' => 'required',
-        //     'wrs.*.home_wh' => 'required',
-        //     'wrs.*.uoi' => 'required',
-        //     'wrs.*.issuing_price' => 'required',
-        //     'wrs.*.price_code' => 'required',
-        //     'wrs.*.notes' => 'nullable',
-        //     'wrs.*.eta' => 'nullable',
-        //     'wrs.*.status' => 'required',
-        // ]);
-        // // dd($request->all());
-        // // Cek apakah ada data yang dikirim
-        // if (empty($validated['wrs'])) {
-        //     return back()->withErrors(['error' => 'No data to insert']);
-        // }
-
-        // // Masukkan data jika valid
-        // Wr::insert($validated['wrs']);
-
-        // // Redirect kembali ke dashboard dengan pesan sukses
-        // return redirect()->route('dashboard')->with('success', 'WR berhasil ditambahkan!');
     }
 
     public function show(string $id): View

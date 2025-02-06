@@ -5,7 +5,8 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('wr.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('dynamic.store', ['type' => $type]) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div id="wrFields">
                                 <div class="form-group mb-3">

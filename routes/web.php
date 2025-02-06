@@ -15,7 +15,9 @@ use App\Http\Controllers\BcsController;
 use App\Http\Controllers\MidlifeController;
 use App\Http\Controllers\OverhaulController;
 use App\Http\Controllers\PeriodicController;
-
+use App\Models\Midlife;
+use App\Models\Overhaul;
+// use App\Models\Midlife;
 // use App\Http\Controllers\RolePermissionController;
 // use App\Http\Middleware\UserAkses;
 use Illuminate\Support\Facades\Route;
@@ -29,10 +31,59 @@ Route::middleware(['guest'])->group(function () {
 
 // Authenticated Routes
 Route::middleware(['auth'])->group(function () {
-    // WR Management
+
     Route::resource('wr', WrController::class);
     Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
     Route::post('wr/import', [WrController::class, 'import'])->name('wr.import');
+
+    Route::resource('bcs', BcsController::class);
+    Route::get('bcs-export', [BcsController::class, 'export'])->name('bcs.export');
+    Route::post('bcs/import', [BcsController::class, 'import'])->name('bcs.import');
+
+    Route::resource('midlife', MidlifeController::class);
+    Route::get('midlife-export', [MidlifeController::class, 'export'])->name('midlife.export');
+    Route::post('midlife/import', [MidlifeController::class, 'import'])->name('midlife.import');
+
+    Route::resource('overhaul', OverhaulController::class);
+    Route::get('overhaul-export', [OverhaulController::class, 'export'])->name('overhaul.export');
+    Route::post('overhaul/import', [OverhaulController::class, 'import'])->name('overhaul.import');
+
+    Route::resource('periodic', PeriodicController::class);
+    Route::get('periodic-export', [PeriodicController::class, 'export'])->name('periodic.export');
+    Route::post('periodic/import', [PeriodicController::class, 'import'])->name('periodic.import');
+
+
+
+    
+
+Route::post('/{type}/store', function ($type) {
+    if ($type == 'wr') {
+        // Membuat instance WrController dan memanggil store
+        $controller = app(WrController::class);
+        return $controller->store(request());
+    } elseif ($type == 'bcs') {
+        // Membuat instance BcsController dan memanggil store
+        $controller = app(BcsController::class);
+        return $controller->store(request());
+    } elseif ($type == 'midlife') {
+        // Membuat instance BcsController dan memanggil store
+        $controller = app(MidlifeController::class);
+        return $controller->store(request());
+    } elseif ($type == 'overhaul') {
+        // Membuat instance BcsController dan memanggil store
+        $controller = app(OverhaulController::class);
+        return $controller->store(request());
+    } elseif ($type == 'periodic') {
+        // Membuat instance BcsController dan memanggil store
+        $controller = app(PeriodicController::class);
+        return $controller->store(request());
+    }
+})->name('dynamic.store');
+
+
+    // WR Management
+    // Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
+    // Route::post('wr/import', [WrController::class, 'import'])->name('wr.import');
 
     Route::get('stockcode-export', [StockCodeController::class, 'export'])->name('stockCode.export');
     Route::post('stockcode/import', [StockCodeController::class, 'import'])->name('stockCode.import');

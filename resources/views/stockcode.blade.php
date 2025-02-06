@@ -12,12 +12,7 @@
                 <div class="card mb-4 ">
                     <div class="card-header">
                         <div>
-                            <a href="{{ route('stockCode.export') }}" class="btn btn-md btn-warning"><i
-                                    class="fa fa-download"></i>
-                                Export</a>
-                        </div>
-                        <div>
-                            <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data"
+                            <form action="{{ route('stockCode.import') }}" method="POST" enctype="multipart/form-data"
                                 class="d-flex">
                                 @csrf
                                 <div class="form-group me-2">
@@ -29,13 +24,19 @@
                         </div>
                     </div>
                     <div class="card-header pb-0 d-flex justify-content-between">
-                        <div>
+                        <div class="d-flex">
+                            <a href="{{ route('stockCode.create') }}" class="btn btn-md btn-success me-2">Add Stock Code</a>
+                            <a href="{{ route('stockCode.export') }}" class="btn btn-md btn-warning"><i
+                                    class="fa fa-download"></i>Export Data in Excel</a>
+                        </div>
+                        <div class="w-25"> <!-- Adjust the width as needed -->
                             <input type="text" id="search" name="search" placeholder="Search Stock Code"
                                 autocomplete="off" class="form-control">
                         </div>
-                        <a href="{{ route('stockCode.create') }}" class="btn btn-md btn-success">Add Stock Code</a>
                     </div>
-
+                    <div class="card-header pb-0">
+                        <h6>Data Stock Code</h6>
+                    </div>
                     <div class="card-body px-0 pt-0 pb-4">
                         <div class="table-responsive p-0">
                             <table id="datatable" class="table align-items-center mb-0 mx-3">
@@ -59,7 +60,9 @@
                                 <tbody id="table-body">
                                     @forelse ($stockCode as $index => $stockCodes)
                                         <tr>
-                                            <td class="text-center">{{ $index + 1 }}</td>
+                                            <td class="text-center">
+                                                {{ $index + 1 + ($stockCode->currentPage() - 1) * $stockCode->perPage() }}
+                                            </td>
                                             <td class="text-center">{{ $stockCodes->stock_code }}</td>
                                             <td class="text-center">{{ $stockCodes->price_code }}</td>
                                             <td class="text-center">{{ $stockCodes->item_name }}</td>
@@ -97,8 +100,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="pagination my-3 mx-3">
-                            {{ $stockCode->links() }}
+                        <div class="card-footer d-flex justify-content-between">
+                            <div>
+                                Showing {{ $stockCode->firstItem() }} to {{ $stockCode->lastItem() }} of
+                                {{ $stockCode->total() }} entries
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                {{ $stockCode->links('pagination::bootstrap-4') }}
+                            </div>
                         </div>
                     </div>
                 </div>
