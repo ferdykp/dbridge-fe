@@ -134,7 +134,7 @@ class WrController extends Controller
     {
         $wr = Wr::findOrFail($id);
         $stockCode = StockCode::all();
-        return view('edit', compact('wr', 'stockCode'));
+        return view('tes', compact('wr', 'stockCode'));
     }
 
     public function update(Request $request, $id): RedirectResponse

@@ -77,7 +77,7 @@ class StockCodeController extends Controller
     public function edit($id)
     {
         $stockCode = StockCode::findOrFail($id);
-        return view('create', compact('stockCode'));
+        return view('editstockcode', compact('stockCode'));
     }
     public function update(Request $request, $id)
     {
@@ -102,7 +102,7 @@ class StockCodeController extends Controller
         $stockCode->update($validatedData);
 
         // Redirect kembali ke daftar stock codes dengan pesan sukses
-        return redirect()->route('dashboard')->with('success', 'Stock Code berhasil diperbarui!');
+        return redirect()->route('stockCode.index')->with('success', 'Stock Code berhasil diperbarui!');
     }
     public function destroy($id)
     {
@@ -110,7 +110,7 @@ class StockCodeController extends Controller
         $stockCode->delete(); // Menghapus data stock code
 
         // Redirect kembali dengan pesan sukses
-        return redirect()->route('dashboard')->with('success', 'Stock Code berhasil dihapus!');
+        return redirect()->route('stockCode.index')->with('success', 'Stock Code berhasil dihapus!');
     }
     public function create()
     {
