@@ -10,7 +10,7 @@ class StockCodeImport implements ToModel, WithHeadingRow
 {
 public function model(array $row)
 {
-    \Log::info($row); // Tambahkan log untuk melihat isi row
+    // \Log::info($row); // Tambahkan log untuk melihat isi row
     return new StockCode([
         'stock_code' => $row['stock_code'] ?? null, // Menambahkan pengecekan jika key tidak ditemukan
         'mnemonic' => $row['mnemonic'] ?? null,

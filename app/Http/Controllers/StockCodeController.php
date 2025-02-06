@@ -79,9 +79,9 @@ class StockCodeController extends Controller
         $stockCode = StockCode::findOrFail($id);
         return view('editstockcode', compact('stockCode'));
     }
-    public function update(Request $request, $id)
+public function update(Request $request, StockCode $stockCode)
     {
-        $stockCode = StockCode::findOrFail($id);
+        // $stockCode = StockCode::findOrFail($stockCode);
 
         // Validasi input
         $validatedData = $request->validate([
@@ -125,7 +125,7 @@ class StockCodeController extends Controller
     // Fungsi untuk menampilkan form import
     public function showImportForm()
     {
-        return view('adminDashboard');
+        return view('stockCode.index');
     }
 
     // Fungsi untuk menangani proses import
