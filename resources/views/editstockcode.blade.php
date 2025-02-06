@@ -17,7 +17,7 @@
                 <hr>
                 <h3> Data Stock Code 1 </h3>
                 <div class="card-body">
-                    <form action="{{ route('stockCode.update', $stockCode->id) }}   " method="POST">
+                    <form action="{{ route('stockCode.update', $stockCode->id) }}" method="POST">
                         @csrf
 
                         <div id="stockCodeFields">
