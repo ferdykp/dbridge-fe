@@ -13,17 +13,23 @@
                             <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i class="fa fa-download"></i>
                                 Export User Data</a>
                         </div>
+                        <div class="w-25"> <!-- Adjust the width as needed -->
+                            <input type="text" id="search" data-route="{{ route('dynamic.search', ['type' => 'wr']) }}"
+                                name="search" placeholder="Search WR Code" autocomplete="off" class="form-control">
+                        </div>
                     </div>
+
                     <div class="card-header pb-0">
                         <h6>Authors table</h6>
                     </div>
+
                     <div class="card-body px-0 pt-0 pb-4">
                         <div class="table-responsive p-0">
                             <table id="datatable" class="table align-items-center mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
-                                                name="select_all" id="select_all_id"></th>
+                                        {{-- <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
+                                                name="select_all" id="select_all_id"></th> --}}
                                         <th style="white-space: nowrap;" class="text-center">No</th>
                                         <th style="white-space: nowrap;" class="text-center">DSTRC_ORI</th>
                                         <th style="white-space: nowrap;" class="text-center">CREATION_DATE</th>

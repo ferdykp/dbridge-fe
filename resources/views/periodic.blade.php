@@ -5,25 +5,28 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4 ">
-                    <div class="card-header">
-                        <div>
-                            <form action="{{ route('periodic.import') }}" method="POST" enctype="multipart/form-data"
-                                class="d-flex">
-                                @csrf
-                                <div class="form-group me-2">
-                                    <label for="file">Upload Periodic File in Excel</label>
-                                    <input type="file" name="file" class="form-control" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary mt-4">Import Periodic</button>
-                            </form>
+                    @if (Auth::user()->role == ['sm', 'supplier'])
+                        <div class="card-header">
+                            <div>
+                                <form action="{{ route('periodic.import') }}" method="POST" enctype="multipart/form-data"
+                                    class="d-flex">
+                                    @csrf
+                                    <div class="form-group me-2">
+                                        <label for="file">Upload Periodic File in Excel</label>
+                                        <input type="file" name="file" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-4">Import Periodic</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="card-header pb-0 d-flex justify-content-between">
                         @if (Auth::user()->role == ['sm', 'supplier'])
                             <div class="d-flex">
-                                <a href="{{ route('periodic.create') }}" class="btn btn-md btn-success me-2">Add BCS</a>
+                                <a href="{{ route('periodic.create') }}" class="btn btn-md btn-success me-2">Add
+                                    Periodic</a>
                                 <a href="{{ route('periodic.export') }}" class="btn btn-md btn-warning"><i
-                                        class="fa fa-download"></i>Export Data BCS in Excel</a>
+                                        class="fa fa-download"></i>Export Data Periodic in Excel</a>
                             </div>
                         @endif
 
@@ -42,9 +45,10 @@
                             <table id="datatable" class="table align-items-center mb-0">
                                 <thead class="table-light">
                                     <tr>
-
-                                        <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
-                                                name="select_all" id="select_all_id"></th>
+                                        @if (Auth::user()->role == ['sm', 'supplier'])
+                                            <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
+                                                    name="select_all" id="select_all_id"></th>
+                                        @endif
                                         <th style="white-space: nowrap;" class="text-center">No</th>
                                         <th style="white-space: nowrap;" class="text-center">DSTRC_ORI</th>
                                         <th style="white-space: nowrap;" class="text-center">CREATION_DATE</th>

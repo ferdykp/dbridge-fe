@@ -1,8 +1,13 @@
 @forelse ($data as $index => $item)
     <tr>
-        <td class="text-center">
+        @if (Auth::user()->role == ['sm', 'supplier'])
+            <td class="text-center">
+                <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
+            </td>
+        @endif
+        {{-- <td class="text-center">
             <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
-        </td>
+        </td> --}}
         <td class="text-center">
             {{ $index + 1 + ($data->currentPage() - 1) * $data->perPage() }}
         </td>
