@@ -17,6 +17,7 @@ class PeriodicController extends Controller
     public function index()
     {
         $periodic = Periodic::all();
+        $periodic = Periodic::paginate(10); // Ambil semua data dengan pagination (10 data per halaman)
         return view('periodic', compact('periodic'));
     }
     public function create()
@@ -98,4 +99,19 @@ class PeriodicController extends Controller
         // Redirect kembali ke dashboard dengan pesan sukses
         return redirect()->route('periodic')->with(['success' => 'Data Periodic berhasil diimport!']);
     }
+
+    public function search(Request $request)
+{
+    $query = $request->input('search');
+
+    $data = Periodic::where('wr_no', 'LIKE', "%{$query}%")
+                ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+                ->paginate(10);
+
+    return view('partials.wr_table', [
+        'data' => $data,
+        'routePrefix' => 'periodic' // Sesuaikan dengan prefix masing-masing controller
+    ]);
+}
+
 }

@@ -145,12 +145,14 @@ public function update(Request $request, StockCode $stockCode)
     {
         $search = $request->input('search');
 
-        $stockCode = StockCode::where('stock_code', 'like', "%{$search}%")
-            ->orWhere('item_name', 'like', "%{$search}%")
-            ->orWhere('mnemonic', 'like', "%{$search}%")
-            ->get();
+    $stockCode = StockCode::where('stock_code', 'like', "%{$search}%")
+    ->orWhere('item_name', 'like', "%{$search}%")
+    ->orWhere('mnemonic', 'like', "%{$search}%")
+    ->paginate(10);
+
 
         return view('partials.stock_table', compact('stockCode'));
+
     }
 
     public function export()

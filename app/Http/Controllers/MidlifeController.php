@@ -17,6 +17,7 @@ class MidlifeController extends Controller
     public function index()
     {
         $midlife = Midlife::all(); // Ini mengembalikan koleksi
+        $midlife = Midlife::paginate(10);
         return view('midlife', compact('midlife')); // Kirim koleksi ke view
     }
 
@@ -100,4 +101,19 @@ class MidlifeController extends Controller
         // Redirect kembali ke dashboard dengan pesan sukses
         return redirect()->route('midlife')->with(['success' => 'Data Midlife berhasil diimport!']);
     }
+
+    public function search(Request $request)
+{
+    $query = $request->input('search');
+
+    $data = Midlife::where('wr_no', 'LIKE', "%{$query}%")
+                ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+                ->paginate(10);
+
+    return view('partials.wr_table', [
+        'data' => $data,
+        'routePrefix' => 'midlife' // Sesuaikan dengan prefix masing-masing controller
+    ]);
+}
+
 }

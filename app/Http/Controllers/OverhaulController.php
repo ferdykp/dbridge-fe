@@ -19,6 +19,7 @@ class OverhaulController extends Controller
     public function index()
     {
         $overhaul = Overhaul::all();
+        $overhaul = Overhaul::paginate(10);
         return view('overhaul', compact('overhaul'));
     }
             public function create()
@@ -26,7 +27,7 @@ class OverhaulController extends Controller
         // $bcs = Wr::all();
         $stockCode = StockCode::all();
         // return view('create', compact('stockCode'));
-        return view('create', ['type' => 'overhaul'], compact('stockCode'));
+        return view('create', ['type' => 'overhaul'], compact('overhaul'));
 
         // return view('create', compact('bcs'));
     }
@@ -100,4 +101,19 @@ class OverhaulController extends Controller
         // Redirect kembali ke dashboard dengan pesan sukses
         return redirect()->route('overhaul')->with(['success' => 'Data Overhaul berhasil diimport!']);
     }
+
+    public function search(Request $request)
+{
+    $query = $request->input('search');
+
+    $data = Overhaul::where('wr_no', 'LIKE', "%{$query}%")
+                ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+                ->paginate(10);
+
+    return view('partials.wr_table', [
+        'data' => $data,
+        'routePrefix' => 'overhaul' // Sesuaikan dengan prefix masing-masing controller
+    ]);
+}
+
 }

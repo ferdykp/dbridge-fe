@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\wr;
+use App\Models\Bcs;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -16,7 +16,7 @@ class BcsExport implements FromCollection, WithHeadings
     public function collection()
     {
         // Mengambil data dari model Barang
-        return wr::select("dstrc_ori", "creation_date", "authsd_date", "wo_desc", "acuan_plan_service", "componen_desc", "egi", "egi_eng", "equip_no", "plant_process", "plant_activity", "wr_no", "wr_item", "qty_req")->get();
+        return Bcs::select("dstrc_ori", "creation_date", "authsd_date", "wo_desc", "acuan_plan_service", "componen_desc", "egi", "egi_eng", "equip_no", "plant_process", "plant_activity", "wr_no", "wr_item", "qty_req")->get();
     }
 
     /**

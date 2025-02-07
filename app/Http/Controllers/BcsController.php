@@ -18,7 +18,7 @@ class BcsController extends Controller
     public function index()
     {
         // $bcs = Bcs::all()->simplePaginate(10);
-        $bcs = Bcs::simplePaginate(10);
+        $bcs = Bcs::paginate(10);
         return view('bcs', compact('bcs'));
     }
 
@@ -99,7 +99,22 @@ class BcsController extends Controller
         Excel::import(new BcsImport, $request->file('file'));
 
         // Redirect kembali ke dashboard dengan pesan sukses
-        return redirect()->route('bcs')->with(['success' => 'Data WR berhasil diimport!']);
+        return redirect()->route('bcs')->with(['success' => 'Data BCS berhasil diimport!']);
     }
+
+public function search(Request $request)
+{
+    $query = $request->input('search');
+
+    $data = Bcs::where('wr_no', 'LIKE', "%{$query}%")
+                ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+                ->paginate(10);
+
+    return view('partials.wr_table', [
+        'data' => $data,
+        'routePrefix' => 'bcs' // Sesuaikan dengan prefix masing-masing controller
+    ]);
+}
+
 
 }

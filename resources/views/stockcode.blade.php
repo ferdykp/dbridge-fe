@@ -30,8 +30,8 @@
                                     class="fa fa-download"></i>Export Data in Excel</a>
                         </div>
                         <div class="w-25"> <!-- Adjust the width as needed -->
-                            <input type="text" id="search" name="search" placeholder="Search Stock Code"
-                                autocomplete="off" class="form-control">
+                            <input type="text" id="search" data-route="{{ route('stockCode.search') }}" name="search"
+                                placeholder="Search Stock Code" autocomplete="off" class="form-control">
                         </div>
                     </div>
                     <div class="card-header pb-0">

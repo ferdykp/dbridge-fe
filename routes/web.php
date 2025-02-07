@@ -32,9 +32,41 @@ Route::middleware(['guest'])->group(function () {
 // Authenticated Routes
 Route::middleware(['auth'])->group(function () {
 
+    // Route::get('/wr/search', [WrController::class, 'search'])->name('wr.search');
+
+    Route::get('/stockCode/search', [StockCodeController::class, 'search'])->name('stockCode.search');
+    // Route::get('/stockcode', [StockCodeController::class, 'search']);
+    Route::resource('stockCode', StockCodeController::class);
+
+    Route::get('/{type}/search', function ($type) {
+        if ($type == 'wr') {
+            // Membuat instance WrController dan memanggil search
+            $controller = app(WrController::class);
+            return $controller->search(request());
+        } elseif ($type == 'bcs') {
+            // Membuat instance BcsController dan memanggil search
+            $controller = app(BcsController::class);
+            return $controller->search(request());
+        } elseif ($type == 'midlife') {
+            // Membuat instance BcsController dan memanggil search
+            $controller = app(MidlifeController::class);
+            return $controller->search(request());
+        } elseif ($type == 'overhaul') {
+            // Membuat instance BcsController dan memanggil search
+            $controller = app(OverhaulController::class);
+            return $controller->search(request());
+        } elseif ($type == 'periodic') {
+            // Membuat instance BcsController dan memanggil search
+            $controller = app(PeriodicController::class);
+            return $controller->search(request());
+        }
+    })->name('dynamic.search');
+
+
     Route::resource('wr', WrController::class);
     Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
     Route::post('wr/import', [WrController::class, 'import'])->name('wr.import');
+
 
     Route::resource('bcs', BcsController::class);
     Route::get('bcs-export', [BcsController::class, 'export'])->name('bcs.export');
@@ -54,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    
+
 
 Route::post('/{type}/store', function ($type) {
     if ($type == 'wr') {
@@ -87,17 +119,14 @@ Route::post('/{type}/store', function ($type) {
 
     Route::get('stockcode-export', [StockCodeController::class, 'export'])->name('stockCode.export');
     Route::post('stockcode/import', [StockCodeController::class, 'import'])->name('stockCode.import');
-    Route::get('/stockCode/autocomplete', [StockCodeController::class, 'autocomplete'])->name('stockCode.autocomplete');
-    Route::get('/autocomplete', [StockCodeController::class, 'autocomplete'])->name('autocomplete');
+    // Route::get('/stockCode/autocomplete', [StockCodeController::class, 'autocomplete'])->name('stockCode.autocomplete');
+    // Route::get('/autocomplete', [StockCodeController::class, 'autocomplete'])->name('autocomplete');
 
-    Route::get('/stockcode', [StockCodeController::class, 'search']);
-    Route::resource('stockCode', StockCodeController::class);
 
 
     Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');
     Route::post('/import-stockcode', [StockCodeController::class, 'importExcel'])->name('import.excel');
 
-    Route::get('/stock-code/search', [StockCodeController::class, 'search'])->name('stockCode.search');
 
     // Dashboard
     Route::get('/dashboard', function () {
