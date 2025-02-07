@@ -6,9 +6,9 @@
             <div class="col-12">
                 <div class="card mb-4 ">
                     <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                        <div>
+                        {{-- <div>
                             <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add</a>
-                        </div>
+                        </div> --}}
                         <div>
                             <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i class="fa fa-download"></i>
                                 Export User Data</a>
