@@ -24,10 +24,10 @@
                         @if (Auth::user()->role == ['sm', 'supplier'])
                             <div class="d-flex">
                                 <a href="{{ route('bcs.create') }}" class="btn btn-md btn-success me-2">Add BCS</a>
-                                <a href="{{ route('bcs.export') }}" class="btn btn-md btn-warning"><i
-                                        class="fa fa-download"></i>Export Data BCS in Excel</a>
                             </div>
                         @endif
+                        <a href="{{ route('bcs.export') }}" class="btn btn-md btn-warning"><i
+                                class="fa fa-download"></i>Export Data BCS in Excel</a>
                         <div class="w-25"> <!-- Adjust the width as needed -->
                             <input type="text" id="search"
                                 data-route="{{ route('dynamic.search', ['type' => 'bcs']) }}" name="search"
