@@ -1,6 +1,9 @@
 @forelse ($data as $index => $item)
     <tr>
         <td class="text-center">
+            <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
+        </td>
+        <td class="text-center">
             {{ $index + 1 + ($data->currentPage() - 1) * $data->perPage() }}
         </td>
         <td class="text-center">{{ $item->dstrc_ori }}</td>

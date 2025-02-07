@@ -14,30 +14,30 @@ use App\Imports\WrImport; // Import WrImport yang akan dibuat nanti
 
 class WrController extends Controller
 {
-public function index(): View
-{
-    $role = Auth::user()->role; // Mendapatkan role user yang sedang login
-    $wrQuery = Wr::query();
+    public function index(): View
+    {
+        $role = Auth::user()->role; // Mendapatkan role user yang sedang login
+        $wrQuery = Wr::query();
 
-    // Filter berdasarkan role
-    if ($role === 'supplier') {
-        $wrQuery->where('home_wh', 'UTVH'); // Hanya data dengan WH = UTVH
+        // Filter berdasarkan role
+        if ($role === 'supplier') {
+            $wrQuery->where('home_wh', 'UTVH'); // Hanya data dengan WH = UTVH
+        }
+
+        // Gunakan paginate untuk mendapatkan pagination lengkap
+        $wr = $wrQuery->latest()->paginate(10);
+
+        // Redirect sesuai dengan role user
+        if ($role === 'sm') {
+            return view('adminDashboard', compact('wr'));
+        } elseif ($role === 'supplier') {
+            return view('supplierDashboard', compact('wr'));
+        } elseif ($role === 'user') {
+            return view('userDashboard', compact('wr'));
+        } else {
+            return view('login')->with(['error' => 'Belum Terdaftar!']);
+        }
     }
-
-    // Gunakan paginate untuk mendapatkan pagination lengkap
-    $wr = $wrQuery->latest()->paginate(10);
-
-    // Redirect sesuai dengan role user
-    if ($role === 'sm') {
-        return view('adminDashboard', compact('wr'));
-    } elseif ($role === 'supplier') {
-        return view('supplierDashboard', compact('wr'));
-    } elseif ($role === 'user') {
-        return view('userDashboard', compact('wr'));
-    } else {
-        return view('login')->with(['error' => 'Belum Terdaftar!']);
-    }
-}
     public function create()
     {
         // $wr = Wr::all();
@@ -146,6 +146,20 @@ public function index(): View
         return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
+    // public function destroyMultiple(Request $request)
+    // {
+    //     $ids = $request->input('ids');
+
+    //     if (!is_array($ids) || empty($ids)) {
+    //         return response()->json(['success' => false, 'message' => 'No data selected.']);
+    //     }
+
+    //     Wr::whereIn('id', $ids)->delete();
+
+    //     return response()->json(['success' => true, 'message' => 'Selected records deleted successfully.']);
+    // }
+
+
     public function export()
     {
         return Excel::download(new WrExport, 'Data WR.xlsx');
@@ -164,18 +178,17 @@ public function index(): View
         // Redirect kembali ke dashboard dengan pesan sukses
         return redirect()->route('dashboard')->with(['success' => 'Data WR berhasil diimport!']);
     }
-public function search(Request $request)
-{
-    $query = $request->input('search');
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
 
-    $data = Wr::where('wr_no', 'LIKE', "%{$query}%")
-                ->orWhere('wo_desc', 'LIKE', "%{$query}%")
-                ->paginate(10);
+        $data = Wr::where('wr_no', 'LIKE', "%{$query}%")
+            ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+            ->paginate(10);
 
-    return view('partials.wr_table', [
-        'data' => $data,
-        'routePrefix' => 'wr' // Sesuaikan dengan prefix masing-masing controller
-    ]);
-}
-
+        return view('partials.wr_table', [
+            'data' => $data,
+            'routePrefix' => 'wr' // Sesuaikan dengan prefix masing-masing controller
+        ]);
+    }
 }

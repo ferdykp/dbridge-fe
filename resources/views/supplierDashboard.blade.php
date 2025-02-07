@@ -1,120 +1,163 @@
 @extends('layouts.master')
 
+<head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4 ">
-                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <div class="card-header">
                         <div>
-                            <a href="{{ route('wr.create') }}" class="btn btn-md btn-success">Add</a>
+                            <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data"
+                                class="d-flex">
+                                @csrf
+                                <div class="form-group me-2">
+                                    <label for="file">Upload WR File in Excel</label>
+                                    <input type="file" name="file" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-4">Import WR</button>
+                            </form>
                         </div>
-                        <div>
-                            <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i class="fa fa-download"></i>
-                                Export User Data</a>
+                    </div>
+                    <div class="card-header pb-0 d-flex justify-content-between">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex">
+                                <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2">Add WR</a>
+                                <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning">
+                                    <i class="fa fa-download"></i> Export Data in Excel
+                                </a>
+                            </div>
+                            <div class="mt-2">
+                                <a class="btn btn-danger" id="delete_selected">Delete Selected</a>
+                            </div>
+                        </div>
+                        <div class="w-25"> <!-- Adjust the width as needed -->
+                            <input type="text" id="search"
+                                data-route="{{ route('dynamic.search', ['type' => 'wr']) }}" name="search"
+                                placeholder="Search WR Code" autocomplete="off" class="form-control">
                         </div>
                     </div>
                     <div class="card-header pb-0">
-                        <h6>Authors table</h6>
+                        <h6>Data WR</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-4">
                         <div class="table-responsive p-0">
                             <table id="datatable" class="table align-items-center mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>No</th>
-                                        <th>DSTRC_ORI</th>
-                                        <th>CREATION_DATE</th>
-                                        <th>AUTHSD_DATE</th>
-                                        <th>WO_DESC</th>
-                                        <th>ACUAN PLAN SERVICE</th>
-                                        <th>Componen_Desc</th>
-                                        <th>EGI</th>
-                                        <th>EGI ENG</th>
-                                        <th>EQUIP_NO</th>
-                                        <th>Plant Process</th>
-                                        <th>Plant Activity</th>
-                                        <th>WR_NO</th>
-                                        <th>WR_ITEM</th>
-                                        <th>QTY_REQ</th>
-                                        <th>Stock_Code</th>
-                                        <th>Price_Code</th>
-                                        <th>ITEM_NAME</th>
-                                        <th>CLASS</th>
-                                        <th>Current Class</th>
-                                        <th>Mnemonic Current</th>
-                                        <th>PN Current</th>
-                                        <th>PN Global</th>
-                                        <th>WH</th>
-                                        <th>UOI</th>
-                                        <th>Notes</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
+                                                name="select_all" id="select_all_id"></th>
+                                        <th style="white-space: nowrap;" class="text-center">No</th>
+                                        <th style="white-space: nowrap;" class="text-center">DSTRC_ORI</th>
+                                        <th style="white-space: nowrap;" class="text-center">CREATION_DATE</th>
+                                        <th style="white-space: nowrap;" class="text-center">AUTHSD_DATE</th>
+                                        <th style="white-space: nowrap;" class="text-center">WO_DESC</th>
+                                        <th style="white-space: nowrap;" class="text-center">ACUAN PLAN SERVICE</th>
+                                        <th style="white-space: nowrap;" class="text-center">Componen_Desc</th>
+                                        <th style="white-space: nowrap;" class="text-center">EGI</th>
+                                        <th style="white-space: nowrap;" class="text-center">EGI ENG</th>
+                                        <th style="white-space: nowrap;" class="text-center">EQUIP_NO</th>
+                                        <th style="white-space: nowrap;" class="text-center">Plant Process</th>
+                                        <th style="white-space: nowrap;" class="text-center">Plant Activity</th>
+                                        <th style="white-space: nowrap;" class="text-center">WR_NO</th>
+                                        <th style="white-space: nowrap;" class="text-center">WR_ITEM</th>
+                                        <th style="white-space: nowrap;" class="text-center">QTY_REQ</th>
+                                        <th style="white-space: nowrap;" class="text-center">Stock_Code</th>
+                                        <th style="white-space: nowrap;" class="text-center">Mnemonic</th>
+                                        <th style="white-space: nowrap;" class="text-center">PART_NUMBER</th>
+                                        <th style="white-space: nowrap;" class="text-center">PN_GLOBAL</th>
+                                        <th style="white-space: nowrap;" class="text-center">ITEM_NAME</th>
+                                        <th style="white-space: nowrap;" class="text-center">STOCK_TYPE_DISTRICT</th>
+                                        <th style="white-space: nowrap;" class="text-center">CLASS</th>
+                                        <th style="white-space: nowrap;" class="text-center">HOME_WH</th>
+                                        <th style="white-space: nowrap;" class="text-center">UOI</th>
+                                        <th style="white-space: nowrap;" class="text-center">ISSUING PRICE</th>
+                                        <th style="white-space: nowrap;" class="text-center">PRICE_CODE</th>
+                                        <th style="white-space: nowrap;" class="text-center">Notes</th>
+                                        <th style="white-space: nowrap;" class="text-center">Status</th>
+                                        <th style="white-space: nowrap;" class="text-center">Action</th>
+
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @forelse ($wr as $index => $wr)
-                                        <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $wr->dstrc_ori }}</td>
-                                            <td>{{ $wr->creation_date }}</td>
-                                            <td>{{ $wr->authsd_date }}</td>
-                                            <td>{{ $wr->wo_desc }}</td>
-                                            <td>{{ $wr->acuan_plan_service }}</td>
-                                            <td>{{ $wr->componen_desc }}</td>
-                                            <td>{{ $wr->egi }}</td>
-                                            <td>{{ $wr->egi_eng }}</td>
-                                            <td>{{ $wr->equip_no }}</td>
-                                            <td>{{ $wr->plant_process }}</td>
-                                            <td>{{ $wr->plant_activity }}</td>
-                                            <td>{{ $wr->wr_no }}</td>
-                                            <td>{{ $wr->wr_item }}</td>
-                                            <td>{{ $wr->qty_req }}</td>
-                                            <td>{{ $wr->stock_code }}</td>
-                                            <td>{{ $wr->mnemonic }}</td>
-                                            <td>{{ $wr->part_number }}</td>
-                                            <td>{{ $wr->pn_global }}</td>
-                                            <td>{{ $wr->item_name }}</td>
-                                            <td>{{ $wr->stock_type_district }}</td>
-                                            <td>{{ $wr->class }}</td>
-                                            <td>{{ $wr->home_wh }}</td>
-                                            <td>{{ $wr->uoi }}</td>
-                                            <td>{{ $wr->issuing_price }}</td>
-                                            <td>{{ $wr->price_code }}</td>
-                                            <td>{{ $wr->notes }}</td>
-                                            <td>{{ $wr->status }}</td>
-                                            <td class="d-flex justify-content-center">
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('wr.destroy', $wr->id) }}" method="POST"
-                                                    class="d-flex gap-2">
-                                                    <a href="{{ route('wr.show', $wr->id) }}"
-                                                        class="btn btn-sm btn-dark">Show</a>
-                                                    <a href="{{ route('wr.edit', $wr->id) }}"
-                                                        class="btn btn-sm btn-primary">Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="50">
-                                                <div class="alert alert-danger text-center">
-                                                    Data Barang belum tersedia.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforelse
+                                <tbody id="table-body">
+                                    @include('partials.wr_table', ['data' => $wr, 'routePrefix' => 'wr'])
                                 </tbody>
                             </table>
                         </div>
-                        <div class="pagination my-3 mx-3">
-                            {{ $wr->links() }}
+                        <div class="card-footer d-flex justify-content-between">
+                            <div>
+                                Showing {{ $wr->firstItem() }} to {{ $wr->lastItem() }} of
+                                {{ $wr->total() }} entries
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                {{ $wr->links('pagination::bootstrap-4') }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectAllCheckbox = document.getElementById("select_all_id");
+            const checkboxes = document.querySelectorAll(".checkbox_id");
+            const deleteButton = document.getElementById("delete_selected"); // Pastikan ID tombol delete benar
+
+            // **Fitur Select All**
+            selectAllCheckbox.addEventListener("change", function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+            });
+
+            // **Update Select All Jika Checkbox di Klik**
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener("change", function() {
+                    const totalChecked = document.querySelectorAll(".checkbox_id:checked").length;
+                    selectAllCheckbox.checked = (totalChecked === checkboxes.length);
+                });
+            });
+
+            // **Fitur Hapus Data Terpilih**
+            deleteButton.addEventListener("click", function() {
+                let selectedIds = Array.from(document.querySelectorAll(".checkbox_id:checked"))
+                    .map(checkbox => checkbox.value);
+
+                if (selectedIds.length === 0) {
+                    alert("❌ Pilih minimal satu data untuk dihapus!");
+                    return;
+                }
+
+                if (!confirm("⚠️ Anda yakin ingin menghapus data ini?")) {
+                    return;
+                }
+
+                // **Looping Hapus Data dengan Fetch API**
+                let deletePromises = selectedIds.map(id => {
+                    return fetch(`/wr/${id}`, {
+                            method: "DELETE",
+                            headers: {
+                                "X-CSRF-TOKEN": document.querySelector(
+                                    'meta[name="csrf-token"]').content,
+                                "Content-Type": "application/json"
+                            }
+                        })
+                        .then(response => response.json())
+                        .catch(error => console.error(`❌ Gagal menghapus ${id}`, error));
+                });
+                Promise.all(deletePromises).then(() => {
+                    location.reload(); // Langsung reload tanpa notifikasi
+                });
+
+                // **Reload Halaman Setelah Semua Data Dihapus**
+                // Promise.all(deletePromises).then(() => {
+                //     alert("✅ Data berhasil dihapus.");
+                //     location.reload();
+                // });
+            });
+        });
+    </script>
 @endsection

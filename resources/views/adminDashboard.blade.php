@@ -1,5 +1,8 @@
 @extends('layouts.master')
 
+<head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
@@ -7,7 +10,8 @@
                 <div class="card mb-4 ">
                     <div class="card-header">
                         <div>
-                            <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data" class="d-flex">
+                            <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data"
+                                class="d-flex">
                                 @csrf
                                 <div class="form-group me-2">
                                     <label for="file">Upload WR File in Excel</label>
@@ -18,10 +22,16 @@
                         </div>
                     </div>
                     <div class="card-header pb-0 d-flex justify-content-between">
-                        <div class="d-flex">
-                            <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2">Add WR</a>
-                            <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning"><i
-                                    class="fa fa-download"></i>Export Data in Excel</a>
+                        <div class="d-flex flex-column">
+                            <div class="d-flex">
+                                <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2">Add WR</a>
+                                <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning">
+                                    <i class="fa fa-download"></i> Export Data in Excel
+                                </a>
+                            </div>
+                            <div class="mt-2">
+                                <a class="btn btn-danger" id="delete_selected">Delete Selected</a>
+                            </div>
                         </div>
                         <div class="w-25"> <!-- Adjust the width as needed -->
                             <input type="text" id="search"
@@ -37,34 +47,38 @@
                             <table id="datatable" class="table align-items-center mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">DSTRC_ORI</th>
-                                        <th class="text-center">CREATION_DATE</th>
-                                        <th class="text-center">AUTHSD_DATE</th>
-                                        <th class="text-center">WO_DESC</th>
-                                        <th class="text-center">ACUAN PLAN SERVICE</th>
-                                        <th class="text-center">Componen_Desc</th>
-                                        <th class="text-center">EGI</th>
-                                        <th class="text-center">EGI ENG</th>
-                                        <th class="text-center">EQUIP_NO</th>
-                                        <th class="text-center">Plant Process</th>
-                                        <th class="text-center">Plant Activity</th>
-                                        <th class="text-center">WR_NO</th>
-                                        <th class="text-center">WR_ITEM</th>
-                                        <th class="text-center">QTY_REQ</th>
-                                        <th class="text-center">Stock_Code</th>
-                                        <th class="text-center">Price_Code</th>
-                                        <th class="text-center">ITEM_NAME</th>
-                                        <th class="text-center">CLASS</th>
-                                        <th class="text-center">Current Class</th>
-                                        <th class="text-center">Mnemonic Current</th>
-                                        <th class="text-center">PN Current</th>
-                                        <th class="text-center">PN Global</th>
-                                        <th class="text-center">WH</th>
-                                        <th class="text-center">UOI</th>
-                                        <th class="text-center">Notes</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Action</th>
+                                        <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
+                                                name="select_all" id="select_all_id"></th>
+                                        <th style="white-space: nowrap;" class="text-center">No</th>
+                                        <th style="white-space: nowrap;" class="text-center">DSTRC_ORI</th>
+                                        <th style="white-space: nowrap;" class="text-center">CREATION_DATE</th>
+                                        <th style="white-space: nowrap;" class="text-center">AUTHSD_DATE</th>
+                                        <th style="white-space: nowrap;" class="text-center">WO_DESC</th>
+                                        <th style="white-space: nowrap;" class="text-center">ACUAN PLAN SERVICE</th>
+                                        <th style="white-space: nowrap;" class="text-center">Componen_Desc</th>
+                                        <th style="white-space: nowrap;" class="text-center">EGI</th>
+                                        <th style="white-space: nowrap;" class="text-center">EGI ENG</th>
+                                        <th style="white-space: nowrap;" class="text-center">EQUIP_NO</th>
+                                        <th style="white-space: nowrap;" class="text-center">Plant Process</th>
+                                        <th style="white-space: nowrap;" class="text-center">Plant Activity</th>
+                                        <th style="white-space: nowrap;" class="text-center">WR_NO</th>
+                                        <th style="white-space: nowrap;" class="text-center">WR_ITEM</th>
+                                        <th style="white-space: nowrap;" class="text-center">QTY_REQ</th>
+                                        <th style="white-space: nowrap;" class="text-center">Stock_Code</th>
+                                        <th style="white-space: nowrap;" class="text-center">Mnemonic</th>
+                                        <th style="white-space: nowrap;" class="text-center">PART_NUMBER</th>
+                                        <th style="white-space: nowrap;" class="text-center">PN_GLOBAL</th>
+                                        <th style="white-space: nowrap;" class="text-center">ITEM_NAME</th>
+                                        <th style="white-space: nowrap;" class="text-center">STOCK_TYPE_DISTRICT</th>
+                                        <th style="white-space: nowrap;" class="text-center">CLASS</th>
+                                        <th style="white-space: nowrap;" class="text-center">HOME_WH</th>
+                                        <th style="white-space: nowrap;" class="text-center">UOI</th>
+                                        <th style="white-space: nowrap;" class="text-center">ISSUING PRICE</th>
+                                        <th style="white-space: nowrap;" class="text-center">PRICE_CODE</th>
+                                        <th style="white-space: nowrap;" class="text-center">Notes</th>
+                                        <th style="white-space: nowrap;" class="text-center">Status</th>
+                                        <th style="white-space: nowrap;" class="text-center">Action</th>
+
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
@@ -86,4 +100,64 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectAllCheckbox = document.getElementById("select_all_id");
+            const checkboxes = document.querySelectorAll(".checkbox_id");
+            const deleteButton = document.getElementById("delete_selected"); // Pastikan ID tombol delete benar
+
+            // **Fitur Select All**
+            selectAllCheckbox.addEventListener("change", function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+            });
+
+            // **Update Select All Jika Checkbox di Klik**
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener("change", function() {
+                    const totalChecked = document.querySelectorAll(".checkbox_id:checked").length;
+                    selectAllCheckbox.checked = (totalChecked === checkboxes.length);
+                });
+            });
+
+            // **Fitur Hapus Data Terpilih**
+            deleteButton.addEventListener("click", function() {
+                let selectedIds = Array.from(document.querySelectorAll(".checkbox_id:checked"))
+                    .map(checkbox => checkbox.value);
+
+                if (selectedIds.length === 0) {
+                    alert("❌ Pilih minimal satu data untuk dihapus!");
+                    return;
+                }
+
+                if (!confirm("⚠️ Anda yakin ingin menghapus data ini?")) {
+                    return;
+                }
+
+                // **Looping Hapus Data dengan Fetch API**
+                let deletePromises = selectedIds.map(id => {
+                    return fetch(`/wr/${id}`, {
+                            method: "DELETE",
+                            headers: {
+                                "X-CSRF-TOKEN": document.querySelector(
+                                    'meta[name="csrf-token"]').content,
+                                "Content-Type": "application/json"
+                            }
+                        })
+                        .then(response => response.json())
+                        .catch(error => console.error(`❌ Gagal menghapus ${id}`, error));
+                });
+                Promise.all(deletePromises).then(() => {
+                    location.reload(); // Langsung reload tanpa notifikasi
+                });
+
+                // **Reload Halaman Setelah Semua Data Dihapus**
+                // Promise.all(deletePromises).then(() => {
+                //     alert("✅ Data berhasil dihapus.");
+                //     location.reload();
+                // });
+            });
+        });
+    </script>
 @endsection
