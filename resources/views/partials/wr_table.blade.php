@@ -1,6 +1,7 @@
 @forelse ($data as $index => $item)
     <tr>
-        @if (Auth::user()->role == ['sm', 'supplier'])
+        @if (in_array(Auth::user()->role, ['sm', 'supplier']))
+            )
             <td class="text-center">
                 <input type="checkbox" class="checkbox_id" value="{{ $item->id }}">
             </td>
