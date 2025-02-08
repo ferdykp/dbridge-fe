@@ -99,29 +99,29 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::post('/{type}/store', function ($type) {
-    if ($type == 'wr') {
-        // Membuat instance WrController dan memanggil store
-        $controller = app(WrController::class);
-        return $controller->store(request());
-    } elseif ($type == 'bcs') {
-        // Membuat instance BcsController dan memanggil store
-        $controller = app(BcsController::class);
-        return $controller->store(request());
-    } elseif ($type == 'midlife') {
-        // Membuat instance BcsController dan memanggil store
-        $controller = app(MidlifeController::class);
-        return $controller->store(request());
-    } elseif ($type == 'overhaul') {
-        // Membuat instance BcsController dan memanggil store
-        $controller = app(OverhaulController::class);
-        return $controller->store(request());
-    } elseif ($type == 'periodic') {
-        // Membuat instance BcsController dan memanggil store
-        $controller = app(PeriodicController::class);
-        return $controller->store(request());
-    }
-})->name('dynamic.store');
+    Route::post('/{type}/store', function ($type) {
+        if ($type == 'wr') {
+            // Membuat instance WrController dan memanggil store
+            $controller = app(WrController::class);
+            return $controller->store(request());
+        } elseif ($type == 'bcs') {
+            // Membuat instance BcsController dan memanggil store
+            $controller = app(BcsController::class);
+            return $controller->store(request());
+        } elseif ($type == 'midlife') {
+            // Membuat instance BcsController dan memanggil store
+            $controller = app(MidlifeController::class);
+            return $controller->store(request());
+        } elseif ($type == 'overhaul') {
+            // Membuat instance BcsController dan memanggil store
+            $controller = app(OverhaulController::class);
+            return $controller->store(request());
+        } elseif ($type == 'periodic') {
+            // Membuat instance BcsController dan memanggil store
+            $controller = app(PeriodicController::class);
+            return $controller->store(request());
+        }
+    })->name('dynamic.store');
 
 
     // WR Management
@@ -135,8 +135,8 @@ Route::post('/{type}/store', function ($type) {
 
 
 
-    Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');
-    Route::post('/import-stockcode', [StockCodeController::class, 'importExcel'])->name('import.excel');
+    // Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');
+    // Route::post('/import-stockcode', [StockCodeController::class, 'importExcel'])->name('import.excel');
 
 
     // Dashboard
