@@ -16,13 +16,14 @@ class MidlifeController extends Controller
 {
     public function index()
     {
-        $midlife = Midlife::all(); // Ini mengembalikan koleksi
+        // $midlife = Midlife::all(); // Ini mengembalikan koleksi
         $midlife = Midlife::paginate(10);
-        return view('midlife', compact('midlife')); // Kirim koleksi ke view
+        $type = 'midlife';
+        return view('midlife', compact('midlife', 'type')); // Kirim koleksi ke view
     }
 
 
-        public function create()
+    public function create()
     {
         // $bcs = Wr::all();
         $stockCode = StockCode::all();
@@ -32,7 +33,7 @@ class MidlifeController extends Controller
         // return view('create', compact('bcs'));
     }
 
-        public function show(string $id): View
+    public function show(string $id): View
     {
         $midlife = Midlife::findOrFail($id);
         return view('show', compact('midlife'));
@@ -75,6 +76,59 @@ class MidlifeController extends Controller
 
         return redirect()->route('midlife')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
+
+    public function edit(string $id): View
+    {
+        $data = Midlife::findOrFail($id);
+        $stockCode = StockCode::all();
+
+        return view('edit', compact('data', 'stockCode'))->with('type', 'wr');
+        // return view('wr.edit', compact('wr', 'stockCode'));
+        // return view('edit', compact(['type' => 'wr'], 'stockCode'));
+        // return view('edit', compact('stockCode'))->with('type', 'wr');
+
+        // return view('edit', compact('wr', 'stockCode'))->with('type', 'wr');
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $request->validate([
+            'dstrc_ori' => 'required',
+            'creation_date' => 'required',
+            'authsd_date' => 'required',
+            'wo_desc' => 'required',
+            'acuan_plan_service' => 'required',
+            'componen_desc' => 'required',
+            'egi' => 'required',
+            'egi_eng' => 'required',
+            'equip_no' => 'required',
+            'plant_process' => 'required',
+            'plant_activity' => 'required',
+            'wr_no' => 'required',
+            'wr_item' => 'required',
+            'qty_req' => 'required',
+            'stock_code' => 'required',
+            'mnemonic' => 'required',
+            'part_number' => 'required',
+            'pn_global' => 'required',
+            'item_name' => 'required',
+            'stock_type_district' => 'required',
+            'class' => 'required',
+            'home_wh' => 'required',
+            'uoi' => 'required',
+            'issuing_price' => 'required',
+            'price_code' => 'required',
+            'notes' => 'nullable',
+            'eta' => 'nullable',
+            'status' => 'required'
+        ]);
+
+        $midlife = Midlife::findOrFail($id);
+        $midlife->update($request->all());
+
+        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
     public function destroy($id): RedirectResponse
     {
         $midlife = Midlife::findOrFail($id);
@@ -103,31 +157,30 @@ class MidlifeController extends Controller
     }
 
     public function search(Request $request)
-{
-    $query = $request->input('search');
+    {
+        $query = $request->input('search');
 
-    $data = Midlife::where('wr_no', 'LIKE', "%{$query}%")
-                ->orWhere('wo_desc', 'LIKE', "%{$query}%")
-                ->paginate(10);
+        $data = Midlife::where('wr_no', 'LIKE', "%{$query}%")
+            ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+            ->paginate(10);
 
-    return view('partials.wr_table', [
-        'data' => $data,
-        'routePrefix' => 'midlife' // Sesuaikan dengan prefix masing-masing controller
-    ]);
-}
-    public function bulkDelete(Request $request)
-{
-    try {
-        $ids = $request->input('ids', []);
-        if (empty($ids)) {
-            return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
-        }
-
-        Midlife::whereIn('id', $ids)->delete();
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        return view('partials.wr_table', [
+            'data' => $data,
+            'routePrefix' => 'midlife' // Sesuaikan dengan prefix masing-masing controller
+        ]);
     }
-}
+    public function bulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->input('ids', []);
+            if (empty($ids)) {
+                return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
+            }
 
+            Midlife::whereIn('id', $ids)->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
 }

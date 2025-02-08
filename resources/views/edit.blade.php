@@ -6,12 +6,12 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('dynamic.update', ['type' => $type, 'id' => $wr->id]) }}" method="POST"> @csrf
+                        <form action="{{ route('dynamic.update', ['type' => $type, 'id' => $data->id]) }}" method="POST">
                             <div id="wrFields">
                                 <div class="form-group mb-3">
                                     <label class="font-weight-bold mb-3">DSTRC_ORI</label>
                                     <input type="text" class="form-control @error('dstrc_ori') is-invalid @enderror"
-                                        name="dstrc_ori" value="{{ old('dstrc_ori', $wr->dstrc_ori) }}"
+                                        name="dstrc_ori" value="{{ old('dstrc_ori', $data->dstrc_ori) }}"
                                         placeholder="Insert DSTRC_ORI">
 
                                     <!-- error message untuk title -->
@@ -28,7 +28,8 @@
                                             <label class="font-weight-bold mb-3">Creation Date</label>
                                             <input type="date"
                                                 class="form-control @error('creation_date') is-invalid @enderror"
-                                                name="creation_date" value="{{ old('creation_date', $wr->creation_date) }}">
+                                                name="creation_date"
+                                                value="{{ old('creation_date', $data->creation_date) }}">
 
                                             <!-- error message untuk title -->
                                             @error('creation_date')
@@ -46,7 +47,7 @@
                                             <label class="font-weight-bold mb-3">AUTHSD_DATE</label>
                                             <input type="date"
                                                 class="form-control @error('authsd_date') is-invalid @enderror"
-                                                name="authsd_date" value="{{ old('authsd_date', $wr->authsd_date) }}">
+                                                name="authsd_date" value="{{ old('authsd_date', $data->authsd_date) }}">
 
                                             <!-- error message untuk title -->
                                             @error('authsd_date')
@@ -61,7 +62,7 @@
                                 <div class="form-group mb-3">
                                     <label class="font-weight-bold mb-3">WO_Desc</label>
                                     <input type="text" class="form-control @error('wo_desc') is-invalid @enderror"
-                                        name="wo_desc" value="{{ old('wo_desc', $wr->wo_desc) }}"
+                                        name="wo_desc" value="{{ old('wo_desc', $data->wo_desc) }}"
                                         placeholder="Insert WO_DESC">
 
                                     <!-- error message untuk title -->
@@ -79,7 +80,7 @@
                                             <input type="date"
                                                 class="form-control @error('acuan_plan_service') is-invalid @enderror"
                                                 name="acuan_plan_service"
-                                                value="{{ old('acuan_plan_service', $wr->acuan_plan_service) }}">
+                                                value="{{ old('acuan_plan_service', $data->acuan_plan_service) }}">
 
                                             <!-- error message untuk title -->
                                             @error('acuan_plan_service')
@@ -95,7 +96,7 @@
                                 <div class="form-group mb-3">
                                     <label class="font-weight-bold mb-3">Componen Desc</label>
                                     <input type="text" class="form-control @error('componen_desc') is-invalid @enderror"
-                                        name="componen_desc" value="{{ old('componen_desc', $wr->componen_desc) }}"
+                                        name="componen_desc" value="{{ old('componen_desc', $data->componen_desc) }}"
                                         placeholder="Insert Componen Desc">
 
                                     <!-- error message untuk title -->
@@ -111,7 +112,7 @@
                                     <label class="font-weight-bold mb-3">EGI</label>
                                     <input type="text" style="text-transform:uppercase"
                                         class="form-control @error('egi') is-invalid @enderror" name="egi"
-                                        value="{{ old('egi', $wr->egi) }}" placeholder="Insert EGI">
+                                        value="{{ old('egi', $data->egi) }}" placeholder="Insert EGI">
 
                                     <!-- error message untuk title -->
                                     @error('egi')
@@ -126,7 +127,7 @@
                                     <label class="font-weight-bold mb-3">EGI ENG</label>
                                     <input type="text" style="text-transform:uppercase"
                                         class="form-control @error('egi_eng') is-invalid @enderror" name="egi_eng"
-                                        value="{{ old('egi_eng', $wr->egi_eng) }}" placeholder="Insert EGI ENG">
+                                        value="{{ old('egi_eng', $data->egi_eng) }}" placeholder="Insert EGI ENG">
 
                                     <!-- error message untuk title -->
                                     @error('egi_eng')
@@ -140,7 +141,7 @@
                                 <div class="form-group mb-3">
                                     <label class="font-weight-bold mb-3">EQUIP_NO</label>
                                     <input type="text" class="form-control @error('equip_no') is-invalid @enderror"
-                                        name="equip_no" value="{{ old('equip_no', $wr->equip_no) }}"
+                                        name="equip_no" value="{{ old('equip_no', $data->equip_no) }}"
                                         placeholder="Insert EQUIP_NO">
 
                                     <!-- error message untuk title -->
@@ -160,11 +161,11 @@
                                                 <option value="" disabled selected hidden>--- Insert Plant Process ---
                                                 </option>
                                                 <option value="SCHEDULED"
-                                                    {{ old('plant_process', $wr->plant_process) == 'SCHEDULED' ? 'selected' : '' }}>
+                                                    {{ old('plant_process', $data->plant_process) == 'SCHEDULED' ? 'selected' : '' }}>
                                                     SCHEDULED
                                                 </option>
                                                 <option value="NON PLANT"
-                                                    {{ old('plant_process', $wr->plant_process) == 'NON PLANT' ? 'selected' : '' }}>
+                                                    {{ old('plant_process', $data->plant_process) == 'NON PLANT' ? 'selected' : '' }}>
                                                     NON PLANT
                                                 </option>
                                             </select>
@@ -183,7 +184,7 @@
                                     <label class="font-weight-bold mb-3">Plant Activity</label>
                                     <input type="text"
                                         class="form-control @error('plant_activity') is-invalid @enderror"
-                                        name="plant_activity" value="{{ old('plant_activity', $wr->plant_activity) }}"
+                                        name="plant_activity" value="{{ old('plant_activity', $data->plant_activity) }}"
                                         placeholder="Insert Plant Activity">
 
                                     <!-- error message untuk title -->
@@ -200,7 +201,7 @@
                                             <label class="font-weight-bold mb-3">WR_NO</label>
                                             <input type="text" style="text-transform:uppercase"
                                                 class="form-control @error('wr_no') is-invalid @enderror" name="wr_no"
-                                                value="{{ old('wr_no', $wr->wr_no) }}" placeholder="Insert WR_NO">
+                                                value="{{ old('wr_no', $data->wr_no) }}" placeholder="Insert WR_NO">
                                             <!-- error message untuk title -->
                                             @error('wr_no')
                                                 <div class="alert alert-danger mt-2">
@@ -219,7 +220,7 @@
                                             <input type="text" onkeypress="return /[0-9]/i.test(event.key)"
                                                 class="form-control @error('wr_item') is-invalid @enderror"
                                                 name="wr_item"
-                                                value="{{ str_pad(old('wr_item', $wr->wr_item), 4, '0', STR_PAD_LEFT) }}" />
+                                                value="{{ str_pad(old('wr_item', $data->wr_item), 4, '0', STR_PAD_LEFT) }}" />
 
                                             <!-- error message untuk title -->
                                             @error('wr_item')
@@ -238,7 +239,7 @@
                                             <label class="font-weight-bold mb-3">QTY_REQ</label>
                                             <input type="number"
                                                 class="form-control @error('qty_req') is-invalid @enderror"
-                                                name="qty_req" value="{{ old('qty_req', $wr->qty_req) }}"
+                                                name="qty_req" value="{{ old('qty_req', $data->qty_req) }}"
                                                 placeholder="Insert QTY_REQ">
                                             <!-- error message untuk title -->
                                             @error('qty_req')
@@ -278,7 +279,7 @@
                                             </option>
                                             @foreach ($stockCode as $stock)
                                                 <option value="{{ $stock->stock_code }}"
-                                                    {{ old('stock_code', $wr->stock_code) == $stock->stock_code ? 'selected' : '' }}>
+                                                    {{ old('stock_code', $data->stock_code) == $stock->stock_code ? 'selected' : '' }}>
                                                     {{ $stock->stock_code }} - {{ $stock->item_name }}
                                                 </option>
                                             @endforeach
@@ -298,7 +299,7 @@
                                                 <label class="font-weight-bold mb-3">MNEMONIC</label>
                                                 <input type="text" style="text-transform:uppercase"
                                                     class="form-control @error('mnemonic') is-invalid @enderror"
-                                                    name="mnemonic" value="{{ old('mnemonic', $wr->mnemonic) }}"
+                                                    name="mnemonic" value="{{ old('mnemonic', $data->mnemonic) }}"
                                                     placeholder="Insert Price Code">
                                                 <!-- error message untuk title -->
                                                 @error('mnemonic')
@@ -315,7 +316,7 @@
                                         <label class="font-weight-bold mb-3">PART_NUMBER</label>
                                         <input type="text" style="text-transform:uppercase"
                                             class="form-control @error('part_number') is-invalid @enderror"
-                                            name="part_number" value="{{ old('part_number', $wr->part_number) }}"
+                                            name="part_number" value="{{ old('part_number', $data->part_number) }}"
                                             placeholder="Insert Part Number">
                                         <!-- error message untuk title -->
                                         @error('part_number')
@@ -331,7 +332,7 @@
                                                 <label class="font-weight-bold mb-3">PN_GLOBAL</label>
                                                 <input type="text" style="text-transform:uppercase"
                                                     class="form-control @error('pn_global') is-invalid @enderror"
-                                                    name="pn_global" value="{{ old('pn_global', $wr->pn_global) }}"
+                                                    name="pn_global" value="{{ old('pn_global', $data->pn_global) }}"
                                                     placeholder="Insert PN Global">
                                                 <!-- error message untuk title -->
                                                 @error('pn_global')
@@ -349,7 +350,7 @@
                                                 <label class="font-weight-bold mb-3">ITEM_NAME</label>
                                                 <input type="text" style="text-transform:uppercase"
                                                     class="form-control @error('item_name') is-invalid @enderror"
-                                                    name="item_name" value="{{ old('item_name', $wr->item_name) }}"
+                                                    name="item_name" value="{{ old('item_name', $data->item_name) }}"
                                                     placeholder="Insert Item Name">
                                                 <!-- error message untuk title -->
                                                 @error('item_name')
@@ -368,7 +369,7 @@
                                                 <input type="text" style="text-transform:uppercase"
                                                     class="form-control @error('stock_type_district') is-invalid @enderror"
                                                     name="stock_type_district"
-                                                    value="{{ old('stock_type_district', $wr->stock_type_district) }}"
+                                                    value="{{ old('stock_type_district', $data->stock_type_district) }}"
                                                     placeholder="Insert Stock Type District">
                                                 <!-- error message untuk title -->
                                                 @error('stock_type_district')
@@ -384,7 +385,7 @@
                                         <label class="font-weight-bold mb-3">CLASS</label>
                                         <input type="text" style="text-transform:uppercase"
                                             class="form-control @error('class') is-invalid @enderror" name="class"
-                                            value="{{ old('class', $wr->class) }}" placeholder="Insert Class">
+                                            value="{{ old('class', $data->class) }}" placeholder="Insert Class">
                                         <!-- error message untuk title -->
                                         @error('class')
                                             <div class="alert alert-danger mt-2">
@@ -397,7 +398,7 @@
                                         <label class="font-weight-bold mb-3">HOME_WH</label>
                                         <input type="text" style="text-transform:uppercase"
                                             class="form-control @error('home_wh') is-invalid @enderror" name="home_wh"
-                                            value="{{ old('home_wh', $wr->home_wh) }}" placeholder="Insert Home WH">
+                                            value="{{ old('home_wh', $data->home_wh) }}" placeholder="Insert Home WH">
                                         <!-- error message untuk title -->
                                         @error('home_wh')
                                             <div class="alert alert-danger mt-2">
@@ -410,7 +411,7 @@
                                         <label class="font-weight-bold mb-3">UOI</label>
                                         <input type="text" style="text-transform:uppercase"
                                             class="form-control @error('uoi') is-invalid @enderror" name="uoi"
-                                            value="{{ old('uoi', $wr->uoi) }}" placeholder="Insert UOI">
+                                            value="{{ old('uoi', $data->uoi) }}" placeholder="Insert UOI">
                                         <!-- error message untuk title -->
                                         @error('uoi')
                                             <div class="alert alert-danger mt-2">
@@ -426,7 +427,7 @@
                                                 <input type="text" style="text-transform:uppercase"
                                                     class="form-control @error('issuing_price') is-invalid @enderror"
                                                     name="issuing_price"
-                                                    value="{{ old('issuing_price', $wr->issuing_price) }}"
+                                                    value="{{ old('issuing_price', $data->issuing_price) }}"
                                                     placeholder="Insert Issuing Price">
                                                 <!-- error message untuk title -->
                                                 @error('issuing_price')
@@ -444,7 +445,7 @@
                                                 <label class="font-weight-bold mb-3">Price Code</label>
                                                 <input type="text" style="text-transform:uppercase"
                                                     class="form-control @error('price_code') is-invalid @enderror"
-                                                    name="price_code" value="{{ old('price_code', $wr->price_code) }}"
+                                                    name="price_code" value="{{ old('price_code', $data->price_code) }}"
                                                     placeholder="Insert Price Code">
                                                 <!-- error message untuk title -->
                                                 @error('price_code')
@@ -459,7 +460,7 @@
                                 <div class="form-group mb-3">
                                     <label class="font-weight-bold mb-3">Notes</label>
                                     <input type="text" class="form-control @error('notes') is-invalid @enderror"
-                                        name="notes" value="{{ old('notes', $wr->notes) }}"
+                                        name="notes" value="{{ old('notes', $data->notes) }}"
                                         placeholder="Insert Notes">
                                     <!-- error message untuk title -->
                                     @error('notes')
@@ -472,7 +473,7 @@
                                 <div class="form-group mb-3">
                                     <label class="font-weight-bold mb-3">ETA</label>
                                     <input type="date" class="form-control @error('eta') is-invalid @enderror"
-                                        name="eta" value="{{ old('eta', $wr->eta) }}" placeholder="Insert ETA">
+                                        name="eta" value="{{ old('eta', $data->eta) }}" placeholder="Insert ETA">
                                     <!-- error message untuk title -->
                                     @error('eta')
                                         <div class="alert alert-danger mt-2">
@@ -487,14 +488,14 @@
                                             <label class="font-weight-bold mb-3">Status</label>
                                             <select class="form-select @error('status') is-invalid @enderror"
                                                 aria-label="Default select example" name="status"
-                                                value="{{ old('status', $wr->status) }}">
+                                                value="{{ old('status', $data->status) }}">
                                                 <option value="" disabled selected hidden>--- Insert Status ---
                                                 </option>
                                                 <option value="complete"
-                                                    {{ old('status', $wr->status) == 'complete' ? 'selected' : '' }}>
+                                                    {{ old('status', $data->status) == 'complete' ? 'selected' : '' }}>
                                                     Complete</option>
                                                 <option value="continue"
-                                                    {{ old('status', $wr->status) == 'continue' ? 'selected' : '' }}>
+                                                    {{ old('status', $data->status) == 'continue' ? 'selected' : '' }}>
                                                     Continue</option>
                                             </select>
                                             <!-- error message untuk title -->

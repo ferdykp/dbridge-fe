@@ -39,9 +39,9 @@
             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                 action="{{ route($routePrefix . '.destroy', $item->id) }}" method="POST" class="d-flex gap-2">
                 <a href="{{ route($routePrefix . '.show', $item->id) }}" class="btn btn-sm btn-dark">Show</a>
-                {{-- <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a> --}}
-                <a href="{{ route('dynamic.edit', ['type' => $routePrefix, 'id' => $item->id]) }}"
-                    class="btn btn-sm btn-primary">Edit</a>
+                <a href="{{ route($routePrefix . '.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                {{-- <a href="{{ route('dynamic.edit', ['type' => $routePrefix, 'id' => $item->id]) }}"
+                    class="btn btn-sm btn-primary">Edit</a> --}}
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>

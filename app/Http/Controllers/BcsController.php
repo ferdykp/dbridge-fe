@@ -19,7 +19,8 @@ class BcsController extends Controller
     {
         // $bcs = Bcs::all()->simplePaginate(10);
         $bcs = Bcs::paginate(10);
-        return view('bcs', compact('bcs'));
+        $type = 'bcs';
+        return view('bcs', compact('bcs', 'type'));
     }
 
     public function create()
@@ -32,7 +33,7 @@ class BcsController extends Controller
         // return view('create', compact('bcs'));
     }
 
-        public function show(string $id): View
+    public function show(string $id): View
     {
         $bcs = Bcs::findOrFail($id);
         return view('bcs.index', compact('bcs'));
@@ -75,6 +76,56 @@ class BcsController extends Controller
 
         return redirect()->route('bcs')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
+
+    public function edit(string $id): View
+    {
+        $data = Bcs::findOrFail($id);
+        $stockCode = StockCode::all();
+        // return view('edit', compact(['type' => 'wr'], 'stockCode'));
+        // return view('edit', compact('stockCode'))->with('type', 'wr');
+        return view('edit', compact('data', 'stockCode'))->with('type', 'bcs');
+        // return view('edit', compact('bcs', 'stockCode'))->with('type', 'bcs');
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $request->validate([
+            'dstrc_ori' => 'required',
+            'creation_date' => 'required',
+            'authsd_date' => 'required',
+            'wo_desc' => 'required',
+            'acuan_plan_service' => 'required',
+            'componen_desc' => 'required',
+            'egi' => 'required',
+            'egi_eng' => 'required',
+            'equip_no' => 'required',
+            'plant_process' => 'required',
+            'plant_activity' => 'required',
+            'wr_no' => 'required',
+            'wr_item' => 'required',
+            'qty_req' => 'required',
+            'stock_code' => 'required',
+            'mnemonic' => 'required',
+            'part_number' => 'required',
+            'pn_global' => 'required',
+            'item_name' => 'required',
+            'stock_type_district' => 'required',
+            'class' => 'required',
+            'home_wh' => 'required',
+            'uoi' => 'required',
+            'issuing_price' => 'required',
+            'price_code' => 'required',
+            'notes' => 'nullable',
+            'eta' => 'nullable',
+            'status' => 'required'
+        ]);
+
+        $bcs = Bcs::findOrFail($id);
+        $bcs->update($request->all());
+
+        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
     public function destroy($id): RedirectResponse
     {
         $bcs = Bcs::findOrFail($id);
@@ -102,35 +153,32 @@ class BcsController extends Controller
         return redirect()->route('bcs')->with(['success' => 'Data BCS berhasil diimport!']);
     }
 
-public function search(Request $request)
-{
-    $query = $request->input('search');
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
 
-    $data = Bcs::where('wr_no', 'LIKE', "%{$query}%")
-                ->orWhere('wo_desc', 'LIKE', "%{$query}%")
-                ->paginate(10);
+        $data = Bcs::where('wr_no', 'LIKE', "%{$query}%")
+            ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+            ->paginate(10);
 
-    return view('partials.wr_table', [
-        'data' => $data,
-        'routePrefix' => 'bcs' // Sesuaikan dengan prefix masing-masing controller
-    ]);
-}
-
-public function bulkDelete(Request $request)
-{
-    try {
-        $ids = $request->input('ids', []);
-        if (empty($ids)) {
-            return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
-        }
-
-        Bcs::whereIn('id', $ids)->delete();
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        return view('partials.wr_table', [
+            'data' => $data,
+            'routePrefix' => 'bcs' // Sesuaikan dengan prefix masing-masing controller
+        ]);
     }
-}
 
+    public function bulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->input('ids', []);
+            if (empty($ids)) {
+                return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
+            }
 
-
+            Bcs::whereIn('id', $ids)->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
 }

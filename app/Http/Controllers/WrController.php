@@ -96,12 +96,15 @@ class WrController extends Controller
 
     public function edit(string $id): View
     {
-        $wr = Wr::findOrFail($id);
+        $data = Wr::findOrFail($id);
         $stockCode = StockCode::all();
+
+        return view('edit', compact('data', 'stockCode'))->with('type', 'wr');
+        // return view('wr.edit', compact('wr', 'stockCode'));
         // return view('edit', compact(['type' => 'wr'], 'stockCode'));
         // return view('edit', compact('stockCode'))->with('type', 'wr');
 
-        return view('edit', compact('wr', 'stockCode'))->with('type', 'wr');
+        // return view('edit', compact('wr', 'stockCode'))->with('type', 'wr');
     }
 
     public function update(Request $request, $id): RedirectResponse

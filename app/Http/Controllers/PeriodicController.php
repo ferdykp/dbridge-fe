@@ -16,9 +16,10 @@ class PeriodicController extends Controller
 {
     public function index()
     {
-        $periodic = Periodic::all();
+        // $periodic = Periodic::all();
         $periodic = Periodic::paginate(10); // Ambil semua data dengan pagination (10 data per halaman)
-        return view('periodic', compact('periodic'));
+        $type = 'periodic';
+        return view('periodic', compact('periodic', 'type'));
     }
     public function create()
     {
@@ -30,7 +31,7 @@ class PeriodicController extends Controller
         // return view('create', compact('bcs'));
     }
 
-        public function show(string $id): View
+    public function show(string $id): View
     {
         $periodic = Periodic::findOrFail($id);
         return view('show', compact('periodic'));
@@ -73,6 +74,59 @@ class PeriodicController extends Controller
 
         return redirect()->route('periodic')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
+
+    public function edit(string $id): View
+    {
+        $data = Periodic::findOrFail($id);
+        $stockCode = StockCode::all();
+
+        return view('edit', compact('data', 'stockCode'))->with('type', 'wr');
+        // return view('wr.edit', compact('wr', 'stockCode'));
+        // return view('edit', compact(['type' => 'wr'], 'stockCode'));
+        // return view('edit', compact('stockCode'))->with('type', 'wr');
+
+        // return view('edit', compact('wr', 'stockCode'))->with('type', 'wr');
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $request->validate([
+            'dstrc_ori' => 'required',
+            'creation_date' => 'required',
+            'authsd_date' => 'required',
+            'wo_desc' => 'required',
+            'acuan_plan_service' => 'required',
+            'componen_desc' => 'required',
+            'egi' => 'required',
+            'egi_eng' => 'required',
+            'equip_no' => 'required',
+            'plant_process' => 'required',
+            'plant_activity' => 'required',
+            'wr_no' => 'required',
+            'wr_item' => 'required',
+            'qty_req' => 'required',
+            'stock_code' => 'required',
+            'mnemonic' => 'required',
+            'part_number' => 'required',
+            'pn_global' => 'required',
+            'item_name' => 'required',
+            'stock_type_district' => 'required',
+            'class' => 'required',
+            'home_wh' => 'required',
+            'uoi' => 'required',
+            'issuing_price' => 'required',
+            'price_code' => 'required',
+            'notes' => 'nullable',
+            'eta' => 'nullable',
+            'status' => 'required'
+        ]);
+
+        $periodic = Periodic::findOrFail($id);
+        $periodic->update($request->all());
+
+        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
     public function destroy($id): RedirectResponse
     {
         $periodic = Periodic::findOrFail($id);
@@ -101,34 +155,31 @@ class PeriodicController extends Controller
     }
 
     public function search(Request $request)
-{
-    $query = $request->input('search');
+    {
+        $query = $request->input('search');
 
-    $data = Periodic::where('wr_no', 'LIKE', "%{$query}%")
-                ->orWhere('wo_desc', 'LIKE', "%{$query}%")
-                ->paginate(10);
+        $data = Periodic::where('wr_no', 'LIKE', "%{$query}%")
+            ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+            ->paginate(10);
 
-    return view('partials.wr_table', [
-        'data' => $data,
-        'routePrefix' => 'periodic' // Sesuaikan dengan prefix masing-masing controller
-    ]);
-}
-
-public function bulkDelete(Request $request)
-{
-    try {
-        $ids = $request->input('ids', []);
-        if (empty($ids)) {
-            return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
-        }
-
-        Periodic::whereIn('id', $ids)->delete();
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        return view('partials.wr_table', [
+            'data' => $data,
+            'routePrefix' => 'periodic' // Sesuaikan dengan prefix masing-masing controller
+        ]);
     }
-}
 
+    public function bulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->input('ids', []);
+            if (empty($ids)) {
+                return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
+            }
 
-
+            Periodic::whereIn('id', $ids)->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
 }
