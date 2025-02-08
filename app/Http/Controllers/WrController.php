@@ -19,6 +19,8 @@ class WrController extends Controller
         $role = Auth::user()->role; // Mendapatkan role user yang sedang login
         $wrQuery = Wr::query();
 
+        $type = 'wr';
+
         // Filter berdasarkan role
         if ($role === 'supplier') {
             $wrQuery->where('home_wh', 'UTVH'); // Hanya data dengan WH = UTVH
@@ -29,11 +31,11 @@ class WrController extends Controller
 
         // Redirect sesuai dengan role user
         if ($role === 'sm') {
-            return view('adminDashboard', compact('wr'));
+            return view('adminDashboard', compact('wr', 'type'));
         } elseif ($role === 'supplier') {
-            return view('supplierDashboard', compact('wr'));
+            return view('supplierDashboard', compact('wr', 'type'));
         } elseif ($role === 'user') {
-            return view('userDashboard', compact('wr'));
+            return view('userDashboard', compact('wr', 'type'));
         } else {
             return view('login')->with(['error' => 'Belum Terdaftar!']);
         }
@@ -96,7 +98,10 @@ class WrController extends Controller
     {
         $wr = Wr::findOrFail($id);
         $stockCode = StockCode::all();
-        return view('tes', compact('wr', 'stockCode'));
+        // return view('edit', compact(['type' => 'wr'], 'stockCode'));
+        // return view('edit', compact('stockCode'))->with('type', 'wr');
+
+        return view('edit', compact('wr', 'stockCode'))->with('type', 'wr');
     }
 
     public function update(Request $request, $id): RedirectResponse
@@ -193,17 +198,17 @@ class WrController extends Controller
     }
 
     public function bulkDelete(Request $request)
-{
-    try {
-        $ids = $request->input('ids', []);
-        if (empty($ids)) {
-            return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
-        }
+    {
+        try {
+            $ids = $request->input('ids', []);
+            if (empty($ids)) {
+                return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
+            }
 
-        Wr::whereIn('id', $ids)->delete();
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+            Wr::whereIn('id', $ids)->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
     }
-}
 }

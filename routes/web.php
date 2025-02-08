@@ -22,6 +22,7 @@ use App\Models\Overhaul;
 // use App\Http\Middleware\UserAkses;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 // Guest Routes (Login)
 Route::middleware(['guest'])->group(function () {
@@ -94,11 +95,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('periodic/import', [PeriodicController::class, 'import'])->name('periodic.import');
     Route::post('/periodic/bulk-delete', [PeriodicController::class, 'bulkDelete'])->name('periodic.bulkDelete');
 
-
-
-
-
-
     Route::post('/{type}/store', function ($type) {
         if ($type == 'wr') {
             // Membuat instance WrController dan memanggil store
@@ -122,6 +118,32 @@ Route::middleware(['auth'])->group(function () {
             return $controller->store(request());
         }
     })->name('dynamic.store');
+
+    Route::get('/{type}/edit/{id}', function ($type, $id) {
+        $controller = match ($type) {
+            'wr' => app(WrController::class),
+            'bcs' => app(BcsController::class),
+            'midlife' => app(MidlifeController::class),
+            'overhaul' => app(OverhaulController::class),
+            'periodic' => app(PeriodicController::class),
+            default => abort(404),
+        };
+
+        return $controller->edit($id);
+    })->name('dynamic.edit');
+
+    Route::post('/{type}/update/{id}', function (Illuminate\Http\Request $request, $type, $id) {
+        $controller = match ($type) {
+            'wr' => app(WrController::class),
+            'bcs' => app(BcsController::class),
+            'midlife' => app(MidlifeController::class),
+            'overhaul' => app(OverhaulController::class),
+            'periodic' => app(PeriodicController::class),
+            default => abort(404),
+        };
+
+        return $controller->update($request, $id);
+    })->name('dynamic.update');
 
 
     // WR Management
