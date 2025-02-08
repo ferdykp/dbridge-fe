@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/stockCode/search', [StockCodeController::class, 'search'])->name('stockCode.search');
     // Route::get('/stockcode', [StockCodeController::class, 'search']);
     Route::resource('stockCode', StockCodeController::class);
+    Route::post('/stockCode/bulk-delete', [StockCodeController::class, 'bulkDelete'])->name('stockCode.bulkDelete');
+
 
     Route::get('/{type}/search', function ($type) {
         if ($type == 'wr') {
@@ -66,23 +68,32 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('wr', WrController::class);
     Route::get('wr-export', [WrController::class, 'export'])->name('wr.export');
     Route::post('wr/import', [WrController::class, 'import'])->name('wr.import');
+    Route::post('/wr/bulk-delete', [WrController::class, 'bulkDelete'])->name('wr.bulkDelete');
 
 
     Route::resource('bcs', BcsController::class);
     Route::get('bcs-export', [BcsController::class, 'export'])->name('bcs.export');
     Route::post('bcs/import', [BcsController::class, 'import'])->name('bcs.import');
+    Route::post('/bcs/bulk-delete', [BcsController::class, 'bulkDelete'])->name('bcs.bulkDelete');
+
 
     Route::resource('midlife', MidlifeController::class);
     Route::get('midlife-export', [MidlifeController::class, 'export'])->name('midlife.export');
     Route::post('midlife/import', [MidlifeController::class, 'import'])->name('midlife.import');
+    Route::post('/midlife/bulk-delete', [MidlifeController::class, 'bulkDelete'])->name('midlife.bulkDelete');
+
 
     Route::resource('overhaul', OverhaulController::class);
     Route::get('overhaul-export', [OverhaulController::class, 'export'])->name('overhaul.export');
     Route::post('overhaul/import', [OverhaulController::class, 'import'])->name('overhaul.import');
+    Route::post('/overhaul/bulk-delete', [OverhaulController::class, 'bulkDelete'])->name('overhaul.bulkDelete');
+
 
     Route::resource('periodic', PeriodicController::class);
     Route::get('periodic-export', [PeriodicController::class, 'export'])->name('periodic.export');
     Route::post('periodic/import', [PeriodicController::class, 'import'])->name('periodic.import');
+    Route::post('/periodic/bulk-delete', [PeriodicController::class, 'bulkDelete'])->name('periodic.bulkDelete');
+
 
 
 

@@ -115,5 +115,19 @@ class MidlifeController extends Controller
         'routePrefix' => 'midlife' // Sesuaikan dengan prefix masing-masing controller
     ]);
 }
+    public function bulkDelete(Request $request)
+{
+    try {
+        $ids = $request->input('ids', []);
+        if (empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
+        }
+
+        Midlife::whereIn('id', $ids)->delete();
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+    }
+}
 
 }

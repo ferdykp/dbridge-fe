@@ -42,7 +42,7 @@
             </div>
             <div class="card-body px-0 pt-0 pb-4">
                 <div class="table-responsive p-0">
-                    <table id="datatable" class="table align-items-center mb-0">
+                    <table id="datatable" class="table align-items-center mb-0" data-type="midlife">
                         <thead class="table-light">
                             <tr>
                                 @if (in_array(Auth::user()->role, ['sm', 'supplier']))
@@ -103,65 +103,4 @@
     </div>
     </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const selectAllCheckbox = document.getElementById("select_all_id");
-            const checkboxes = document.querySelectorAll(".checkbox_id");
-            const deleteButton = document.getElementById("delete_selected"); // Pastikan ID tombol delete benar
-
-            // **Fitur Select All**
-            selectAllCheckbox.addEventListener("change", function() {
-                checkboxes.forEach(checkbox => {
-                    checkbox.checked = selectAllCheckbox.checked;
-                });
-            });
-
-            // **Update Select All Jika Checkbox di Klik**
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener("change", function() {
-                    const totalChecked = document.querySelectorAll(".checkbox_id:checked").length;
-                    selectAllCheckbox.checked = (totalChecked === checkboxes.length);
-                });
-            });
-
-            // **Fitur Hapus Data Terpilih**
-            deleteButton.addEventListener("click", function() {
-                let selectedIds = Array.from(document.querySelectorAll(".checkbox_id:checked"))
-                    .map(checkbox => checkbox.value);
-
-                if (selectedIds.length === 0) {
-                    alert("❌ Pilih minimal satu data untuk dihapus!");
-                    return;
-                }
-
-                if (!confirm("⚠️ Anda yakin ingin menghapus data ini?")) {
-                    return;
-                }
-
-                // **Looping Hapus Data dengan Fetch API**
-                let deletePromises = selectedIds.map(id => {
-                    return fetch(`/wr/${id}`, {
-                            method: "DELETE",
-                            headers: {
-                                "X-CSRF-TOKEN": document.querySelector(
-                                    'meta[name="csrf-token"]').content,
-                                "Content-Type": "application/json"
-                            }
-                        })
-                        .then(response => response.json())
-                        .catch(error => console.error(`❌ Gagal menghapus ${id}`, error));
-                });
-                Promise.all(deletePromises).then(() => {
-                    location.reload(); // Langsung reload tanpa notifikasi
-                });
-
-                // **Reload Halaman Setelah Semua Data Dihapus**
-                // Promise.all(deletePromises).then(() => {
-                //     alert("✅ Data berhasil dihapus.");
-                //     location.reload();
-                // });
-            });
-        });
-    </script>
 @endsection

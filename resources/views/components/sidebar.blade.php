@@ -28,7 +28,7 @@
                 </a>
             </li>
 
-            @if (auth()->user()->role == ['sm', 'supplier'])
+            @if (in_array(Auth::user()->role, ['sm', 'supplier']))
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('stockCode.index') || request()->routeIs('stockCode.create') ? 'bg-primary text-white' : '' }}"
                         href="{{ route('stockCode.index') }}">

@@ -1,5 +1,10 @@
 @forelse ($stockCode as $index => $stockCodes)
     <tr>
+        @if (in_array(Auth::user()->role, ['sm', 'supplier']))
+            <td class="text-center">
+                <input type="checkbox" class="checkbox_id" value="{{ $stockCodes->id }}">
+            </td>
+        @endif
         <td class="text-center">{{ $index + 1 + ($stockCode->currentPage() - 1) * $stockCode->perPage() }}</td>
         <td class="text-center">{{ $stockCodes->stock_code }}</td>
         <td class="text-center">{{ $stockCodes->price_code }}</td>

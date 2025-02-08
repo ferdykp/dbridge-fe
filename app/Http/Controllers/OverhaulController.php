@@ -35,7 +35,7 @@ class OverhaulController extends Controller
         public function show(string $id): View
     {
         $overhaul = Overhaul::findOrFail($id);
-        return view('show', compact('overhaul'));
+        return view('overhaul', compact('overhaul'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -114,6 +114,20 @@ class OverhaulController extends Controller
         'data' => $data,
         'routePrefix' => 'overhaul' // Sesuaikan dengan prefix masing-masing controller
     ]);
+}
+    public function bulkDelete(Request $request)
+{
+    try {
+        $ids = $request->input('ids', []);
+        if (empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
+        }
+
+        Overhaul::whereIn('id', $ids)->delete();
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+    }
 }
 
 }

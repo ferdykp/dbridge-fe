@@ -32,6 +32,91 @@
   </script>
 
   <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const selectAllCheckbox = document.getElementById("select_all_id");
+          const checkboxes = document.querySelectorAll(".checkbox_id");
+          const deleteButton = document.getElementById("delete_selected");
+
+          if (!selectAllCheckbox || !deleteButton) return;
+
+          // **Fitur Select All**
+          selectAllCheckbox.addEventListener("change", function() {
+              checkboxes.forEach(checkbox => {
+                  checkbox.checked = selectAllCheckbox.checked;
+              });
+          });
+
+          // **Update Select All Jika Checkbox di Klik**
+          checkboxes.forEach(checkbox => {
+              checkbox.addEventListener("change", function() {
+                  const totalChecked = document.querySelectorAll(".checkbox_id:checked").length;
+                  selectAllCheckbox.checked = (totalChecked === checkboxes.length);
+              });
+          });
+
+          // **Fitur Hapus Data Terpilih**
+          deleteButton.addEventListener("click", function() {
+              let selectedIds = Array.from(document.querySelectorAll(".checkbox_id:checked"))
+                  .map(checkbox => checkbox.value);
+
+              if (selectedIds.length === 0) {
+                  alert("❌ Pilih minimal satu data untuk dihapus!");
+                  return;
+              }
+
+              if (!confirm("⚠️ Anda yakin ingin menghapus data ini?")) {
+                  return;
+              }
+
+              // **Tentukan route berdasarkan data-table yang sedang ditampilkan**
+              let currentTable = document.getElementById("datatable");
+              let tableType = currentTable.getAttribute(
+                  "data-type"); // Pastikan ada atribut data-type pada tabel
+
+              let deleteRoutes = {
+                  "wr": "{{ route('wr.bulkDelete') }}",
+                  "bcs": "{{ route('bcs.bulkDelete') }}",
+                  "midlife": "{{ route('midlife.bulkDelete') }}",
+                  "overhaul": "{{ route('overhaul.bulkDelete') }}",
+                  "periodic": "{{ route('periodic.bulkDelete') }}",
+                  "stockCode": "{{ route('stockCode.bulkDelete') }}"
+
+              };
+
+              let deleteUrl = deleteRoutes[tableType];
+
+              if (!deleteUrl) {
+                  alert("❌ Route untuk hapus tidak ditemukan.");
+                  return;
+              }
+
+              // **Kirim request ke server menggunakan AJAX**
+              fetch(deleteUrl, {
+                      method: "POST",
+                      headers: {
+                          "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                          "Content-Type": "application/json"
+                      },
+                      body: JSON.stringify({
+                          ids: selectedIds
+                      })
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          alert("✅ Data berhasil dihapus.");
+                          location.reload();
+                      } else {
+                          alert("❌ Terjadi kesalahan saat menghapus data.");
+                      }
+                  })
+                  .catch(error => console.error("❌ Gagal menghapus data:", error));
+          });
+      });
+  </script>
+
+
+  <script>
       var win = navigator.platform.indexOf('Win') > -1;
       if (win && document.querySelector('#sidenav-scrollbar')) {
           var options = {

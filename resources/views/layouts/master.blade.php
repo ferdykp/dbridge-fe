@@ -20,6 +20,8 @@
     <!-- CSS Files -->
     {{-- <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" /> --}}
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <style>
         .custom-dropdown-box {
             background-color: #8e121f;
