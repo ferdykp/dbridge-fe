@@ -26,7 +26,6 @@
                     <div class="card-header pb-0 d-flex justify-content-between">
                         <div class="d-flex">
                             <button class="btn btn-danger me-2" id="delete_selected">Delete Selected</button>
-
                             <a href="{{ route('stockCode.create') }}" class="btn btn-md btn-success me-2">Add Stock Code</a>
                             <a href="{{ route('stockCode.export') }}" class="btn btn-md btn-warning"><i
                                     class="fa fa-download"></i>Export Data in Excel</a>
