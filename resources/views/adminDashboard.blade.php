@@ -74,6 +74,7 @@
                                         <th style="white-space: nowrap;" class="text-center">ISSUING PRICE</th>
                                         <th style="white-space: nowrap;" class="text-center">PRICE CODE</th>
                                         <th style="white-space: nowrap;" class="text-center">Notes</th>
+                                        <th style="white-space: nowrap;" class="text-center">ETA</th>
                                         <th style="white-space: nowrap;" class="text-center">Status</th>
                                         <th style="white-space: nowrap;" class="text-center">Action</th>
 

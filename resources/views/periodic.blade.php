@@ -52,35 +52,36 @@
                                 @if (in_array(Auth::user()->role, ['sm', 'supplier']))
                                     <th class="text-center"><input type="checkbox" id="select_all_id"></th>
                                 @endif
-                                <th class="text-center">No</th>
-                                <th class="text-center">DSTRC_ORI</th>
-                                <th class="text-center">CREATION_DATE</th>
-                                <th class="text-center">AUTHSD_DATE</th>
-                                <th class="text-center">WO_DESC</th>
-                                <th class="text-center">ACUAN PLAN SERVICE</th>
-                                <th class="text-center">Componen_Desc</th>
-                                <th class="text-center">EGI</th>
-                                <th class="text-center">EGI ENG</th>
-                                <th class="text-center">EQUIP_NO</th>
-                                <th class="text-center">Plant Process</th>
-                                <th class="text-center">Plant Activity</th>
-                                <th class="text-center">WR_NO</th>
-                                <th class="text-center">WR_ITEM</th>
-                                <th class="text-center">QTY_REQ</th>
-                                <th class="text-center">Stock_Code</th>
-                                <th class="text-center">Mnemonic</th>
-                                <th class="text-center">PART_NUMBER</th>
-                                <th class="text-center">PN_GLOBAL</th>
-                                <th class="text-center">ITEM_NAME</th>
-                                <th class="text-center">STOCK_TYPE_DISTRICT</th>
-                                <th class="text-center">CLASS</th>
-                                <th class="text-center">HOME_WH</th>
-                                <th class="text-center">UOI</th>
-                                <th class="text-center">ISSUING PRICE</th>
-                                <th class="text-center">PRICE_CODE</th>
-                                <th class="text-center">Notes</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Action</th>
+                                <th style="white-space: nowrap;" class="text-center">No</th>
+                                <th style="white-space: nowrap;" class="text-center">JOBSITE</th>
+                                <th style="white-space: nowrap;" class="text-center">CREATION DATE</th>
+                                <th style="white-space: nowrap;" class="text-center">AUTHORISED DATE</th>
+                                <th style="white-space: nowrap;" class="text-center">WO DESC</th>
+                                <th style="white-space: nowrap;" class="text-center">ACUAN PLAN SERVICE</th>
+                                <th style="white-space: nowrap;" class="text-center">Componen_Desc</th>
+                                <th style="white-space: nowrap;" class="text-center">EGI</th>
+                                <th style="white-space: nowrap;" class="text-center">EGI ENG</th>
+                                <th style="white-space: nowrap;" class="text-center">EQUIP_NO</th>
+                                <th style="white-space: nowrap;" class="text-center">Plant Process</th>
+                                <th style="white-space: nowrap;" class="text-center">Plant Activity</th>
+                                <th style="white-space: nowrap;" class="text-center">NO WR</th>
+                                <th style="white-space: nowrap;" class="text-center">ITEM WR</th>
+                                <th style="white-space: nowrap;" class="text-center">QUANTITY REQ</th>
+                                <th style="white-space: nowrap;" class="text-center">STOCK CODE</th>
+                                <th style="white-space: nowrap;" class="text-center">MNEMONIC</th>
+                                <th style="white-space: nowrap;" class="text-center">PN CURRENT</th>
+                                <th style="white-space: nowrap;" class="text-center">PN GLOBAL</th>
+                                <th style="white-space: nowrap;" class="text-center">ITEM NAME</th>
+                                <th style="white-space: nowrap;" class="text-center">STOCK TYPE DISTRICT</th>
+                                <th style="white-space: nowrap;" class="text-center">CLASS</th>
+                                <th style="white-space: nowrap;" class="text-center">WAREHOUSE</th>
+                                <th style="white-space: nowrap;" class="text-center">UOI</th>
+                                <th style="white-space: nowrap;" class="text-center">ISSUING PRICE</th>
+                                <th style="white-space: nowrap;" class="text-center">PRICE CODE</th>
+                                <th style="white-space: nowrap;" class="text-center">Notes</th>
+                                <th style="white-space: nowrap;" class="text-center">ETA</th>
+                                <th style="white-space: nowrap;" class="text-center">Status</th>
+                                <th style="white-space: nowrap;" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody id="table-body">
