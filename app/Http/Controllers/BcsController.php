@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use App\Imports\BcsImport; // Import WrImport yang akan dibuat nanti
+use Illuminate\Support\Facades\Schema;
 
 
 class BcsController extends Controller
@@ -157,8 +158,11 @@ class BcsController extends Controller
     {
         $query = $request->input('search');
 
-        $data = Bcs::where('wr_no', 'LIKE', "%{$query}%")
-            ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+        $data = Bcs::where(function ($q) use ($query) {
+            foreach (Schema::getColumnListing('bcs') as $column) {
+                $q->orWhere($column, 'LIKE', "%{$query}%");
+            }
+        })
             ->paginate(10);
 
         return view('partials.wr_table', [
