@@ -49,6 +49,19 @@
                         </ul>
                     </li>
                 </div>
+
+                <li class="nav-item d-xl-none ps-3 pe-0 d-flex align-items-center mx-3">
+                    <a href="javascript:;" class="nav-link text-white p-0">
+                        <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                            <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line bg-white"></i>
+                                <i class="sidenav-toggler-line bg-white"></i>
+                                <i class="sidenav-toggler-line bg-white"></i>
+                            </div>
+                        </a>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

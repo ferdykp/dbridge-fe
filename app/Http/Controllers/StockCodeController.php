@@ -8,6 +8,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\StockCodeImport;
 use Illuminate\Support\Illuminate\Database;
 use App\Exports\StockCodeExport;
+use Illuminate\Support\Facades\Schema;
+
 
 class StockCodeController extends Controller
 {
@@ -80,7 +82,7 @@ class StockCodeController extends Controller
         // $item = StockCode::all();
         return view('editstockcode', compact('stockCode'));
     }
-    public function update(Request $request, StockCode $stockCode)
+public function update(Request $request, StockCode $stockCode)
     {
         // $stockCode = StockCode::findOrFail($stockCode);
 
@@ -138,18 +140,18 @@ class StockCodeController extends Controller
 
         Excel::import(new StockCodeImport, $request->file('file'));
 
-        return redirect()->route('stockcode')->with('success', 'Stock Codes berhasil diimport!');
+        return redirect()->route('stockCode.index')->with('success', 'Stock Codes berhasil diimport!');
     }
 
     public function search(Request $request)
     {
         $search = $request->input('search');
 
-        $stockCode = StockCode::where('stock_code', 'like', "%{$search}%")
-            ->orWhere('item_name', 'like', "%{$search}%")
-            ->orWhere('mnemonic', 'like', "%{$search}%")
-            ->paginate(10);
-
+        $stockCode = StockCode::where(function ($query) use ($search) {
+            foreach (Schema::getColumnListing('stockcode') as $column) {
+                $query->orWhere($column, 'LIKE', "%{$search}%");
+            }
+        })->paginate(10);
 
         return view('partials.stock_table', compact('stockCode'));
     }
@@ -159,18 +161,18 @@ class StockCodeController extends Controller
         return Excel::download(new StockCodeExport, 'Data StockCode.xlsx');
     }
 
-    public function bulkDelete(Request $request)
-    {
-        try {
-            $ids = $request->input('ids', []);
-            if (empty($ids)) {
-                return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
-            }
-
-            StockCode::whereIn('id', $ids)->delete();
-            return response()->json(['success' => true]);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        public function bulkDelete(Request $request)
+{
+    try {
+        $ids = $request->input('ids', []);
+        if (empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih.']);
         }
+
+        StockCode::whereIn('id', $ids)->delete();
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()]);
     }
+}
 }

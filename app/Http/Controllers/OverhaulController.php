@@ -11,6 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use App\Imports\OverhaulImport; // Import WrImport yang akan dibuat nanti
+use Illuminate\Support\Facades\Schema;
+
 
 
 
@@ -160,8 +162,11 @@ class OverhaulController extends Controller
     {
         $query = $request->input('search');
 
-        $data = Overhaul::where('wr_no', 'LIKE', "%{$query}%")
-            ->orWhere('wo_desc', 'LIKE', "%{$query}%")
+        $data = Overhaul::where(function ($q) use ($query) {
+                foreach (Schema::getColumnListing('overhaul') as $column) {
+                    $q->orWhere($column, 'LIKE', "%{$query}%");
+                }
+            })
             ->paginate(10);
 
         return view('partials.wr_table', [
@@ -169,6 +174,7 @@ class OverhaulController extends Controller
             'routePrefix' => 'overhaul' // Sesuaikan dengan prefix masing-masing controller
         ]);
     }
+
     public function bulkDelete(Request $request)
     {
         try {
