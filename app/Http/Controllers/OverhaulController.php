@@ -128,7 +128,7 @@ class OverhaulController extends Controller
         $overhaul = Overhaul::findOrFail($id);
         $overhaul->update($request->all());
 
-        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('overhaul')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
@@ -163,10 +163,10 @@ class OverhaulController extends Controller
         $query = $request->input('search');
 
         $data = Overhaul::where(function ($q) use ($query) {
-                foreach (Schema::getColumnListing('overhaul') as $column) {
-                    $q->orWhere($column, 'LIKE', "%{$query}%");
-                }
-            })
+            foreach (Schema::getColumnListing('overhaul') as $column) {
+                $q->orWhere($column, 'LIKE', "%{$query}%");
+            }
+        })
             ->paginate(10);
 
         return view('partials.wr_table', [

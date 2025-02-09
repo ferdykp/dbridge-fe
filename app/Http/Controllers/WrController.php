@@ -188,22 +188,22 @@ class WrController extends Controller
         // Redirect kembali ke dashboard dengan pesan sukses
         return redirect()->route('dashboard')->with(['success' => 'Data WR berhasil diimport!']);
     }
-public function search(Request $request)
-{
-    $query = $request->input('search');
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
 
-    $data = Wr::where(function ($q) use ($query) {
+        $data = Wr::where(function ($q) use ($query) {
             foreach (Schema::getColumnListing('wr') as $column) {
                 $q->orWhere($column, 'LIKE', "%{$query}%");
             }
         })
-        ->paginate(10);
+            ->paginate(10);
 
-    return view('partials.wr_table', [
-        'data' => $data,
-        'routePrefix' => 'wr' // Sesuaikan dengan prefix masing-masing controller
-    ]);
-}
+        return view('partials.wr_table', [
+            'data' => $data,
+            'routePrefix' => 'wr' // Sesuaikan dengan prefix masing-masing controller
+        ]);
+    }
     public function bulkDelete(Request $request)
     {
         try {

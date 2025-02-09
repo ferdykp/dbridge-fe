@@ -124,7 +124,7 @@ class PeriodicController extends Controller
         $periodic = Periodic::findOrFail($id);
         $periodic->update($request->all());
 
-        return redirect()->route('dashboard')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('periodic')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy($id): RedirectResponse
