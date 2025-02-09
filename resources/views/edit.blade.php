@@ -7,6 +7,7 @@
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <form action="{{ route('dynamic.update', ['type' => $type, 'id' => $data->id]) }}" method="POST">
+                            @csrf
                             <div id="wrFields">
                                 <div class="form-group mb-3">
                                     <label class="font-weight-bold mb-3">DSTRC_ORI</label>
