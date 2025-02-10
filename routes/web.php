@@ -15,6 +15,8 @@ use App\Http\Controllers\BcsController;
 use App\Http\Controllers\MidlifeController;
 use App\Http\Controllers\OverhaulController;
 use App\Http\Controllers\PeriodicController;
+use App\Http\Controllers\LainnyaController;
+
 use App\Models\Midlife;
 use App\Models\Overhaul;
 // use App\Models\Midlife;
@@ -62,6 +64,10 @@ Route::middleware(['auth'])->group(function () {
             // Membuat instance BcsController dan memanggil search
             $controller = app(PeriodicController::class);
             return $controller->search(request());
+        } elseif ($type == 'lainnya') {
+            // Membuat instance BcsController dan memanggil search
+            $controller = app(LainnyaController::class);
+            return $controller->search(request());
         }
     })->name('dynamic.search');
 
@@ -95,6 +101,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('periodic/import', [PeriodicController::class, 'import'])->name('periodic.import');
     Route::post('/periodic/bulk-delete', [PeriodicController::class, 'bulkDelete'])->name('periodic.bulkDelete');
 
+    Route::resource('lainnya', LainnyaController::class);
+    Route::get(
+        'lainnya-export',
+        [lainnyaController::class, 'export']
+    )->name('lainnya.export');
+    Route::post('lainnya/import', [lainnyaController::class, 'import'])->name('lainnya.import');
+    Route::post('/lainnya/bulk-delete', [LainnyaController::class, 'bulkDelete'])->name('lainnya.bulkDelete');
+
     Route::post('/{type}/store', function ($type) {
         if ($type == 'wr') {
             // Membuat instance WrController dan memanggil store
@@ -116,6 +130,10 @@ Route::middleware(['auth'])->group(function () {
             // Membuat instance BcsController dan memanggil store
             $controller = app(PeriodicController::class);
             return $controller->store(request());
+        } elseif ($type == 'lainnya') {
+            // Membuat instance BcsController dan memanggil store
+            $controller = app(LainnyaController::class);
+            return $controller->store(request());
         }
     })->name('dynamic.store');
 
@@ -126,6 +144,7 @@ Route::middleware(['auth'])->group(function () {
             'midlife' => app(MidlifeController::class),
             'overhaul' => app(OverhaulController::class),
             'periodic' => app(PeriodicController::class),
+            'lainnya' => app(LainnyaController::class),
             default => abort(404),
         };
 
@@ -139,6 +158,7 @@ Route::middleware(['auth'])->group(function () {
             'midlife' => app(MidlifeController::class),
             'overhaul' => app(OverhaulController::class),
             'periodic' => app(PeriodicController::class),
+            'lainnya' => app(LainnyaController::class),
             default => abort(404),
         };
 
@@ -178,6 +198,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/midlife', [MidlifeController::class, 'index'])->name('midlife');
     Route::get('/overhaul', [OverhaulController::class, 'index'])->name('overhaul');
     Route::get('/periodic', [PeriodicController::class, 'index'])->name('periodic');
+    Route::get('/lainnya', [LainnyaController::class, 'index'])->name('lainnya');
+
 
     Route::prefix('dashboard')->group(function () {
         Route::get('admin', [WrController::class, 'index'])->name('adminDashboard');

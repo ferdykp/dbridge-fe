@@ -44,8 +44,6 @@
                                             class="fa fa-download"></i>Export Data Midlife in Excel</a>
                                 @endif
                                 @if (in_array(Auth::user()->role, ['supplier']))
-                                    <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
-                                        Selected</button>
                                     <a href="{{ route('midlife.export') }}"
                                         class="btn btn-md btn-warning me-2 mb-2 mb-sm-0"><i
                                             class="fa fa-download"></i>Export Data Midlife in Excel</a>
