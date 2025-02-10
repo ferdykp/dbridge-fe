@@ -20,9 +20,16 @@ class OverhaulController extends Controller
 {
     public function index()
     {
-        // $overhaul = Overhaul::all();
-        $overhaul = Overhaul::paginate(10);
+        $role = Auth::user()->role;
+        $overhaulQuery = Overhaul::query(); // Membuat query builder
         $type = 'overhaul';
+
+        if ($role === 'supplier') {
+            $overhaulQuery->where('home_wh', 'UTVH');
+        }
+
+        $overhaul = $overhaulQuery->paginate(10); // Pastikan mengambil data dari query yang sudah difilter
+
         return view('overhaul', compact('overhaul', 'type'));
     }
     public function create()

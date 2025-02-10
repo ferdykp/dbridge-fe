@@ -17,11 +17,19 @@ class MidlifeController extends Controller
 {
     public function index()
     {
-        // $midlife = Midlife::all(); // Ini mengembalikan koleksi
-        $midlife = Midlife::paginate(10);
+        $role = Auth::user()->role;
+        $midlifeQuery = Midlife::query(); // Membuat query builder
         $type = 'midlife';
-        return view('midlife', compact('midlife', 'type')); // Kirim koleksi ke view
+
+        if ($role === 'supplier') {
+            $midlifeQuery->where('home_wh', 'UTVH');
+        }
+
+        $midlife = $midlifeQuery->paginate(10); // Pastikan mengambil data dari query yang sudah difilter
+
+        return view('midlife', compact('midlife', 'type'));
     }
+
 
 
     public function create()

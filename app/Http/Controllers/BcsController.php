@@ -18,11 +18,19 @@ class BcsController extends Controller
 {
     public function index()
     {
-        // $bcs = Bcs::all()->simplePaginate(10);
-        $bcs = Bcs::paginate(10);
+        $role = Auth::user()->role;
+        $bcsQuery = Bcs::query(); // Membuat query builder
         $type = 'bcs';
+
+        if ($role === 'supplier') {
+            $bcsQuery->where('home_wh', 'UTVH');
+        }
+
+        $bcs = $bcsQuery->paginate(10); // Pastikan mengambil data dari query yang sudah difilter
+
         return view('bcs', compact('bcs', 'type'));
     }
+
 
     public function create()
     {

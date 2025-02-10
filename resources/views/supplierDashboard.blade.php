@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4 ">
-                    <div class="card-header">
+                    {{-- <div class="card-header">
                         <div>
                             <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data"
                                 class="d-flex">
@@ -20,17 +20,15 @@
                                 <button type="submit" class="btn btn-primary mt-4">Import WR</button>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="card-header pb-0 d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <div class="d-flex">
+                                <a class="btn btn-danger me-2" id="delete_selected">Delete Selected</a>
                                 <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2">Add WR</a>
                                 <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning">
                                     <i class="fa fa-download"></i> Export Data in Excel
                                 </a>
-                            </div>
-                            <div class="mt-2">
-                                <a class="btn btn-danger" id="delete_selected">Delete Selected</a>
                             </div>
                         </div>
                         <div class="w-25"> <!-- Adjust the width as needed -->

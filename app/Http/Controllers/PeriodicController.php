@@ -17,9 +17,16 @@ class PeriodicController extends Controller
 {
     public function index()
     {
-        // $periodic = Periodic::all();
-        $periodic = Periodic::paginate(10); // Ambil semua data dengan pagination (10 data per halaman)
+        $role = Auth::user()->role;
+        $periodicQuery = Periodic::query(); // Membuat query builder
         $type = 'periodic';
+
+        if ($role === 'supplier') {
+            $periodicQuery->where('home_wh', 'UTVH');
+        }
+
+        $periodic = $periodicQuery->paginate(10); // Pastikan mengambil data dari query yang sudah difilter
+
         return view('periodic', compact('periodic', 'type'));
     }
     public function create()
