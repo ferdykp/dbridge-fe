@@ -1,8 +1,4 @@
 @extends('layouts.master')
-
-<head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
