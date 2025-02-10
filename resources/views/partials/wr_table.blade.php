@@ -8,7 +8,7 @@
         <td class="text-center">
             {{ $index + 1 + ($data->currentPage() - 1) * $data->perPage() }}
         </td>
-        <td class="text-center">{{ $item->dstrc_ori }}</td>
+        <td class="text-center">{{ $item->dstrct_ori }}</td>
         <td class="text-center">{{ $item->creation_date }}</td>
         <td class="text-center">{{ $item->authsd_date }}</td>
         <td class="text-center">{{ $item->wo_desc }}</td>
