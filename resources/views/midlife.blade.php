@@ -9,32 +9,35 @@
                         <div class="card-header">
                             <div>
                                 <form action="{{ route('midlife.import') }}" method="POST" enctype="multipart/form-data"
-                                    class="d-flex">
+                                    class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
                                     @csrf
-                                    <div class="form-group me-2">
-                                        <label for="file">Upload Midlife File in Excel</label>
+                                    <div class="form-group me-md-2 w-100 w-md-25">
+                                        <label for="file">Upload midlife File in Excel</label>
                                         <input type="file" name="file" class="form-control" required>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-4">Import Midlife</button>
+                                    <button type="submit" class="btn btn-primary mt-2 mt-md-4">Import midlife</button>
                                 </form>
                             </div>
                         </div>
                     @endif
-                    <div class="card-header pb-0 d-flex justify-content-between">
+                    <div
+                        class="card-header pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                         @if (in_array(Auth::user()->role, ['sm', 'supplier']))
-                            <div class="d-flex flex-column">
-                                <div class="d-flex">
-                                    <a class="btn btn-danger me-2" id="delete_selected">Delete Selected</a>
-                                    <a href="{{ route('midlife.create') }}" class="btn btn-md btn-success me-2">Add
-                                        Midlife</a>
+                            <div class="d-flex flex-column w-100 w-md-auto mb-2 mb-md-0">
+                                <div class="d-flex flex-column flex-sm-row">
+                                    <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
+                                        Selected</button>
+                                    <a href="{{ route('midlife.create') }}"
+                                        class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Add
+                                        midlife</a>
                         @endif
-                        <a href="{{ route('midlife.export') }}" class="btn btn-md btn-warning"><i
-                                class="fa fa-download"></i>Export Data Midlife in Excel</a>
+                        <a href="{{ route('midlife.export') }}" class="btn btn-md btn-warning me-2 mb-2 mb-sm-0"><i
+                                class="fa fa-download"></i>Export Data midlife in Excel</a>
                     </div>
                 </div>
-                <div class="w-25"> <!-- Adjust the width as needed -->
+                <div class="form-group me-md-2 w-100 w-md-25">
                     <input type="text" id="search" data-route="{{ route('dynamic.search', ['type' => 'midlife']) }}"
-                        name="search" placeholder="Search Midlife Code" autocomplete="off" class="form-control">
+                        name="search" placeholder="Search midlife Code" autocomplete="off" class="form-control">
                 </div>
             </div>
             <div class="card-header pb-0">

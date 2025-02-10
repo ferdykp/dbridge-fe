@@ -9,34 +9,36 @@
             <div class="col-12">
                 <div class="card mb-4 ">
                     <div class="card-header">
-                        <div>
-                            <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data"
-                                class="d-flex">
-                                @csrf
-                                <div class="form-group me-2">
-                                    <label for="file">Upload WR File in Excel</label>
-                                    <input type="file" name="file" class="form-control" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary mt-4">Import WR</button>
-                            </form>
-                        </div>
+                        <form action="{{ route('wr.import') }}" method="POST" enctype="multipart/form-data"
+                            class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                            @csrf
+                            <div class="form-group me-md-2 w-100 w-md-25">
+                                <label for="file">Upload WR File in Excel</label>
+                                <input type="file" name="file" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2 mt-md-4">Import WR</button>
+                        </form>
                     </div>
-                    <div class="card-header pb-0 d-flex justify-content-between">
-                        <div class="d-flex flex-column">
-                            <div class="d-flex">
-                                <button class="btn btn-danger me-2" id="delete_selected">Delete Selected</button>
-                                <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2">Add WR</a>
-                                <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning">
+                    <div
+                        class="card-header pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                        <div class="d-flex flex-column w-100 w-md-auto mb-2 mb-md-0">
+                            <div class="d-flex flex-column flex-sm-row">
+                                <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
+                                    Selected</button>
+                                <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Add
+                                    WR</a>
+                                <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning me-2 mb-2 mb-sm-0">
                                     <i class="fa fa-download"></i> Export Data in Excel
                                 </a>
                             </div>
                         </div>
-                        <div class="w-25"> <!-- Adjust the width as needed -->
+                        <div class="w-100 w-md-25"> <!-- Adjust the width as needed -->
                             <input type="text" id="search"
                                 data-route="{{ route('dynamic.search', ['type' => 'wr']) }}" name="search"
                                 placeholder="Search WR Code" autocomplete="off" class="form-control">
                         </div>
                     </div>
+
                     <div class="card-header pb-0">
                         <h6>Data WR</h6>
                     </div>
