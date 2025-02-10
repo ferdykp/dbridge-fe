@@ -11,7 +11,7 @@ class Midlife extends Model
     protected $table = 'midlife';
 
     protected $fillable = [
-        'dstrc_ori',
+        'dstrct_ori',
         'creation_date',
         'authsd_date',
         'wo_desc',

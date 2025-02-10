@@ -55,7 +55,7 @@ class WrController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'dstrc_ori' => 'required',
+            'dstrct_ori' => 'required',
             'creation_date' => 'required',
             'authsd_date' => 'required',
             'wo_desc' => 'required',
@@ -112,7 +112,7 @@ class WrController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'dstrc_ori' => 'nullable',
+            'dstrct_ori' => 'nullable',
             'creation_date' => 'nullable',
             'authsd_date' => 'nullable',
             'wo_desc' => 'nullable',

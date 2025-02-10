@@ -10,12 +10,12 @@
                             @csrf
                             <div id="wrFields">
                                 <div class="form-group mb-3">
-                                    <label class="font-weight-bold mb-3">DSTRC_ORI</label>
-                                    <input type="text" class="form-control @error('dstrc_ori') is-invalid @enderror"
-                                        name="dstrc_ori" value="{{ old('dstrc_ori') }}" placeholder="Insert DSTRC_ORI">
+                                    <label class="font-weight-bold mb-3">DSTRCT_ORI</label>
+                                    <input type="text" class="form-control @error('dstrct_ori') is-invalid @enderror"
+                                        name="dstrc_ori" value="{{ old('dstrct_ori') }}" placeholder="Insert DSTRCT_ORI">
 
                                     <!-- error message untuk title -->
-                                    @error('dstrc_ori')
+                                    @error('dstrct_ori')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>

@@ -37,7 +37,7 @@ class MidlifeImport implements ToModel, WithHeadingRow
         }
 
         return new Midlife([
-            'dstrc_ori' => $row['dstrc_ori'],
+            'dstrct_ori' => $row['dstrct_ori'],
             'creation_date' => Carbon::parse($row['creation_date'])->format('Y-m-d H:i:s'),
             'authsd_date' => Carbon::parse($row['authsd_date'])->format('Y-m-d H:i:s'),
             'wo_desc' => $row['wo_desc'],

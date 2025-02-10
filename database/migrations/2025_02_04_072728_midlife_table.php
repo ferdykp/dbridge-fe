@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('midlife', function (Blueprint $table) {
             $table->id();
-            $table->string('dstrc_ori')->nullable();
+            $table->string('dstrct_ori')->nullable();
             $table->date('creation_date')->nullable();
             $table->date('authsd_date')->nullable();
             $table->string('wo_desc')->nullable();

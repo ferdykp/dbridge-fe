@@ -16,7 +16,7 @@ class WrExport implements FromCollection, WithHeadings
     public function collection()
     {
         // Mengambil data dari model Barang
-        return wr::select("dstrc_ori", "creation_date", "authsd_date", "wo_desc", "acuan_plan_service", "componen_desc", "egi", "egi_eng", "equip_no", "plant_process", "plant_activity", "wr_no", "wr_item", "qty_req")->get();
+        return wr::select("dstrct_ori", "creation_date", "authsd_date", "wo_desc", "acuan_plan_service", "componen_desc", "egi", "egi_eng", "equip_no", "plant_process", "plant_activity", "wr_no", "wr_item", "qty_req")->get();
     }
 
     /**
@@ -26,6 +26,6 @@ class WrExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["DSTRC_ORI", "CREATION_DATE", "AUTHSD_DATE", "WO_DESC", "ACUAN_PLAN_SERVICE", "COMPONEN_DESC", "EGI", "EGI_ENG", "EQUIP_NO", "PLANT_PROCESS", "PLANT_ACTIVITY", "WR_NO", "WR_ITEM", "QTY_REQ"];
+        return ["DSTRCT_ORI", "CREATION_DATE", "AUTHSD_DATE", "WO_DESC", "ACUAN_PLAN_SERVICE", "COMPONEN_DESC", "EGI", "EGI_ENG", "EQUIP_NO", "PLANT_PROCESS", "PLANT_ACTIVITY", "WR_NO", "WR_ITEM", "QTY_REQ"];
     }
 }

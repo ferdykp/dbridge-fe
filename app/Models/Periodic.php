@@ -11,7 +11,7 @@ class Periodic extends Model
     protected $table = 'periodic';
 
     protected $fillable = [
-        'dstrc_ori',
+        'dstrct_ori',
         'creation_date',
         'authsd_date',
         'wo_desc',

@@ -11,7 +11,7 @@ class Overhaul extends Model
     protected $table = 'overhaul';
 
     protected $fillable = [
-        'dstrc_ori',
+        'dstrct_ori',
         'creation_date',
         'authsd_date',
         'wo_desc',
