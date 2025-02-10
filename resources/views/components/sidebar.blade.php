@@ -24,7 +24,10 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Outstanding WR</span>
+                    <span class="nav-link-text ms-1">Outstanding WR @if (Auth::user()->role == 'supplier')
+                            UT
+                        @endif
+                    </span>
                 </a>
             </li>
 
@@ -47,7 +50,10 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-books text-dark text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">BCS</span>
+                    <span class="nav-link-text ms-1">BCS @if (Auth::user()->role == 'supplier')
+                            UT
+                        @endif
+                    </span>
                 </a>
             </li>
             <li class="nav-item">
@@ -57,7 +63,10 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-bag-17 text-dark text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Midlife</span>
+                    <span class="nav-link-text ms-1">Midlife @if (Auth::user()->role == 'supplier')
+                            UT
+                        @endif
+                    </span>
                 </a>
             </li>
             <li class="nav-item">
@@ -67,7 +76,10 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-box-2 text-dark text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Overhaul</span>
+                    <span class="nav-link-text ms-1">Overhaul @if (Auth::user()->role == 'supplier')
+                            UT
+                        @endif
+                    </span>
                 </a>
             </li>
             <li class="nav-item">
@@ -77,7 +89,10 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-ruler-pencil text-dark text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Periodic Service</span>
+                    <span class="nav-link-text ms-1">Periodic Service @if (Auth::user()->role == 'supplier')
+                            UT
+                        @endif
+                    </span>
                 </a>
             </li>
 

@@ -52,7 +52,7 @@
                                         <th style="white-space: nowrap;" class="text-center">No</th>
                                         <th style="white-space: nowrap;" class="text-center">JOBSITE</th>
                                         <th style="white-space: nowrap;" class="text-center">CREATION DATE</th>
-                                        <th style="white-space: nowrap;" class="text-center">AUTHORISED DATE</th>
+                                        <th style="white-space: nowrap;" class="text-center">AUTHORIZED DATE</th>
                                         <th style="white-space: nowrap;" class="text-center">WO DESC</th>
                                         <th style="white-space: nowrap;" class="text-center">ACUAN PLAN SERVICE</th>
                                         <th style="white-space: nowrap;" class="text-center">Componen_Desc</th>

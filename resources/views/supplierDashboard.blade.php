@@ -20,8 +20,8 @@
                     <div class="card-header pb-0 d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <div class="d-flex">
-                                <a class="btn btn-danger me-2" id="delete_selected">Delete Selected</a>
-                                <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2">Add WR</a>
+                                {{-- <a class="btn btn-danger me-2" id="delete_selected">Delete Selected</a> --}}
+                                {{-- <a href="{{ route('wr.create') }}" class="btn btn-md btn-success me-2">Add WR</a> --}}
                                 <a href="{{ route('wr.export') }}" class="btn btn-md btn-warning">
                                     <i class="fa fa-download"></i> Export Data in Excel
                                 </a>
@@ -41,13 +41,13 @@
                             <table id="datatable" class="table align-items-center mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
-                                                name="select_all" id="select_all_id"></th>
+                                        {{-- <th style="white-space: nowrap;" class="text-center"><input type="checkbox"
+                                                name="select_all" id="select_all_id"></th> --}}
                                         <th style="white-space: nowrap;" class="text-center">No</th>
-                                        <th style="white-space: nowrap;" class="text-center">DSTRC_ORI</th>
-                                        <th style="white-space: nowrap;" class="text-center">CREATION_DATE</th>
-                                        <th style="white-space: nowrap;" class="text-center">AUTHSD_DATE</th>
-                                        <th style="white-space: nowrap;" class="text-center">WO_DESC</th>
+                                        <th style="white-space: nowrap;" class="text-center">JOBSITE</th>
+                                        <th style="white-space: nowrap;" class="text-center">CREATION DATE</th>
+                                        <th style="white-space: nowrap;" class="text-center">AUTHORIZED DATE</th>
+                                        <th style="white-space: nowrap;" class="text-center">WO DESC</th>
                                         <th style="white-space: nowrap;" class="text-center">ACUAN PLAN SERVICE</th>
                                         <th style="white-space: nowrap;" class="text-center">Componen_Desc</th>
                                         <th style="white-space: nowrap;" class="text-center">EGI</th>
@@ -55,23 +55,24 @@
                                         <th style="white-space: nowrap;" class="text-center">EQUIP_NO</th>
                                         <th style="white-space: nowrap;" class="text-center">Plant Process</th>
                                         <th style="white-space: nowrap;" class="text-center">Plant Activity</th>
-                                        <th style="white-space: nowrap;" class="text-center">WR_NO</th>
-                                        <th style="white-space: nowrap;" class="text-center">WR_ITEM</th>
-                                        <th style="white-space: nowrap;" class="text-center">QTY_REQ</th>
-                                        <th style="white-space: nowrap;" class="text-center">Stock_Code</th>
-                                        <th style="white-space: nowrap;" class="text-center">Mnemonic</th>
-                                        <th style="white-space: nowrap;" class="text-center">PART_NUMBER</th>
-                                        <th style="white-space: nowrap;" class="text-center">PN_GLOBAL</th>
-                                        <th style="white-space: nowrap;" class="text-center">ITEM_NAME</th>
-                                        <th style="white-space: nowrap;" class="text-center">STOCK_TYPE_DISTRICT</th>
+                                        <th style="white-space: nowrap;" class="text-center">NO WR</th>
+                                        <th style="white-space: nowrap;" class="text-center">ITEM WR</th>
+                                        <th style="white-space: nowrap;" class="text-center">QUANTITY REQ</th>
+                                        <th style="white-space: nowrap;" class="text-center">STOCK CODE</th>
+                                        <th style="white-space: nowrap;" class="text-center">MNEMONIC</th>
+                                        <th style="white-space: nowrap;" class="text-center">PN CURRENT</th>
+                                        <th style="white-space: nowrap;" class="text-center">PN GLOBAL</th>
+                                        <th style="white-space: nowrap;" class="text-center">ITEM NAME</th>
+                                        <th style="white-space: nowrap;" class="text-center">STOCK TYPE DISTRICT</th>
                                         <th style="white-space: nowrap;" class="text-center">CLASS</th>
-                                        <th style="white-space: nowrap;" class="text-center">HOME_WH</th>
+                                        <th style="white-space: nowrap;" class="text-center">WAREHOUSE</th>
                                         <th style="white-space: nowrap;" class="text-center">UOI</th>
                                         <th style="white-space: nowrap;" class="text-center">ISSUING PRICE</th>
-                                        <th style="white-space: nowrap;" class="text-center">PRICE_CODE</th>
+                                        <th style="white-space: nowrap;" class="text-center">PRICE CODE</th>
                                         <th style="white-space: nowrap;" class="text-center">Notes</th>
+                                        <th style="white-space: nowrap;" class="text-center">ETA</th>
                                         <th style="white-space: nowrap;" class="text-center">Status</th>
-                                        <th style="white-space: nowrap;" class="text-center">Action</th>
+                                        {{-- <th style="white-space: nowrap;" class="text-center">Action</th> --}}
 
                                     </tr>
                                 </thead>
