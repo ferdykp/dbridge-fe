@@ -8,14 +8,14 @@
                     @if (in_array(Auth::user()->role, ['sm', 'user']))
                         <div class="card-header">
                             <div>
-                                <form action="{{ route('overhaul.import') }}" method="POST" enctype="multipart/form-data"
+                                <form action="{{ route('lainnya.import') }}" method="POST" enctype="multipart/form-data"
                                     class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
                                     @csrf
                                     <div class="form-group me-md-2 w-100 w-md-25">
-                                        <label for="file">Upload overhaul File in Excel</label>
+                                        <label for="file">Upload Lainnya File in Excel</label>
                                         <input type="file" name="file" class="form-control" required>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-2 mt-md-4">Import overhaul</button>
+                                    <button type="submit" class="btn btn-primary mt-2 mt-md-4">Import Lainnya</button>
                                 </form>
                             </div>
                         </div>
@@ -25,43 +25,44 @@
                         <div class="d-flex flex-column w-100 w-md-auto mb-2 mb-md-0">
                             <div class="d-flex flex-column flex-sm-row">
                                 @if (in_array(Auth::user()->role, ['user']))
-                                    <a href="{{ route('overhaul.create') }}"
+                                    <a href="{{ route('lainnya.create') }}"
                                         class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Add
-                                        Overhaul</a>
-                                    <a href="{{ route('overhaul.export') }}"
+                                        Lainnya</a>
+                                    <a href="{{ route('lainnya.export') }}"
                                         class="btn btn-md btn-warning me-2 mb-2 mb-sm-0"><i
-                                            class="fa fa-download"></i>Export Data Overhaul in Excel</a>
+                                            class="fa fa-download"></i>Export Data Lainnya in Excel</a>
                                 @endif
                                 @if (in_array(Auth::user()->role, ['sm']))
                                     <button class="btn btn-danger me-2 mb-2 mb-sm-0" id="delete_selected">Delete
                                         Selected</button>
 
-                                    <a href="{{ route('overhaul.create') }}"
+                                    <a href="{{ route('lainnya.create') }}"
                                         class="btn btn-md btn-success me-2 mb-2 mb-sm-0">Add
-                                        Overhaul</a>
-                                    <a href="{{ route('overhaul.export') }}"
+                                        Lainnya</a>
+                                    <a href="{{ route('lainnya.export') }}"
                                         class="btn btn-md btn-warning me-2 mb-2 mb-sm-0"><i
-                                            class="fa fa-download"></i>Export Data Overhaul in Excel</a>
+                                            class="fa fa-download"></i>Export Data Lainnya in Excel</a>
                                 @endif
                                 @if (in_array(Auth::user()->role, ['supplier']))
-                                    <a href="{{ route('overhaul.export') }}"
+                                    <a href="{{ route('lainnya.export') }}"
                                         class="btn btn-md btn-warning me-2 mb-2 mb-sm-0"><i
-                                            class="fa fa-download"></i>Export Data Overhaul in Excel</a>
+                                            class="fa fa-download"></i>Export Data Lainnya in Excel</a>
                                 @endif
+
                             </div>
                         </div>
                         <div class="form-group me-md-2 w-100 w-md-25">
                             <input type="text" id="search"
-                                data-route="{{ route('dynamic.search', ['type' => 'overhaul']) }}" name="search"
-                                placeholder="Search overhaul Code" autocomplete="off" class="form-control">
+                                data-route="{{ route('dynamic.search', ['type' => 'lainnya']) }}" name="search"
+                                placeholder="Search Lainnya Code" autocomplete="off" class="form-control">
                         </div>
                     </div>
                     <div class="card-header pb-0">
-                        <h6>Data Overhaul</h6>
+                        <h6>Data Lainnya</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-4">
                         <div class="table-responsive p-0">
-                            <table id="datatable" class="table align-items-center mb-0" data-type="overhaul">
+                            <table id="datatable" class="table align-items-center mb-0" data-type="lainnya">
                                 <thead class="table-light">
                                     <tr>
                                         @if (in_array(Auth::user()->role, ['sm', 'supplier']))
@@ -98,27 +99,25 @@
                                         <th style="white-space: nowrap;" class="text-center">ETA</th>
                                         <th style="white-space: nowrap;" class="text-center">Status</th>
                                         <th style="white-space: nowrap;" class="text-center">Action</th>
-
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
                                     @include('partials.wr_table', [
-                                        'data' => $overhaul,
-                                        'routePrefix' => 'overhaul',
+                                        'data' => $lainnya,
+                                        'routePrefix' => 'lainnya',
                                     ])
                                 </tbody>
                             </table>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             <div>
-                                Showing {{ $overhaul->firstItem() }} to {{ $overhaul->lastItem() }} of
-                                {{ $overhaul->total() }} entries
+                                Showing {{ $lainnya->firstItem() }} to {{ $lainnya->lastItem() }} of
+                                {{ $lainnya->total() }} entries
                             </div>
                             <div class="d-flex justify-content-center mt-4">
-                                {{ $overhaul->links('pagination::bootstrap-4') }}
+                                {{ $lainnya->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -96,6 +96,20 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('lainnya') || request()->routeIs('lainnya') ? 'bg-primary text-white' : '' }}"
+                    href="{{ route('lainnya') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-bullet-list-67 text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Lainnya @if (Auth::user()->role == 'supplier')
+                            UT
+                        @endif
+                    </span>
+                </a>
+            </li>
+
             {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->is('pages/rtl') ? 'bg-primary text-white' : '' }}"
                     href="../pages/rtl.html">
