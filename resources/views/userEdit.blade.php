@@ -43,6 +43,20 @@
                         </div>
 
                         <div>
+                            <input type="checkbox" id="showPassword" class="mt-3" onclick="togglePasswords()">
+                            <label for="showPassword">Show Password</label>
+                        </div>
+
+                        <script>
+                            function togglePasswords() {
+                                var passwordFields = document.querySelectorAll("input[type='password']");
+                                passwordFields.forEach(field => {
+                                    field.type = field.type === "password" ? "text" : "password";
+                                });
+                            }
+                        </script>
+
+                        <div>
                             <label for="role" class="form-control-label">Role:</label>
                             <select id="role" class="form-control mb-3" name="role" required>
                                 <option value="" disabled hidden>--- Select Role ---</option>

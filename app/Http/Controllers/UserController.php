@@ -77,7 +77,7 @@ class UserController extends Controller
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email,' . $user->id,
         'role' => 'required|in:sm,user,supplier',
-        'password' => 'nullable|min:6|confirmed', // Password bisa kosong
+        'password' => 'nullable|min:5|confirmed', // Password bisa kosong
     ]);
 
     // Update data user
