@@ -158,7 +158,7 @@
                     </div>
                     <div class="card-body p-3">
                         <div class="chart">
-                            <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                            <canvas id="chart-line" class="chart-canvas" height="400"></canvas>
                         </div>
                     </div>
                 </div>
