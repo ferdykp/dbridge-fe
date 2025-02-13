@@ -53,12 +53,14 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item {{ request()->routeIs('users.show', 1) ? 'bg-primary text-white' : '' }}"
-                                    href="{{ route('users.show', 1) }}">
-                                    <i class="ni ni-single-02 text-dark text-sm opacity-10"></i> Profile
-                                </a>
-                            </li>
+                            @if (Auth::user()->role == 'sm')
+                                <li>
+                                    <a class="dropdown-item {{ request()->routeIs('users.show', 1) ? 'bg-primary text-white' : '' }}"
+                                        href="{{ route('users.show', 1) }}">
+                                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i> Profile
+                                    </a>
+                                </li>
+                            @endif
                             <li>
                                 <a class="dropdown-item" href="javascript:void(0)"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
