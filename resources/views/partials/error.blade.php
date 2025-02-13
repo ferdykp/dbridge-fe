@@ -123,9 +123,9 @@
                 <div class="container">
                     {{-- <img src="{{ asset('images/error/500.png') }}" class="img-fluid mb-4 w-50" alt=""> --}}
                     <h2 class="mb-0 mt-4 text-white">Oops! It Looks Like Your Excel Data Doesn't Match</h2>
-                    <p class="mt-2 text-white">Try Re-Uploading.</p>
-                    <a class="btn bg-white text-primary d-inline-flex align-items-center"
-                        href="{{ route('dashboard') }}">Back to Home</a>
+                    <p class="mt-2 text-white">Try Re-Uploading With The Right Structure Data.</p>
+                    <a class="btn btn-md btn-warning me-2 mb-2 mb-sm-0" href="{{ route('dashboard') }}">Back to
+                        Home</a>
                 </div>
             </div>
         </div>

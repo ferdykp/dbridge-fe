@@ -192,7 +192,7 @@ class WrController extends Controller
         } catch (\Exception $e) {
         // Redirect ke halaman error khusus
         return view('partials.error', ['error_message' => $e->getMessage()]);
-    }
+        }
     }
 
     public function search(Request $request)
