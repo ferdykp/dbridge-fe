@@ -179,19 +179,19 @@ class WrController extends Controller
     public function import(Request $request)
     {
         try {
-        // Validasi file Excel yang diupload
-        $request->validate([
-            'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
-        ]);
+            // Validasi file Excel yang diupload
+            $request->validate([
+                'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
+            ]);
 
-        // Import file Excel
-        Excel::import(new WrImport, $request->file('file'));
+            // Import file Excel
+            Excel::import(new WrImport, $request->file('file'));
 
-        // Redirect kembali ke dashboard dengan pesan sukses
-        return redirect()->route('dashboard')->with(['success' => 'Data WR berhasil diimport!']);
+            // Redirect kembali ke dashboard dengan pesan sukses
+            return redirect()->route('dashboard')->with(['success' => 'Data WR berhasil diimport!']);
         } catch (\Exception $e) {
-        // Redirect ke halaman error khusus
-        return view('partials.error', ['error_message' => $e->getMessage()]);
+            // Redirect ke halaman error khusus
+            return view('partials.error', ['error_message' => $e->getMessage()]);
         }
     }
 
