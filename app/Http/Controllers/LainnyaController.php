@@ -150,6 +150,7 @@ class LainnyaController extends Controller
 
     public function import(Request $request)
     {
+        try{
         // Validasi file Excel yang diupload
         $request->validate([
             'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
@@ -160,6 +161,11 @@ class LainnyaController extends Controller
 
         // Redirect kembali ke dashboard dengan pesan sukses
         return redirect()->route('lainnya')->with(['success' => 'Data Lain berhasil diimport!']);
+    }
+    catch (\Exception $e) {
+        // Redirect ke halaman error khusus
+        return view('partials.error', ['error_message' => $e->getMessage()]);
+        }
     }
 
     public function search(Request $request)

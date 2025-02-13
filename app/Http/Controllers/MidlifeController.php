@@ -153,6 +153,7 @@ class MidlifeController extends Controller
 
     public function import(Request $request)
     {
+        try{
         // Validasi file Excel yang diupload
         $request->validate([
             'file' => 'required|mimes:xlsx,csv', // Menjamin hanya file Excel yang bisa diupload
@@ -163,6 +164,10 @@ class MidlifeController extends Controller
 
         // Redirect kembali ke dashboard dengan pesan sukses
         return redirect()->route('midlife')->with(['success' => 'Data Midlife berhasil diimport!']);
+    } catch (\Exception $e) {
+        // Redirect ke halaman error khusus
+        return view('partials.error', ['error_message' => $e->getMessage()]);
+        }
     }
 
     public function search(Request $request)

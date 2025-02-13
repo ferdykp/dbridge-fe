@@ -134,6 +134,7 @@ public function update(Request $request, StockCode $stockCode)
     // Fungsi untuk menangani proses import
     public function import(Request $request)
     {
+        try{
         $request->validate([
             'file' => 'required|mimes:xlsx,xls'
         ]);
@@ -141,8 +142,11 @@ public function update(Request $request, StockCode $stockCode)
         Excel::import(new StockCodeImport, $request->file('file'));
 
         return redirect()->route('stockCode.index')->with('success', 'Stock Codes berhasil diimport!');
-    }
-
+    } catch (\Exception $e) {
+        // Redirect ke halaman error khusus
+        return view('partials.error', ['error_message' => $e->getMessage()]);
+        }
+}
     public function search(Request $request)
     {
         $search = $request->input('search');
