@@ -16,7 +16,23 @@ class WrExport implements FromCollection, WithHeadings
     public function collection()
     {
         // Mengambil data dari model Barang
-        return wr::select("dstrct_ori", "creation_date", "authsd_date", "wo_desc", "acuan_plan_service", "componen_desc", "egi", "egi_eng", "equip_no", "plant_process", "eta", "plant_activity", "wr_no", "wr_item", "qty_req",             "stock_code",
+        return wr::select(
+            "dstrct_ori",
+            "creation_date",
+            "authsd_date",
+            "wo_desc",
+            "acuan_plan_service",
+            "componen_desc",
+            "egi",
+            "egi_eng",
+            "equip_no",
+            "plant_process",
+            "eta",
+            "plant_activity",
+            "wr_no",
+            "wr_item",
+            "qty_req",
+            "stock_code",
             "mnemonic",
             "part_number",
             "pn_global",
@@ -29,7 +45,7 @@ class WrExport implements FromCollection, WithHeadings
             "price_code",
             "notes",
             "status"
-)->get();
+        )->get();
     }
 
     /**
@@ -39,7 +55,23 @@ class WrExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["DSTRCT_ORI", "CREATION_DATE", "AUTHSD_DATE", "WO_DESC", "ACUAN_PLAN_SERVICE", "COMPONEN_DESC", "EGI", "EGI_ENG", "EQUIP_NO", "PLANT_PROCESS", "ETA", "PLANT_ACTIVITY", "WR_NO", "WR_ITEM", "QTY_REQ",            "STOCK_CODE",
+        return [
+            "DSTRCT_ORI",
+            "CREATION_DATE",
+            "AUTHSD_DATE",
+            "WO_DESC",
+            "ACUAN_PLAN_SERVICE",
+            "COMPONEN_DESC",
+            "EGI",
+            "EGI_ENG",
+            "EQUIP_NO",
+            "PLANT_PROCESS",
+            "ETA",
+            "PLANT_ACTIVITY",
+            "WR_NO",
+            "WR_ITEM",
+            "QTY_REQ",
+            "STOCK_CODE",
             "MNEMONIC",
             "PART_NUMBER",
             "PN_GLOBAL",
@@ -52,6 +84,6 @@ class WrExport implements FromCollection, WithHeadings
             "PRICE_CODE",
             "Notes",
             "Status"
-];
+        ];
     }
 }
