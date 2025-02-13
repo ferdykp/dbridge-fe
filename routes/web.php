@@ -180,7 +180,9 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/import-stockcode', [StockCodeController::class, 'showImportForm'])->name('import.form');
     // Route::post('/import-stockcode', [StockCodeController::class, 'importExcel'])->name('import.excel');
 
-
+Route::get('/allDashboard', function () {
+    return view('allDashboard');
+})->name('allDashboard');
     // Dashboard
     Route::get('/dashboard', function () {
         // $role = Auth::check() && Auth::user()->role == 'sm';
