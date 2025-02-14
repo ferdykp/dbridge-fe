@@ -49,22 +49,23 @@
                         <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
                             <div class="card card-plain">
                                 <div class="card-header pb-0 text-start text-center">
-                                    <!-- Kotak teks -->
+                                    <!-- Kotak teks responsif -->
                                     <div style="
-                                background: rgba(146, 6, 6, 0.7);
+                                background: rgba(121, 0, 0, 0.7);
                                 padding: 10px 20px;
                                 border-radius: 6px;
-                                color: #fdfdfd;
+                                color: #ffffff;
                                 font-weight: bold;
-                                font-size: 30px;
                                 display: inline-block;
-                                margin-bottom: 70px;
-                                width:400px;
+                                margin-bottom: 10px;
+                                max-width: 90%;
+                                font-size: clamp(16px, 3vw, 24px);
+                                text-wrap: balance;
                             ">
                                         Here, There and Everywhere
                                     </div>
 
-                                    <h4 class="font-weight-bolder">Sign In</h4>
+                                    <h4 class="font-weight-bolder mt-4">Sign In</h4>
                                     <p class="mb-0">Enter your email and password to sign in</p>
                                 </div>
                                 <div class="card-body">
