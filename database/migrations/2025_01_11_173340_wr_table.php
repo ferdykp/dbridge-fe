@@ -14,32 +14,34 @@ return new class extends Migration
 
         Schema::create('wr', function (Blueprint $table) {
             $table->id();
-            $table->string('dstrc_ori');
-            $table->date('creation_date');
-            $table->date('authsd_date');
-            $table->string('wo_desc');
-            $table->date('acuan_plan_service');
-            $table->string('componen_desc');
-            $table->string('egi');
-            $table->string('egi_eng');
-            $table->string('equip_no');
-            $table->string('plant_process');
-            $table->string('plant_activity');
-            $table->string('wr_no');
-            $table->string('wr_item');
-            $table->integer('qty_req');
-            $table->string('stock_code');
-            $table->string('price_code');
-            $table->string('item_name');
-            $table->string('class');
-            $table->string('current_class');
-            $table->string('mnemonic_current');
-            $table->string('pn_current');
-            $table->string('pn_global');
-            $table->string('wh');
-            $table->string('uoi');
-            $table->string('notes');
-            $table->string('status');
+            $table->string('dstrct_ori')->nullable();
+            $table->date('creation_date')->nullable();
+            $table->date('authsd_date')->nullable();
+            $table->string('wo_desc')->nullable();
+            $table->date('acuan_plan_service')->nullable();
+            $table->string('componen_desc')->nullable();
+            $table->string('egi')->nullable();
+            $table->string('egi_eng')->nullable();
+            $table->string('equip_no')->nullable();
+            $table->string('plant_process')->nullable();
+            $table->string('plant_activity')->nullable();
+            $table->string('wr_no')->nullable();
+            $table->string('wr_item')->nullable();
+            $table->integer('qty_req')->nullable();
+            $table->string('stock_code')->nullable();
+            $table->string('mnemonic')->nullable();
+            $table->string('part_number')->nullable();
+            $table->string('pn_global')->nullable();
+            $table->string('item_name')->nullable();
+            $table->string('stock_type_district')->nullable();
+            $table->string('class')->nullable();
+            $table->string('home_wh')->nullable();
+            $table->string('uoi')->nullable();
+            $table->string('issuing_price')->nullable();
+            $table->string('price_code')->nullable();
+            $table->string('notes')->nullable();
+            $table->date('eta')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -49,6 +51,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('wr');
     }
 };
